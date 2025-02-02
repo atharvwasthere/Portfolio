@@ -5,6 +5,7 @@
 // import SmoothCodeEditorContact from "./SmoothCodeEditorContact"
 import ContactCards from "./ContactCards"
 import mypic from '../data/mee.jpg'
+import QuoteSection from "./ui/Quote"
 
 const Contact = () => { 
     return(
@@ -23,6 +24,7 @@ const Contact = () => {
                 <div className="flex items-between justify-center p-8 text-primary">
                     <img src={mypic} />
                 </div>
+                <QuoteSection/>
                 <span id="Colophon" className=" border-2 border-red-500 mx-8  flex items-between justify-center  text-primary">
                     Design & code by &nbsp;<a href="http://localhost:5173/"> <u>Atharv Singh</u></a>
                     {/* <span id="copyright" className=" border-2 border-red-500 m-8 flex items-between justify-center  text-primary">
