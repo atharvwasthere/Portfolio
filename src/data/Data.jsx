@@ -73,7 +73,7 @@ export const cards = [
       description: "Ongoing",
       title: "AirWise",
       tech: " React, TailwindCSS, WAQI API",
-      src: '/coursify.png',
+      src: '/AirWise.png',
       ctaText_before: "Website",
       ctaText_after: "Github",
       ctaLink_before: "https://ui.aceternity.com/templates",
