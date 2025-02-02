@@ -1,5 +1,5 @@
 const Nav = () => {
-    const navItems = ['Intro', 'Projects', 'Value', 'Background', 'About', 'Contact'];
+    const navItems = ['Intro', 'Projects', 'Value', 'Background','Blogs', 'About', 'Contact'];
 
     return (
         <aside id="nav" className=" fixed flex flex-col top-32 left-6 text-start">

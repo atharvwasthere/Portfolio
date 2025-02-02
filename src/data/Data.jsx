@@ -1,7 +1,7 @@
 
 export const cards = [
     {
-      description: "Dec 2022 - Apr 2023",
+      description: "Researching & Coding",
       title: "ParaLang",
       tech: " React, Node.js, Express, MongoDB, TailwindCSS, Websockets, WebRTC, Web Audio API",
       src: "https://static.vecteezy.com/system/resources/previews/013/709/851/original/outline-brain-design-silhouette-logo-design-hand-drawn-minimalist-brain-vector.jpg",
@@ -19,7 +19,7 @@ export const cards = [
       ),
     },
     {
-      description: "Dec 2022 - Apr 2023",
+      description: "Completed (2024)",
       title: "EveSpark",
       tech: " React, Node.js, Express, MySQL, Flask ",
       src: "https://static.vecteezy.com/system/resources/previews/015/150/683/original/head-with-brain-icon-design-for-artificial-intelligence-technology-theme-png.png",
@@ -35,7 +35,7 @@ export const cards = [
       ),
     },
     {
-      description: "Dec 2022 - Apr 2023",
+      description: "Completed (2025)",
       title: "Portfolio",
       tech: " React, Node.js, Express, TailwindCSS",
       src: '/portfolio.png',
@@ -53,9 +53,26 @@ export const cards = [
       ),
     },
     {
-      description: "Dec 2022 - Apr 2023",
+      description: "Ongoing",
       title: "Course Generator",
       tech: " React, Node.js, Express, MongoDB, TailwindCSS",
+      src: '/coursify.png',
+      ctaText_before: "Website",
+      ctaText_after: "Github",
+      ctaLink_before: "https://ui.aceternity.com/templates",
+      ctaLink_after: "https://ui.aceternity.com/templates",
+
+      content: () => (
+        <p>
+          Generate <b>personalized courses</b> in seconds with Coursify
+          <br /> <br />
+        </p>
+      ),
+    },
+    {
+      description: "Ongoing",
+      title: "AirWise",
+      tech: " React, TailwindCSS, WAQI API",
       src: '/coursify.png',
       ctaText_before: "Website",
       ctaText_after: "Github",

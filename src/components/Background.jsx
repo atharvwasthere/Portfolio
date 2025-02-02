@@ -5,7 +5,6 @@ import { SvgColor } from "./ui/svgColor";
 
 
 
-
 const Background = () => {
     const [isHovered, setIsHovered] = useState(false);
     const [isExpanded, setIsExpanded] = useState(false);
@@ -29,7 +28,9 @@ const Background = () => {
             <div id="title" className='text-large md:text-huge mb-8 '>Education</div>
             <div id="logo" className="flex items-center justify-start h-32 w-32 ">
                 <div id="logo-image" className="py-4">
-                    <SvgColor width={96} height={96} />
+                    <img src="/vit.jpeg" alt="" className="hidden dark:block w-48 h-36 mt-36" />
+
+                    <SvgColor width={48} height={48} className="block dark:hidden" />
                 </div>
             </div>
             <div
@@ -37,7 +38,7 @@ const Background = () => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
             >
-                <div id="institution-name" className="py-4 text-2xl ">
+                <div id="institution-name" className="pt-8 text-3xl ">
                     {Education[0].institution_name}
                 </div>
                 <div id="Degree" className="py-5 ">
