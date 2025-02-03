@@ -23,7 +23,7 @@ export const cards = [
       title: "EveSpark",
       tech: " React, Node.js, Express, MySQL, Flask ",
       src: "https://static.vecteezy.com/system/resources/previews/015/150/683/original/head-with-brain-icon-design-for-artificial-intelligence-technology-theme-png.png",
-      ctaText_before: "Website",
+      ctaText_before: "Github",
 
       ctaText_after: "Github",
       ctaLink_before: "https://ui.aceternity.com/templates",

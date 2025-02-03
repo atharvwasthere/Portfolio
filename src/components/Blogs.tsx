@@ -6,6 +6,7 @@ import { Card } from "@/components/ui/card"
 import  React from "react" // Import React
 import { NavLink } from "react-router"
 import { Button } from "./ui/button"
+import Header from "./Header"
 
 interface BlogPost {
   id: string
@@ -67,10 +68,13 @@ const blogPosts: BlogPost[] = [
 
 export default function BlogSection() {
   return (
-    <div className="min-h-screen bg-black text-white p-4 md:p-8 lg:p-12">
-      <div className="max-w-4xl mx-auto">
+    <section className="min-h-screen min-w-full bg-background text-foreground">
+    <Header />
+    <div className="min-h-screen bg-background text-primary p-4 md:p-8 lg:p-12">
+      
+      <div className="max-w-4xl mx-auto my-8">
         <h2 className="text-4xl font-bold mb-4">Blogs</h2>
-        <p className="text-zinc-400 text-lg mb-8">
+        <p className="text-zinc-600 text-lg mb-8">
           A collection of my blogs where I share experiences and ideas on technology, programming languages, databases,
           cloud and frameworks.
         </p>
@@ -93,7 +97,7 @@ export default function BlogSection() {
                       {React.createElement(post.icon.name as React.ComponentType<any>, { className:` ${post.icon.color}` })}
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-zinc-100 group-hover:text-white transition-colors">
+                      <h3 className="text-lg font-semibold text-primary group-hover:text-primary-foreground transition-colors">
                         {post.title}
                       </h3>
                       <p className="text-sm text-start text-zinc-500">{post.date}</p>
@@ -115,6 +119,7 @@ export default function BlogSection() {
         </div>
       </div>
     </div>
+    </section>
   )
 }
 
