@@ -1,6 +1,5 @@
-import { SiCodeforces, SiGithub, SiLeetcode , SiLinkedin , SiSpotify ,SiGmail, SiMonkeytype   } from "react-icons/si";
-import { FaXTwitter } from "react-icons/fa6";
-import { TbHandClick } from "react-icons/tb";
+import { SiGithub, SiLeetcode , SiLinkedin , SiSpotify ,SiGmail, SiMonkeytype   } from "react-icons/si";
+import { FaXTwitter ,FaHashnode } from "react-icons/fa6";
 
 
 
@@ -11,8 +10,8 @@ export default function ContactCards() {
     { name: "I promise I'll reply...", icon: SiGmail, url: 'mailto:singhatharv1919@gmail.com', username: 'singhatharv1919@gmail.com' },
     { name: 'Code goes here; sanity goes elsewhere', icon: SiGithub, url: 'https://github.com/AtharvSingh-Git', username: '@AtharvSingh-Git' },
     { name: "Let's network", icon: SiLinkedin, url: 'https://www.linkedin.com/in/atharv-singh-b83747250/', username: '' },
-    { name: 'LeetCode', icon: SiLeetcode, url: 'https://leetcode.com/yourusername', username: '@AtharvatLC' },
-    { name: 'Codeforces', icon: SiCodeforces, url: 'https://codeforces.com/profile/friendzoned_boi', username: '@friendzoned_boi' },
+    { name: 'Coding Profiles', icon: SiLeetcode, url: 'https://linktr.ee/find_Atharv_here', username: '@find_Atharv_here' },
+    { name: 'Hashnode', icon: FaHashnode, url: 'https://hashnode.com/@AtharvBlogs', username: '@AtharvBlogs' },
     { name: 'Rants & Thoughts ', icon: FaXTwitter, url: 'https://x.com/AtharvSingh619', username: '@AtharvatX' },
     { name: 'Spotify', icon: SiSpotify, url: 'https://open.spotify.com/user/ikb0sbf59ghyite93wmm048zv', username: '@Atharv🗿' },
     { name: 'MonkeyType', icon: SiMonkeytype, url: 'https://monkeytype.com/profile/Atharv_types', username: '@Atharv_Types' },
@@ -29,7 +28,7 @@ export default function ContactCards() {
         </div>
 
         <div className=" justify-center -mt-12 grid grid-cols-2 rows-3 md:grid-cols-2 bg-background ">
-          {links.map((link, index) => (
+          {links.map((link) => (
             <a 
               key={link.name}
               href={link.url}
