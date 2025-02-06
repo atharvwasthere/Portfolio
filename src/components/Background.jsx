@@ -27,10 +27,11 @@ const Background = () => {
         <section id="main-outer-border" className="text-start flex flex-col mt-28  text-primary p-4 ">
             <div id="title" className='text-large md:text-huge mb-8 '>Education</div>
             <div id="logo" className="flex items-center justify-start h-32 w-32 ">
-                <div id="logo-image" className="py-4">
-                    <img src="/vit.jpeg" alt="" className="hidden dark:block w-48 h-36 mt-36" />
-
-                    <SvgColor width={48} height={48} className="block dark:hidden" />
+                <div id="logo-image" className="-mt-8 light:hidden">
+                    <img src="/vit.jpeg" alt="" className="w-72 mt-8" />
+                </div>
+                <div id="logo-image" className="py-4 dark:hidden">
+                <SvgColor  className="w-48 h-48" />
                 </div>
             </div>
             <div
