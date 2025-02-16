@@ -1,54 +1,39 @@
-// import { SocialHandles } from "../data/data"
-// import { AnimatedTooltip } from "./AnimatedTooltip"
-// import DigitalCircuitContact from "./DigitalCircuitContact"
-// import CodeEditorContact from "./CodeEditorContact"
-// import SmoothCodeEditorContact from "./SmoothCodeEditorContact"
 import ContactCards from "./ContactCards"
 import mypic from '../data/mee.jpg'
-import QuoteSection from "./ui/Quote"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Link } from "react-router"
 
-const Contact = () => { 
-    return(
-        <>
-        <div id=" main-outer-border" className="mt-32  grid grid-cols-1 md:grid-cols-2 gap-2">
-            <div id="Social-handles" className=" border-2 border-red-500 flex flex-row w-full items-center justify-center text-primary" >
-                <div >
-                    {/* <DigitalCircuitContact/>    */}
-                    {/* <CodeEditorContact/> */}
-                    {/* <SmoothCodeEditorContact/> */}
-                    <ContactCards/>
-                </div>    
+const Contact = () => {
+  return (
+    <>
+      <div className="container mx-auto px-4 py-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          {/* Left Column */}
+          <ContactCards />
+          {/* Right Column */}
+          <div className="space-y-8">
+            <div className="relative aspect-[3/4] w-full max-w-md mx-auto">
+              <img src={mypic} alt="Profile" className="object-cover rounded-lg" />
             </div>
-            {/* signing off */}
-            <div id="pic" className=" border-2 border-red-500 items-center justify-center text-primary">
-                <div className="flex items-between justify-center p-8 text-primary">
-                    <img src={mypic} />
-                </div>
-                <QuoteSection/>
-                <span id="Colophon" className=" border-2 border-red-500 mx-8  flex items-between justify-center  text-primary">
-                    Design & code by &nbsp;<a href="http://localhost:5173/"> <u>Atharv Singh</u></a>
-                    {/* <span id="copyright" className=" border-2 border-red-500 m-8 flex items-between justify-center  text-primary">
-                        &copy; 2024
-                    </span> */}
-                </span>
-                <span id="copyright" className=" border-2 border-red-500 mx-8 flex justify-end text-primary">
-                        &copy; 2025
-                    </span>
-            </div>
+
+            <blockquote className="border-l-4 border-primary pl-4 italic">
+              &quot;To be insanely hopeful even after all that, you call it madness, I call it strength.&quot;
+            </blockquote>
+
+            <p className="text-sm text-muted-foreground text-center">
+              Design & code by
+              {" "}
+              <Link to="/" className="underline underline-offset-4">
+                Atharv Singh
+              </Link>
+
+            </p>
+          </div>
         </div>
-        </>
-    )
+      </div>
+    </>
+  )
 }
 
 export default Contact
 
-/* 
--gmail:
--github:
--linkedin:
--leetcode:
--codeforces:
--X(twitter) : catch me ranting here
--Spotify: 
-
-*/
