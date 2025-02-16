@@ -10,7 +10,7 @@ const helloInLanguages = [
   "こんにちは",
 ];
 
-const SplashScreen = ({ onFinish, duration = 5000 }) => {
+const SplashScreen = ({ onFinish }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(false);
 
@@ -18,22 +18,23 @@ const SplashScreen = ({ onFinish, duration = 5000 }) => {
     const intervalId = setInterval(() => {
       setFade(true);
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % helloInLanguages.length);
+        setCurrentIndex((prevIndex) => {
+          // If we've reached the last greeting, clear interval and finish
+          if (prevIndex === helloInLanguages.length - 1) {
+            clearInterval(intervalId);
+            if (onFinish) onFinish();
+            return prevIndex;
+          }
+          return prevIndex + 1;
+        });
         setFade(false);
-      }, 200); // Slightly longer fade out time for better visibility
-    }, 500); // Slightly longer interval for better readability
-
-    // Set a timeout to finish the splash screen
-    const timeoutId = setTimeout(() => {
-      clearInterval(intervalId);
-      if (onFinish) onFinish();
-    }, duration);
+      }, 200);
+    }, 300);
 
     return () => {
       clearInterval(intervalId);
-      clearTimeout(timeoutId);
     };
-  }, [onFinish, duration]);
+  }, [onFinish]);
 
   return (
     <div style={{
@@ -63,9 +64,9 @@ const SplashScreen = ({ onFinish, duration = 5000 }) => {
     </div>
   );
 };
+
 SplashScreen.propTypes = {
   onFinish: PropTypes.func,
-  duration: PropTypes.number,
 };
 
 export default SplashScreen;
