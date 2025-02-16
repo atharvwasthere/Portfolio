@@ -29,7 +29,7 @@ const SplashScreen = ({ onFinish }) => {
         });
         setFade(false);
       }, 200);
-    }, 300);
+    }, 200);
 
     return () => {
       clearInterval(intervalId);
