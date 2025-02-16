@@ -6,10 +6,14 @@ import Value from "@/components/Values";
 import Background from "@/components/Background";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
-import { useRef } from "react";
+import SplashScreen from "@/components/SplashScreen";
+import { useRef, useState, useEffect } from "react";
 
 const Landing = () => {
-    // Adding References for each sections
+    const [showSplash, setShowSplash] = useState(true);
+    const [contentVisible, setContentVisible] = useState(false);
+
+    // References for each section
     const introRef = useRef(null);
     const projectsRef = useRef(null);
     const valueRef = useRef(null);
@@ -17,10 +21,18 @@ const Landing = () => {
     const aboutRef = useRef(null);
     const contactRef = useRef(null);
 
+    useEffect(() => {
+        // Add a slight delay before showing content to ensure smooth transition
+        if (!showSplash) {
+            const timer = setTimeout(() => {
+                setContentVisible(true);
+            }, 300);
+            return () => clearTimeout(timer);
+        }
+    }, [showSplash]);
+
     const scrollToSection = (ref) => {
         if (ref?.current) {
-            // offset for header
-            // 1256 * 72 is the dimension of the header
             const headerHeight = document.querySelector('header')?.offsetHeight || 72;
             const elementPosition = ref.current.offsetTop - headerHeight;
             
@@ -33,38 +45,52 @@ const Landing = () => {
 
     return (
         <div className="min-h-screen min-w-full bg-background text-foreground">
-            <Header />
-            <div className="flex">
-                <Nav 
-                    scrollToSection={scrollToSection} 
-                    introSection={introRef} 
-                    projectsSection={projectsRef} 
-                    valueSection={valueRef} 
-                    backgroundSection={backgroundRef} 
-                    aboutSection={aboutRef} 
-                    contactSection={contactRef}
+            {showSplash && (
+                <SplashScreen 
+                    onFinish={() => setShowSplash(false)} 
+                    duration={5000} // Match the duration from your splash screen
                 />
-                <main className="flex-1 mt-16 md:ml-48">
-                    <div ref={introRef}>
-                        <IntroText />
-                    </div>
-                    <div className="mt-[400px] md:mt-0" />
-                    <div ref={projectsRef}>
-                        <Projects />
-                    </div>
-                    <div ref={valueRef}>
-                        <Value />
-                    </div>
-                    <div ref={backgroundRef}>
-                        <Background />
-                    </div>
-                    <div ref={aboutRef}>
-                        <About />
-                    </div>
-                    <div ref={contactRef}>
-                        <Contact />
-                    </div>
-                </main>
+            )}
+            <div 
+                style={{
+                    opacity: contentVisible ? 1 : 0,
+                    transition: 'opacity 300ms ease-in',
+                    visibility: contentVisible ? 'visible' : 'hidden'
+                }}
+            >
+                <Header />
+                <div className="flex">
+                    <Nav 
+                        scrollToSection={scrollToSection} 
+                        introSection={introRef} 
+                        projectsSection={projectsRef} 
+                        valueSection={valueRef} 
+                        backgroundSection={backgroundRef} 
+                        aboutSection={aboutRef} 
+                        contactSection={contactRef}
+                    />
+                    <main className="flex-1 mt-16 md:ml-48">
+                        <div ref={introRef}>
+                            <IntroText />
+                        </div>
+                        <div className="mt-[400px] md:mt-0" />
+                        <div ref={projectsRef}>
+                            <Projects />
+                        </div>
+                        <div ref={valueRef}>
+                            <Value />
+                        </div>
+                        <div ref={backgroundRef}>
+                            <Background />
+                        </div>
+                        <div ref={aboutRef}>
+                            <About />
+                        </div>
+                        <div ref={contactRef}>
+                            <Contact />
+                        </div>
+                    </main>
+                </div>
             </div>
         </div>
     );
