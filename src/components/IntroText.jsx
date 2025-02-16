@@ -1,8 +1,8 @@
 import { useState } from "react";
+import AnimatedUnderline from "./ui/AnimatedUnderline";
 
 const IntroText = () => {
-
-  const topMenuItems = ['For anyone', 'Recruiters', 'Product Managers', 'Monkey Typers', 'Designers']
+  const topMenuItems = ['For anyone', 'Recruiters', 'Product Managers', 'Monkey Typers', 'Designers'];
 
   const content = {
     'For anyone': {
@@ -28,23 +28,27 @@ const IntroText = () => {
   const [activeTopMenu, setActiveTopMenu] = useState('For anyone');
 
   return (
-    <section className=" mt-64 md:mt-14 p-2 ">
-      <div className=" text-foreground"> {/* Add padding to account for fixed header and nav */}
-        <div id="intro-text" className='flex flex-wrap '>
+    <section className="mt-64 md:mt-14 p-2">
+      <div className="text-foreground">
+        <div id="intro-text" className="flex flex-wrap gap-8">
           {topMenuItems.map((item) => (
-            <div
+            <AnimatedUnderline
               key={item}
-              className={`font-medium cursor-pointer mr-8 mb-2 font-16px ${activeTopMenu === item ? 'font-bold' : 'opacity-50'} hover:opacity-100`}
-              onClick={() => setActiveTopMenu(item)}
+              className={activeTopMenu === item ? 'font-bold' : 'opacity-50 hover:opacity-100'}
             >
-              {item}
-            </div>
+              <button
+                onClick={() => setActiveTopMenu(item)}
+                className="font-medium cursor-pointer text-base transition-all duration-200"
+              >
+                {item}
+              </button>
+            </AnimatedUnderline>
           ))}
         </div>
-        {/* INTRO TEXT DIV  */}
-        <div id="content" className='flex-grow text-large md:text-huge '>
+        
+        <div id="content" className="flex-grow text-large md:text-huge mt-6">
           {content[activeTopMenu].description.split('. ').map((text, index) => (
-            <h1 key={index} className=' leading-[0.975] text-foreground text-start'>
+            <h1 key={index} className="leading-[0.975] text-foreground text-start">
               {text.trim()}
               {activeTopMenu === 'Product Managers' && text.includes('vision')}
             </h1>
@@ -52,7 +56,7 @@ const IntroText = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default IntroText
+export default IntroText;
