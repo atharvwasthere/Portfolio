@@ -6,7 +6,10 @@ import Value from "@/components/Values";
 import Background from "@/components/Background";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 import SplashScreen from "@/components/SplashScreen";
+import Masonry from "@/components/blocks/Components/Masonry/Masonry";
+import { Pics } from "@/data/Data";
 import { useRef, useState, useEffect } from "react";
 
 const Landing = () => {
@@ -58,6 +61,7 @@ const Landing = () => {
                     visibility: contentVisible ? 'visible' : 'hidden'
                 }}
             >
+
                 <Header />
                 <div className="flex">
                     <Nav 
@@ -84,6 +88,7 @@ const Landing = () => {
                             <Background />
                         </div>
                         <div ref={aboutRef}>
+                            <Masonry data={Pics}/>
                             <About />
                         </div>
                         <div ref={contactRef}>
@@ -91,6 +96,7 @@ const Landing = () => {
                         </div>
                     </main>
                 </div>
+                <Footer/>
             </div>
         </div>
     );

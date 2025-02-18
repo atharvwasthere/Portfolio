@@ -20,14 +20,14 @@ const Contact = () => {
               &quot;To be insanely hopeful even after all that, you call it madness, I call it strength.&quot;
             </blockquote>
 
-            <p className="text-sm text-muted-foreground text-center">
+            {/* <p className="text-sm text-muted-foreground text-center">
               Design & code by
               {" "}
               <Link to="/" className="underline underline-offset-4">
                 Atharv Singh
               </Link>
 
-            </p>
+            </p> */}
           </div>
         </div>
       </div>
