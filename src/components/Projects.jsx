@@ -29,7 +29,7 @@ const Projects = () => {
         };
       }, []);
     return (
-        <section className=" border-2 border-red-500 mt-32 p-2">
+        <section className=" mt-32 p-2">
             {/* LOGO's*/}
 
                     {/* <LogoMarquee className=" m-4"/> */}

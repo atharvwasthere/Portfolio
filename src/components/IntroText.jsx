@@ -2,7 +2,7 @@ import { useState } from "react";
 import AnimatedUnderline from "./ui/AnimatedUnderline";
 
 const IntroText = () => {
-  const topMenuItems = ['For anyone', 'Recruiters', 'Product Managers', 'Monkey Typers', 'Designers'];
+  const topMenuItems = ['For anyone', 'Recruiters', 'Product Managers', 'Finance Folks', 'Designers'];
 
   const content = {
     'For anyone': {
@@ -12,8 +12,8 @@ const IntroText = () => {
       /* Whether it’s backend logic or frontend flair, I’ve got the skills to ship solid products. Let’s skip the buzzwords—if you need someone who gets stuff done, I’m ready. */
       description: "Whether it’s backend logic . or frontend flair,. I’ve got the skills to .   ship solid products. Let’s skip the buzzwords;). if you need someone who. gets stuff done,I’m ready."
     },
-    'Monkey Typers': {
-      description: "Atharv_types here. 296 tests, 3+ hours. well spent (maybe),. and still coming back. for more..Race you?"
+    'Finance Folks': {
+      description: "Tracking stocks, . Decoding trends,  .  Figuring out if that . Dip is worth buying  . Let’s talk equities and MF!"
     },
     'Product Managers': {
       /* I bring a hands-on approach that hits every detail. */

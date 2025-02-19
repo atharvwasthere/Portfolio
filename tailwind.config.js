@@ -8,6 +8,12 @@ export default {
   theme: {
 
   	extend: {
+		fontFamily : {
+			header : ["Babylonica", "WaterBrush"],
+			vital : ["Zilla Slab Highlight", "serif"],
+			header2 :["Rock Salt"],
+			nav: ["Vast Shadow"],
+		},
 		fontSize : {
 			huge:'clamp(36px, 6.00vw, 7.00vw)',
 			large:'clamp(30px, 3.81vw, 3.81vw)', 
@@ -20,6 +26,9 @@ export default {
   			sm: 'calc(var(--radius) - 4px)'
   		},
   		colors: {
+			spotifyblack: '#191414',
+        	spotifygreen: '#1DB954',
+        	spotifygray: '#B3B3B3',
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
 			tech: 'hsl(var(--tech))',
@@ -61,7 +70,11 @@ export default {
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
   			}
-  		}
+  		},
+		  animation: {
+			'album-spin': 'spin 20s linear infinite',
+		  }
+
   	}
   },
   // eslint-disable-next-line no-undef

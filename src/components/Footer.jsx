@@ -18,7 +18,7 @@ const Footer = () => {
                         <span className="text-sm text-muted-foreground">Design & code by</span>
                         <Link
                             to="https://github.com/atharvwasthere"
-                            className="text-sm font-medium hover:text-primary transition-colors relative"
+                            className="text-[24px] font-extrabold font-header hover:text-primary transition-colors relative"
                         >
                             Atharv Singh
                             <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary/60 to-primary group-hover:w-full transition-all duration-300" />

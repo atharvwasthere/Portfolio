@@ -13,7 +13,7 @@ const AnimatedName = ({ firstName, lastName }) => {
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            <h2 className="font-semibold">
+            <h2 className="font-header font-semibold text-large">
                 {Name.split('').map((letter, index) => (
                     <span
                         key={index}
