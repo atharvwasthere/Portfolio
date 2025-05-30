@@ -42,7 +42,7 @@ export default function ContactCards() {
       
 
       <h1 className="text-4xl md:text-6xl font-display tracking-tight text-left">
-        Let&apos;s create your next big idea.
+        Let&apos;s <span className="text-blue-600 dark:text-green-400">create</span> your next big idea.
       </h1>
 
       <div className="flex flex-col items-left gap-4">

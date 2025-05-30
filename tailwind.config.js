@@ -10,7 +10,7 @@ export default {
   	extend: {
 		fontFamily : {
 			header : ["Babylonica", "WaterBrush"],
-			vital : ["Zilla Slab Highlight", "serif"],
+			vital : ["Zilla Slab Highlight"],
 			header2 :["Rock Salt"],
 			nav: ["Vast Shadow"],
 		},

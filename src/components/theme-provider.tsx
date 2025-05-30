@@ -31,23 +31,33 @@ export function ThemeProvider({
     () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
   )
 
-  useEffect(() => {
-    const root = window.document.documentElement
+useEffect(() => {
+  const root = window.document.documentElement
 
+  const applyTheme = (t: Theme) => {
     root.classList.remove("light", "dark")
 
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light"
-
-      root.classList.add(systemTheme)
-      return
+    if (t === "system") {
+      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+      root.classList.add(isDark ? "dark" : "light")
+    } else {
+      root.classList.add(t)
     }
+  }
 
-    root.classList.add(theme)
-  }, [theme])
+  applyTheme(theme)
+
+  if (theme === "system") {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
+    const handleChange = () => applyTheme("system")
+    mediaQuery.addEventListener("change", handleChange)
+
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange)
+    }
+  }
+}, [theme])
+
 
   const value = {
     theme,

@@ -1,4 +1,4 @@
-import ExpandableCard from "@/components/ProjectCard.jsx";
+import ProjectsSection from "./ProjectsSection.tsx";
 import LogoMarquee from "./LogoMarquee.jsx";
 import  { useEffect } from 'react';
 import Lenis from 'lenis'; // Smooth scrolling library
@@ -31,14 +31,14 @@ const Projects = () => {
     return (
         <section className=" mt-32 p-2">
             {/* LOGO's*/}
-
-                    {/* <LogoMarquee className=" m-4"/> */}
+                    <LogoMarquee className="m-4"/>
             {/* PROJECTS TEXT */}
             <h1 className="font-title text-large md:text-huge text-start leading-[0.975]">Some of the Projects </h1>
             <h1 className="font-title text-large md:text-huge text-start leading-[0.975]">I&apos;ve worked on</h1>
             {/* PROJECTS CARDS */}
-            <div className="mt-16">
-                <ExpandableCard />
+            <div className="flex flex-col justify-center my-8 -ml-4">
+              
+                <ProjectsSection />
             </div>
 
         </section>

@@ -16,7 +16,7 @@ const Contact = () => {
               <img src={mypic} alt="Profile" className="object-cover rounded-lg" />
             </div>
 
-            <blockquote className="border-l-4 border-primary pl-4 italic">
+            <blockquote className="border-l-4 border-primary pl-4 italic text-orange-500 dark:text-green-400">
               &quot;To be insanely hopeful even after all that, you call it madness, I call it strength.&quot;
             </blockquote>
 
