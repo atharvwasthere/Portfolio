@@ -1,40 +1,48 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import React from "react";
+import { Link } from "react-router";
 const projectData = {
   core: {
-    title: "🧩 Core ",
-    tagline: "Where Code Runs Deep. Mostly C/C++, closer to the metal.",
+    title: "Core Builds",
+    tagline: "Low-level experiments.. Mostly C/C++, closer to the metal.",
     projects: [
-      { name: "File Encrypter", emoji: "🔐", tags: [] },
-      { name: "USB Driver", emoji: "🔌", tags: [] },
-      { name: "OS Tools", emoji: "🧱", tags: [] },
-      { name: "Movie Booking CLI", emoji: "🎟️", tags: [] },
-      { name: "Chat Room", emoji: "💬", tags: [] },
+      { name: "File Encrypter", slug: "file-encrypter", emoji: "🔐", tags: [] },
+      { name: "USB Driver", slug: "usb-driver", emoji: "🔌", tags: [] },
+      { name: "OS Tools", slug: "os-tools", emoji: "🧱", tags: [] },
+      { name: "Movie Booking CLI", slug: "movie-booking-cli", emoji: "🎟️", tags: [] },
+      { name: "Arduino Scripts", slug: "arduino-scripts", emoji: "📟", tags: [] },
+      { name: "Custom Shell Commands", slug: "custom-shell-commands", emoji: "💻", tags: [] },
     ],
   },
   web: {
-    title: "💻 Web",
+    title: "Web Lab",
     tagline: "UI to API.",
     projects: [
-      { name: "EveSpark", emoji: "🪄", tags: [] },
-      { name: "Coursify", emoji: "🧰", tags: ["Landing Page"] },
-      { name: "AirWise", emoji: "🌬️", tags: ["WIP"] },
-      { name: "Portfolio Site", emoji: "👨‍💻", tags: [] },
-      { name: "Competitive Search", emoji: "🔌", tags: ["Plugin", "WIP"] },
+      { name: "Web Crawler", slug: "web-crawler", emoji: "🕷️", tags: [] },
+      { name: "Coursify", slug: "coursify", emoji: "🧰", tags: ["Landing Page"] },
+      { name: "ParaLang", slug: "paralang", emoji: "🧠", tags: [] },
+      { name: "AirWise", slug: "airwise", emoji: "🌬️", tags: ["WIP"] },
+      { name: "Portfolio Site", slug: "portfolio-site", emoji: "👨‍💻", tags: [] },
+      { name: "Dev Blog System", slug: "dev-blog-system", emoji: "📝", tags: [] },
+      { name: "EveSpark", slug: "evespark", emoji: "🪄", tags: [] },
+      { name: "Competitive Search", slug: "competitive-search", emoji: "🔌", tags: ["Plugin", "WIP"] },
     ],
   },
   research: {
-    title: "🔬 Research & Ideas",
-    tagline: "Code meets Curiosity.",
+    title: "Research & Ideas",
+    tagline: "Code meets Curiosity — sometimes with diagrams.",
     projects: [
-      { name: "ParaLang", emoji: "🧠", tags: ["Research Paper"] },
-      { name: "Encryption Logic Deep Dive", emoji: "🔐", tags: ["Security"] },
-      { name: "System Design Notes", emoji: "📘", tags: ["Architecture"] },
-
+      { name: "WebRTC Internals", slug: "webrtc-internals", emoji: "📡", tags: [] },
+      { name: "Encryption Logic Deep Dive", slug: "encryption-logic", emoji: "🔐", tags: ["Security"] },
+      { name: "System Design Notes", slug: "system-design-notes", emoji: "📘", tags: ["Architecture"] },
+      { name: "Finance + Backend Experiments", slug: "finance-backend", emoji: "💸", tags: [] },
+      { name: "Compiler Playground", slug: "compiler-playground", emoji: "⚙️", tags: [] },
+      { name: "Routing via Slugs", slug: "routing-via-slugs", emoji: "🧭", tags: [] },
     ],
   },
 };
+
 
 const projectTileHeight = 44;
 const extraPadding = 100; // header + margins + footer space
@@ -97,8 +105,9 @@ export default function ProjectsSection() {
             {/* Projects Grid */}
             <div className="space-y-3">
               {data.projects.map((project, index) => (
-                <div
+                <Link
                   key={index}
+                  to={`/project/${project.slug}`}
                   className="flex items-center gap-3 group cursor-pointer  p-2 -m-2 rounded transition-colors duration-200"
                 >
                   <span className="text-lg flex-shrink-0">{project.emoji}</span>
@@ -118,7 +127,7 @@ export default function ProjectsSection() {
                       ))}
                     </div>
                   )}
-                </div>
+                </Link>
               ))}
             </div>
 
