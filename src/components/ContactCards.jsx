@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+import { useState, useEffect, useMemo } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin, SiSpotify, SiGmail} from "react-icons/si";
 import { FaXTwitter, FaHashnode } from "react-icons/fa6";
 import { Link } from "react-router";
@@ -21,6 +23,50 @@ const SocialLink = ({ href, icon: Icon, label }) => {
   );
 };
 
+const TypewriterText = () => {
+  const words = useMemo(() => ["create", "deploy", "build", "launch", "design", "develop"], []);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const currentWord = words[currentWordIndex];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        setCurrentText(currentWord.substring(0, currentText.length + 1));
+        setTypingSpeed(150);
+        
+        if (currentText === currentWord) {
+          // Word complete, start deleting after pause
+          setTimeout(() => setIsDeleting(true), 2000);
+        }
+      } else {
+        // Deleting
+        setCurrentText(currentWord.substring(0, currentText.length - 1));
+        setTypingSpeed(50);
+        
+        if (currentText === "") {
+          // Deletion complete, move to next word
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [currentText, isDeleting, currentWordIndex, typingSpeed, words]);
+
+  return (
+    <span className="dark:text-cyan-400 text-green-400 relative">
+      {currentText}
+      <span className="animate-pulse ml-1 text-current">|</span>
+    </span>
+  );
+};
+
 export default function ContactCards() {
   const socialLinks = [
     { href: "https://github.com/atharvwasthere", icon: SiGithub, label: "GitHub" },
@@ -33,21 +79,21 @@ export default function ContactCards() {
   ];
 
   return (
-    <div className="space-y-8 ">
+    <div className="font-satoshi space-y-8">
       <div className="w-full flex justify-start">
-      <Badge variant="success" className=" bg-green-100 text-green-800 hover:bg-green-100 ">
-        Available for work
-      </Badge>
+        <Badge variant="success" className="bg-green-100 text-green-800 hover:bg-green-100">
+          Available for work
+        </Badge>
       </div>
-      
 
-      <h1 className="text-4xl md:text-6xl font-display tracking-tight text-left">
-        Let&apos;s <span className="text-blue-600 dark:text-green-400">create</span> your next big idea.
+      <h1 className=" text-4xl md:text-6xl font-display tracking-tight text-left">
+        Let&apos;s <TypewriterText /> your next big idea.
       </h1>
 
       <div className="flex flex-col items-left gap-4">
-        <Button asChild size="lg" className="w-fit" >
-          <Link  href="https://www.linkedin.com/in/atharvwasthere/">Contact Me</Link>
+        {/* Minimal button design */}
+        <Button size="lg" className="font-satoshi w-fit">
+          Contact Me
         </Button>
 
         <div className="flex gap-4 pt-4">

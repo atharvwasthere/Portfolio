@@ -24,8 +24,8 @@ const Background = () => {
 
     }
     return (
-        <section id="main-outer-border" className="text-start flex flex-col mt-28  text-primary p-4 ">
-            <div id="title" className='text-large md:text-huge mb-8 '>Background</div>
+        <section id="main-outer-border" className=" text-start flex flex-col mt-28  text-primary p-4 ">
+            <div id="title" className='font-satoshiMedium text-large md:text-huge mb-8 '>Background</div>
             <div id="logo" className="flex items-center justify-start h-32 w-32 ">
                 <div id="logo-image" className="-mt-8 light:hidden">
                     <img src="/vit.jpeg" alt="" className="w-72 mt-8" />
@@ -35,11 +35,12 @@ const Background = () => {
                 </div>
             </div>
             <div
-                className="relative"
+                className="relative font-satoshi"
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={handleMouseLeave}
+
             >
-                <div id="institution-name" className="pt-8 text-3xl ">
+                <div id="institution-name" className="font-satoshi  pt-8 text-3xl ">
                     {Education[0].institution_name}
                 </div>
                 <div id="Degree" className="py-5 ">

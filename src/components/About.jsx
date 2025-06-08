@@ -2,6 +2,7 @@ import { AboutMe } from '../data/Data'
 import MagnetLines from './blocks/Animations/MagnetLines/MagnetLines';
 import { useTheme } from './theme-provider';
 
+
 const About = () => {
 
     const { theme, resolvedTheme } = useTheme();
@@ -17,7 +18,7 @@ const About = () => {
                     </div>
                 </div>
                 <div className="grid pt-24  justify-between text-start text-primary text-small">
-                    <p className='pb-24 '>{AboutMe.content()}</p>
+                    <p className='pb-24 font-satoshi '>{AboutMe.content()}</p>
 
                 </div>
 

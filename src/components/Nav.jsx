@@ -126,7 +126,7 @@ const Nav = ({ scrollToSection, introSection, projectsSection, valueSection, bac
   };
 
   return (
-    <aside id="nav" className="fixed flex flex-col top-32 left-6 text-start">
+    <aside id="nav" className="font-satoshiMedium fixed flex flex-col top-32 left-6 text-start">
       <ul className="py-.5 space-y-0.5">
         {navItems.map((item, index) => (
           <li key={index}>

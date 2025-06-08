@@ -103,28 +103,120 @@ export const Pics = [
     id: 1,
     image: '/pics/ramen.jpg',
     height: 300,
-    // Additional properties you could add:
-    width: 400,                          // Image width in pixels
-    caption: "Homemade tonkotsu ramen",  // Optional caption text
-    isFeatured: false,                   // Boolean for featured images
-    orientation: "landscape",            // landscape/portrait
-    aspectRatio: "4:3",                 // Image aspect ratio
-    loading: "lazy",                     // Loading strategy
-    priority: 1                          // Display priority
+    width: 400,
+    caption: "Homemade tonkotsu ramen",
+    isFeatured: false,
+    orientation: "landscape",
+    aspectRatio: "4:3",
+    loading: "lazy",
+    priority: 1,
   },
-  { id: 2, image: '/pics/asthetic.jpg', height: 500,  },
-  { id: 3, image: '/pics/random-sky.jpg', height: 240 },
-  { id: 4, image: '/pics/traintack.jpg', height: 500 ,caption: "Architectural symmetry got me feeling like an NPC in a well-designed game." },
-  { id: 5, image: '/pics/coffee.jpg', height: 400 },
-  { id: 6, image: '/pics/art.jpg', height: 570 },
-  { id: 7, image: '/pics/me-in-car.jpg', height: 330},
-  { id: 8, image:'/pics/hot-chocolate.jpg', height: 400 },
-  { id: 9, image: '/pics/crazzzy.jpg', height: 400 },
-  { id: 10, image: '/pics/sky.jpg', height: 400,  },
-  { id: 11, image: '/pics/match.jpg', height: 400,  },
-  { id: 12, image: '/pics/shed.jpg', height: 500  },
-  { id: 13, image: '/pics/midsem.jpg', height: 500  },
+  {
+    id: 2,
+    image: '/pics/asthetic.jpg',
+    height: 500,
+    loading: "lazy",
+    caption: "Classy lights, cozy vibes",
+  },
+  {
+    id: 3,
+    image: '/pics/random-sky.jpg',
+    height: 240,
+    loading: "lazy",
+    caption: "Sky before the storm",
+  },
+  {
+    id: 4,
+    image: '/pics/traintack.jpg',
+    height: 500,
+    caption: "Architectural symmetry.",
+  },
+  {
+    id: 5,
+    image: '/pics/PPPune.jpg',
+    height: 400,
+    loading: "lazy",
+    caption: "Fueling up at midnight",
+  },
+  {
+    id: 6,
+    image: '/pics/art.jpg',
+    height: 570,
+    loading: "lazy",
+    caption: "Art exhibition energy",
+  },
+  {
+    id: 7,
+    image: '/pics/me-in-car.jpg',
+    height: 330,
+    loading: "lazy",
+    caption: "Driver's seat, main character mode",
+  },
+  {
+    id: 8,
+    image: '/pics/hot-chocolate.jpg',
+    height: 400,
+    loading: "lazy",
+    caption: "Late night grind with hot chocolate",
+  },
+  {
+    id: 9,
+    image: '/pics/BikeView.jpg',
+    height: 380,
+    loading: "lazy",
+    caption: "Tunnel vision, literally",
+  },
+  {
+    id: 10,
+    image: '/pics/jp.jpg',
+    height: 300,
+    loading: "lazy",
+    caption: "Golden curve, luxury feels",
+  },
+  {
+    id: 11,
+    image: '/pics/match.jpg',
+    height: 400,
+    loading: "lazy",
+    caption: "Test match therapy",
+  },
+  {
+    id: 12,
+    image: '/pics/shed.jpg',
+    height: 500,
+    loading: "lazy",
+    caption: "Monsoon platform aesthetics",
+  },
+  {
+    id: 13,
+    image: '/pics/asthetic2.jpg',
+    height: 500,
+    loading: "lazy",
+    caption: "Bar that deserves a Pinterest board",
+  },
+  {
+    id: 14,
+    image: '/pics/asthetic1.jpg',
+    height: 500,
+    loading: "lazy",
+    caption: "Dipped in warm lights",
+  },
+  {
+    id: 15,
+    image: '/pics/flight.jpg',
+    height: 500,
+    loading: "lazy",
+    caption: "Above the clouds, beyond the noise",
+  },
+  {
+    id: 16,
+    image: '/pics/pizzzaa.jpg',
+    height: 500,
+    loading: "lazy",
+    caption: "Pizza that deserved a photoshoot",
+  },
 ];
+
 
 export const AboutMe = {
   content: () => (

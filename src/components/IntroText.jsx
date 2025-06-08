@@ -30,7 +30,7 @@ const IntroText = () => {
   return (
     <section className="mt-64 md:mt-14 p-2">
       <div className="text-foreground">
-        <div id="intro-text" className="flex flex-wrap gap-8">
+        <div id="intro-text" className="font-satoshiMedium flex flex-wrap gap-8">
           {topMenuItems.map((item) => (
             <AnimatedUnderline
               key={item}
@@ -46,7 +46,7 @@ const IntroText = () => {
           ))}
         </div>
         
-        <div id="content" className="flex-grow text-large md:text-huge mt-6">
+        <div id="content" className="font-satoshi flex-grow text-large md:text-huge mt-6">
           {content[activeTopMenu].description.split('. ').map((text, index) => (
             <h1 key={index} className="leading-[0.975] text-foreground text-start">
               {text.trim()}

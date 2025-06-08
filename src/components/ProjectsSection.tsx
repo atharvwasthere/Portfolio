@@ -56,9 +56,9 @@ export default function ProjectsSection() {
   const dynamicHeight = activeProjects * projectTileHeight + extraPadding
 
   return (
-    <div className="w-full max-w-4xl  p-6 bg-background ">
+    <div  className="w-full max-w-4xl  p-6 bg-background ">
       {/* Tab Navigation */}
-      <div className="flex flex-wrap gap-2 mb-8 border-b border-border">
+      <div className="font-satoshiMedium flex flex-wrap gap-2 mb-8 border-b border-border">
         {Object.entries(projectData).map(([key, data]) => (
           <button
             key={key}
@@ -79,7 +79,7 @@ export default function ProjectsSection() {
       </div>
 
       {/* Content Area */}
-      <div className="relative"style={{ minHeight: `${dynamicHeight}px` }}>
+      <div className="font-satoshi relative"style={{ minHeight: `${dynamicHeight}px` }}>
         {Object.entries(projectData).map(([key, data]) => (
           <div
             key={key}

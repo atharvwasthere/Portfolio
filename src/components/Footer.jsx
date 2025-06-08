@@ -10,12 +10,12 @@ const Footer = () => {
         <footer className="w-full py-6 border-t border-border/40 bg-background relative">
             <div className="container flex flex-col items-center justify-around gap-4 md:flex-row">
                 {/* Left side with year */}
-                <p className="text-sm text-muted-foreground">© {new Date().getFullYear()}</p>
+                <p className="font-satoshi  text-sm text-muted-foreground">© {new Date().getFullYear()}</p>
 
                 {/* Center credit with hover effect */}
                 <div className="relative group">
                     <div className="flex items-center gap-2">
-                        <span className="text-sm text-muted-foreground">Design & code by</span>
+                        <span className="font-satoshi text-lg text-black dark:text-white">Design & code by</span>
                         <Link
                             to="https://github.com/atharvwasthere"
                             className="text-[24px] font-extrabold font-header hover:text-primary transition-colors relative"
@@ -25,7 +25,7 @@ const Footer = () => {
                         </Link>
                         <Avatar>
                             <AvatarImage src="https://github.com/atharvwasthere.png" />
-                            <AvatarFallback>CN</AvatarFallback>
+                            <AvatarFallback>AS</AvatarFallback>
                         </Avatar>
 
                     </div>

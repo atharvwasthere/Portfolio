@@ -6,6 +6,10 @@ LogoMarquee.jsx
 terminal-animation.tsx
 logo.css
 
+# Fonts
+
+public/fonts
+
 # Logs
 logs
 *.log

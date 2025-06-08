@@ -33,8 +33,8 @@ const Projects = () => {
             {/* LOGO's*/}
                     <LogoMarquee className="m-4"/>
             {/* PROJECTS TEXT */}
-            <h1 className="font-title text-large md:text-huge text-start leading-[0.975]">Some of the Projects </h1>
-            <h1 className="font-title text-large md:text-huge text-start leading-[0.975]">I&apos;ve worked on</h1>
+            <h1 className="font-satoshiMedium  text-large md:text-huge text-start leading-[0.975]">Some of the Projects </h1>
+            <h1 className="font-satoshiMedium  text-large md:text-huge text-start leading-[0.975]">I&apos;ve worked on</h1>
             {/* PROJECTS CARDS */}
             <div className="flex flex-col justify-center my-8 -ml-4">
               
