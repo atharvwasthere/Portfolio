@@ -1,92 +1,3 @@
-export const cards = [
-  {
-    description: "Researching & Coding",
-    title: "ParaLang",
-    tech: " React, Node.js, Express, MongoDB, TailwindCSS, Websockets, WebRTC, Web Audio API",
-    src: "https://static.vecteezy.com/system/resources/previews/013/709/851/original/outline-brain-design-silhouette-logo-design-hand-drawn-minimalist-brain-vector.jpg",
-    ctaText_before: "Website",
-    ctaText_after: "Github",
-    ctaLink_before: "https://ui.aceternity.com/templates",
-    ctaLink_after: "https://ui.aceternity.com/templates",
-    content: () => (
-      <p>
-        A paralinguistic prompting system that detects human emotions through <b>vocal cues like pitch and tone.</b>
-        It processes audio, extracts key features, and applies machine learning for <b>real-time emotion classification</b>,
-        ideal for enhancing virtual assistants and customer support. <br /> <br />
-
-      </p>
-    ),
-  },
-  {
-    description: "Completed (2024)",
-    title: "EveSpark",
-    tech: " React, Node.js, Express, MySQL, Flask ",
-    src: "https://static.vecteezy.com/system/resources/previews/015/150/683/original/head-with-brain-icon-design-for-artificial-intelligence-technology-theme-png.png",
-    ctaText_before: "Github",
-
-    ctaText_after: "Github",
-    ctaLink_before: "https://ui.aceternity.com/templates",
-    ctaLink_after: "https://ui.aceternity.com/templates",
-    content: () => (
-      <p>
-        EveSpark is a comprehensive <b>event management platform</b> that simplifies planning, organization, and execution of events. Designed for efficiency, it features secure <b>authentication</b>, <b>responsive profiles</b>, and robust <b>backend services</b>, ensuring a seamless user experience and reducing registration times significantly.<br /> <br />
-      </p>
-    ),
-  },
-  {
-    description: "Completed (2025)",
-    title: "Portfolio",
-    tech: " React, Node.js, Express, TailwindCSS",
-    src: '/portfolio.png',
-    ctaText_before: "Website",
-
-    ctaText_after: "Github",
-    ctaLink_before: "https://ui.aceternity.com/templates",
-    ctaLink_after: "https://ui.aceternity.com/templates",
-
-    content: () => (
-      <p>
-        Since this also a took a bit of my time
-        <br /> <br />
-      </p>
-    ),
-  },
-  {
-    description: "Ongoing",
-    title: "Course Generator",
-    tech: " React, Node.js, Express, MongoDB, TailwindCSS",
-    src: '/coursify.png',
-    ctaText_before: "Website",
-    ctaText_after: "Github",
-    ctaLink_before: "https://ui.aceternity.com/templates",
-    ctaLink_after: "https://ui.aceternity.com/templates",
-
-    content: () => (
-      <p>
-        Generate <b>personalized courses</b> in seconds with Coursify
-        <br /> <br />
-      </p>
-    ),
-  },
-  {
-    description: "Ongoing",
-    title: "AirWise",
-    tech: " React, TailwindCSS, WAQI API",
-    src: '/AirWise.png',
-    ctaText_before: "Website",
-    ctaText_after: "Github",
-    ctaLink_before: "https://ui.aceternity.com/templates",
-    ctaLink_after: "https://ui.aceternity.com/templates",
-
-    content: () => (
-      <p>
-        Generate <b>personalized courses</b> in seconds with Coursify
-        <br /> <br />
-      </p>
-    ),
-  },
-];
-
 export const Education = [
   {
     // logo_link:"https://college4u.in/wp-content/uploads/2019/07/1200px-Vellore_Institute_of_Technology_seal_2017.svg_-830x876.png",
@@ -104,7 +15,7 @@ export const Pics = [
     image: '/pics/ramen.jpg',
     height: 300,
     width: 400,
-    caption: "Homemade tonkotsu ramen",
+    caption: "Ramen🍜",
     isFeatured: false,
     orientation: "landscape",
     aspectRatio: "4:3",
@@ -140,96 +51,84 @@ export const Pics = [
   },
   {
     id: 6,
-    image: '/pics/art.jpg',
-    height: 570,
-    loading: "lazy",
-    caption: "Art exhibition energy",
-  },
-  {
-    id: 7,
     image: '/pics/me-in-car.jpg',
     height: 330,
     loading: "lazy",
     caption: "Driver's seat, main character mode",
   },
   {
-    id: 8,
+    id: 7,
     image: '/pics/hot-chocolate.jpg',
     height: 400,
     loading: "lazy",
     caption: "Late night grind with hot chocolate",
   },
   {
-    id: 9,
+    id: 8,
     image: '/pics/BikeView.jpg',
     height: 380,
     loading: "lazy",
     caption: "Tunnel vision, literally",
   },
   {
-    id: 10,
+    id: 9,
     image: '/pics/jp.jpg',
     height: 300,
     loading: "lazy",
     caption: "Golden curve, luxury feels",
   },
   {
-    id: 11,
-    image: '/pics/match.jpg',
-    height: 400,
-    loading: "lazy",
-    caption: "Test match therapy",
-  },
-  {
-    id: 12,
+    id: 10,
     image: '/pics/shed.jpg',
     height: 500,
     loading: "lazy",
     caption: "Monsoon platform aesthetics",
   },
   {
-    id: 13,
+    id: 11,
     image: '/pics/asthetic2.jpg',
-    height: 500,
-    loading: "lazy",
-    caption: "Bar that deserves a Pinterest board",
-  },
-  {
-    id: 14,
-    image: '/pics/asthetic1.jpg',
     height: 500,
     loading: "lazy",
     caption: "Dipped in warm lights",
   },
   {
-    id: 15,
-    image: '/pics/flight.jpg',
-    height: 500,
+    id: 12,
+    image: '/pics/asthetic1.jpg',
+    height: 490,
     loading: "lazy",
+    caption: "Bar that deserves a Pinterest board",
+  },
+  {
+    id: 13,
+    image: '/pics/flight.jpg',
+    height: 459,
     caption: "Above the clouds, beyond the noise",
   },
   {
-    id: 16,
-    image: '/pics/pizzzaa.jpg',
-    height: 500,
+    id: 14,
+    image: '/pics/skyview+bridge.jpg',
+    height: 250,
     loading: "lazy",
-    caption: "Pizza that deserved a photoshoot",
+    caption: "Above the clouds, beyond the noise",
   },
 ];
 
 
 export const AboutMe = {
   content: () => (
-    <p>I&apos;m a 20-year-old pre-final year Computer Science student at VIT, focused on backend development with a strong foundation in C++ and web technologies. With experience across front-end essentials and backend frameworks like Node.js and Express, I&apos;ve built practical applications, including an event management system called EveSpark for my college.
-      <br />
+    <p>I&apos;m a 21-year-old, <a className="font-vital ">Backend-first React developer</a> (CSE @ VIT, ’26) with a bias for infra, concurrency, and systems that actually scale.Comfortable across programming languages, databases, and cloud platforms — from low-level concurrency in C++ to designing features, streamlining workflows, and scaling products. Built stuff like <a href="https://github.com/atharvwasthere/Fastlane" className="underline text-green-500 dark:text-cyan-400 font-semibold">Fastlane</a> (CLI network benchmarking), <a href="https://github.com/atharvwasthere/Encryptify" className="underline text-orange-500 dark:text-cyan-400 font-semibold">Encryptify</a> (C++ multithreaded encryption), and <a href="https://github.com/atharvwasthere/Signal" className="underline text-blue-600 dark:text-cyan-400 font-semibold">Signal</a> (Distributed real-time chat using Boost.Asio, thread pool & secure messaging using custom protocol).
       <br />
       <br />
 
-      Currently, I&apos;m actively seeking opportunities in full-stack and backend roles to further apply and grow my skills. Beyond coding, I have a keen interest in finance and stock analysis, always looking to learn something new. Up next on my learning path is Go, as I continue expanding my backend expertise
+      Currently, I&apos;m actively seeking opportunities in full-stack and backend roles to further apply and grow my skills. Beyond coding, I have a keen interest in finance and stock analysis, always looking to learn something new.
+      <br />
+      <br />
+      Presently diving into <a href=""> Go + Rust</a>, exploring how to design infra that feels invisible but reliable. Also writing about AI internals , parallelism & Search Engines so others don’t have to read boring PDFs.
     </p>
   ),
 
 }
+
 
 
 /*

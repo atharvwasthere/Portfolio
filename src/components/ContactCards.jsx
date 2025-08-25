@@ -92,7 +92,7 @@ export default function ContactCards() {
 
       <div className="flex flex-col items-left gap-4">
         {/* Minimal button design */}
-        <Button size="lg" className="font-satoshi w-fit">
+        <Button size="lg" className="font-satoshi w-fit bg-gradient-to-t from-white to-cyan-400">
           Contact Me
         </Button>
 

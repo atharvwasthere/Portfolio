@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import ContactCards from "./ContactCards"
-import mypic from '../data/mee.jpg'
-import mypic2 from '../data/mee2.jpg'
+
 import mypic3 from '../data/mee3.png'
 import mypic4 from '../data/mee4.png'
 
 const Contact = () => {
   const images = [
-    mypic,mypic2,mypic3,mypic4
+    mypic3,mypic4
   ]
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
