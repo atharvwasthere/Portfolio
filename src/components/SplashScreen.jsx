@@ -18,15 +18,10 @@ const SplashScreen = ({ onFinish }) => {
     const intervalId = setInterval(() => {
       setFade(true);
       setTimeout(() => {
-        setCurrentIndex((prevIndex) => {
-          // If we've reached the last greeting, clear interval and finish
-          if (prevIndex === helloInLanguages.length - 1) {
-            clearInterval(intervalId);
-            if (onFinish) onFinish();
-            return prevIndex;
-          }
-          return prevIndex + 1;
-        });
+        // Update index safely
+        setCurrentIndex((prevIndex) =>
+          prevIndex === helloInLanguages.length - 1 ? prevIndex : prevIndex + 1
+        );
         setFade(false);
       }, 200);
     }, 200);
@@ -34,7 +29,18 @@ const SplashScreen = ({ onFinish }) => {
     return () => {
       clearInterval(intervalId);
     };
-  }, [onFinish]);
+  }, []);
+
+  // When index reaches last entry, call onFinish from an effect (deferred)
+  useEffect(() => {
+    if (currentIndex === helloInLanguages.length - 1) {
+      // add a small delay so the last text show/fade completes visually
+      const t = setTimeout(() => {
+        if (typeof onFinish === 'function') onFinish();
+      }, 200);
+      return () => clearTimeout(t);
+    }
+  }, [currentIndex, onFinish]);
 
   return (
     <div style={{
@@ -49,7 +55,7 @@ const SplashScreen = ({ onFinish }) => {
       backgroundColor: '#000000',
       zIndex: 9999,
     }}>
-      <div 
+      <div
         style={{
           color: '#FFFFFF',
           fontSize: '3rem',
