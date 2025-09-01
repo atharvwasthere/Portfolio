@@ -14,10 +14,10 @@ export function ModeToggle() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button style={{ color: theme === 'light'?'black':"currentColor" }} variant="ghost" size="icon">
-          <FiSun  className="border-0 Light:text-black h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <FiMoon className="border-0 absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+      <DropdownMenuTrigger asChild className="relative bg-inherit">
+        <Button style={{ color: theme === 'light'?'black':"currentColor" }} variant="" size="icon">
+          <FiSun  className="border-none Light:text-black h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <FiMoon className="border-none absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </DropdownMenuTrigger>
