@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useMemo } from "react";
-import { SiGithub, SiLeetcode, SiLinkedin, SiSpotify, SiGmail} from "react-icons/si";
+import { SiGithub, SiLeetcode, SiLinkedin, SiSpotify, SiGmail } from "react-icons/si";
 import { FaXTwitter, FaHashnode } from "react-icons/fa6";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,7 @@ import { Badge } from "@/components/ui/badge";
 const SocialLink = ({ href, icon: Icon, label }) => {
   return (
     <div className="group relative">
-      <Link 
+      <Link
         to={href}
         className="text-muted-foreground hover:text-foreground transition-colors"
       >
@@ -32,13 +32,13 @@ const TypewriterText = () => {
 
   useEffect(() => {
     const currentWord = words[currentWordIndex];
-    
+
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         // Typing
         setCurrentText(currentWord.substring(0, currentText.length + 1));
         setTypingSpeed(150);
-        
+
         if (currentText === currentWord) {
           // Word complete, start deleting after pause
           setTimeout(() => setIsDeleting(true), 2000);
@@ -47,7 +47,7 @@ const TypewriterText = () => {
         // Deleting
         setCurrentText(currentWord.substring(0, currentText.length - 1));
         setTypingSpeed(50);
-        
+
         if (currentText === "") {
           // Deletion complete, move to next word
           setIsDeleting(false);
@@ -60,7 +60,7 @@ const TypewriterText = () => {
   }, [currentText, isDeleting, currentWordIndex, typingSpeed, words]);
 
   return (
-    <span className="dark:text-cyan-400 text-green-400 relative">
+    <span className="font-display dark:text-cyan-400 text-green-400 relative">
       {currentText}
       <span className="animate-pulse ml-1 text-current">|</span>
     </span>
@@ -80,19 +80,33 @@ export default function ContactCards() {
 
   return (
     <div className="font-satoshi space-y-8">
-      <div className="w-full flex justify-start">
-        <Badge variant="success" className="bg-green-100 text-green-800 hover:bg-green-100">
+      <div className="w-full flex justify-start items-center gap-2">
+        <span className="relative flex h-2.5 w-2.5">
+          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+        </span>
+
+        <Badge
+          variant="success"
+          className="bg-green-100 text-green-800 hover:bg-green-100 dark:bg-cyan-500/10 dark:text-cyan-400"
+        >
           Available for work
         </Badge>
       </div>
 
-      <h1 className=" text-4xl md:text-6xl font-display tracking-tight text-left">
+
+      <h1 className=" text-4xl md:text-6xl font-satoshi tracking-tight text-left">
         Let&apos;s <TypewriterText /> your next big idea.
       </h1>
 
       <div className="flex flex-col items-left gap-4">
-        {/* Minimal button design */}
-        <Button size="lg" className="font-satoshi w-fit bg-gradient-to-t from-white to-cyan-400">
+        <Button
+          size="lg"
+          className=" w-fit font-cabinet text-lg
+             bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20
+             dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20
+             transition-colors"
+        >
           Contact Me
         </Button>
 

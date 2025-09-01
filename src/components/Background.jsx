@@ -26,7 +26,7 @@ const Background = () => {
     }
     return (
         <section id="main-outer-border" className=" text-start flex flex-col mt-28  text-primary p-4 ">
-            <div id="title" className='font-satoshiMedium text-large md:text-huge mb-8 '>Background</div>
+            <div id="title" className='font-display text-large md:text-huge mb-8 '>Background</div>
             <div id="logo" className="flex items-center justify-start h-32 w-32 ">
                 {/* <div id="logo-image" className="py-4 dark:hidden"> */}
                 {/* <SvgColor  className="w-48 h-48" /> */}

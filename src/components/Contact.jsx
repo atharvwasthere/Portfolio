@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react"
-import { motion } from "framer-motion"
+import {  motion } from "framer-motion"
 import ContactCards from "./ContactCards"
 
 import mypic3 from '../data/mee3.png'
 import mypic4 from '../data/mee4.png'
 
+
 const Contact = () => {
   const images = [
-    mypic3,mypic4
+    mypic3, mypic4
   ]
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
@@ -17,7 +18,7 @@ const Contact = () => {
   useEffect(() => {
     if (images.length > 1) {
       const interval = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => 
+        setCurrentImageIndex((prevIndex) =>
           prevIndex === images.length - 1 ? 0 : prevIndex + 1
         )
       }, 4000) // Change every 4 seconds for more contemplative viewing
@@ -31,11 +32,11 @@ const Contact = () => {
     const x = (e.clientX - rect.left - rect.width / 2) / rect.width
     const y = (e.clientY - rect.top - rect.height / 2) / rect.height
     setMousePosition({ x: x * 10, y: y * 10 }) // Subtle parallax range
-    
+
     // Track actual cursor position for the floating text
-    setCursorPosition({ 
-      x: e.clientX - rect.left, 
-      y: e.clientY - rect.top 
+    setCursorPosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top
     })
   }
 
@@ -50,10 +51,10 @@ const Contact = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
           <ContactCards />
-          
+
           {/* Right Column */}
           <div className="space-y-8">
-            <motion.div 
+            <motion.div
               className="relative aspect-[3/4] w-full max-w-md mx-auto overflow-hidden rounded-2xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 group"
               onMouseMove={handleMouseMove}
               onMouseLeave={handleMouseLeave}
@@ -163,10 +164,10 @@ const Contact = () => {
               />
 
               {/* Soft vignette */}
-              <div className="absolute inset-0 rounded-2xl shadow-inner" 
-                   style={{
-                     boxShadow: "inset 0 0 60px rgba(0,0,0,0.1)"
-                   }} 
+              <div className="absolute inset-0 rounded-2xl shadow-inner"
+                style={{
+                  boxShadow: "inset 0 0 60px rgba(0,0,0,0.1)"
+                }}
               />
 
               {/* Breathing/pulse effect on border */}
@@ -195,13 +196,15 @@ const Contact = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2, duration: 0.8 }}
               >
-                &quot;To be insanely hopeful even after all that, you call it madness, I call it strength.&quot;
+                &quot;To be insanely hopeful even after all that, you call it madness, 
+                <br />
+                I call it strength.&quot;
               </motion.span>
             </motion.blockquote>
 
             {/* Minimal image indicators - only show if multiple images */}
             {images.length > 1 && (
-              <motion.div 
+              <motion.div
                 className="flex justify-center space-x-3"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -210,11 +213,10 @@ const Contact = () => {
                 {images.map((_, index) => (
                   <motion.button
                     key={index}
-                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
-                      index === currentImageIndex 
-                        ? 'bg-primary scale-125' 
+                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${index === currentImageIndex
+                        ? 'bg-primary scale-125'
                         : 'bg-gray-300/60 dark:bg-gray-600/60 hover:bg-gray-400/80'
-                    }`}
+                      }`}
                     whileHover={{ scale: 1.3 }}
                     whileTap={{ scale: 0.9 }}
                     onClick={() => setCurrentImageIndex(index)}

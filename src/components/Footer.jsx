@@ -3,13 +3,10 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 
 const Footer = () => {
-    // const scrollToTop = () => {
-    //     window.scrollToTOP({ top: 0, behavior: "smooth" })
-    // }
     return (
         <footer className="w-full py-6 border-t border-border/40 bg-background relative">
-            <div className="container flex flex-col items-center justify-around gap-4 md:flex-row">
-                {/* Left side with year */}
+            <div className="container flex flex-col items-center justify-around md:gap-80 md:flex-row">
+                {/* Left side with year */} 
                 <p className="font-satoshi  text-sm text-muted-foreground">© {new Date().getFullYear()}</p>
 
                 {/* Center credit with hover effect */}
@@ -39,14 +36,18 @@ const Footer = () => {
 
                 </div>
 
-                {/* Right side with back to top button */}
+                {/* Right side with All systems normal and breathing green dot  */}
                 {/* <button
-                    onClick={scrollToTop}
-                    className="group p-2 rounded-full hover:bg-muted transition-colors"
-                    aria-label="Back to top"
+                    className="hidden font-satoshi md:flex items-center gap-2 md:p-2 md:rounded-full -mr-12  md:transition-colors"
+                    aria-label="System Status"
                 >
-                    <ArrowUpWideNarrowIcon className="h-4 w-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-                </button> */}
+                    <span className="relative flex h-3 w-3">
+                        <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"></span>
+                        <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                    {/* All systems normal */}
+                {/* </button> */ }
+
             </div>
 
             {/* Background gradient effect */}
