@@ -7,99 +7,104 @@ import Background from "@/components/Background";
 import About from "@/components/About";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import { useUI } from "@/components/ui/globalSeen";
 import SplashScreen from "@/components/SplashScreen";
 import Masonry from "@/components/blocks/Components/Masonry/Masonry";
 import { Pics } from "@/data/Data";
 import { useRef, useState, useEffect } from "react";
 
 const Landing = () => {
-    const [showSplash, setShowSplash] = useState(true);
-    const [contentVisible, setContentVisible] = useState(false);
+  const splashSeen = useUI((s) => s.splashSeen);
+  const markSplashSeen = useUI((s) => s.markSplashSeen);
 
-    // References for each section
-    const introRef = useRef(null);
-    const projectsRef = useRef(null);
-    const valueRef = useRef(null);
-    const backgroundRef = useRef(null);
-    const aboutRef = useRef(null);
-    const contactRef = useRef(null);
+  const [contentVisible, setContentVisible] = useState(() => splashSeen);
 
-    useEffect(() => {
-        // Add a slight delay before showing content to ensure smooth transition
-        if (!showSplash) {
-            const timer = setTimeout(() => {
-                setContentVisible(true);
-            }, 300);
-            return () => clearTimeout(timer);
-        }
-    }, [showSplash]);
+  useEffect(() => {
+    if (splashSeen) {
+      const t = setTimeout(() => setContentVisible(true), 300);
+      return () => clearTimeout(t);
+    }
+  }, [splashSeen]);
 
-    const scrollToSection = (ref) => {
-        if (ref?.current) {
-            const headerHeight = document.querySelector('header')?.offsetHeight || 72;
-            const elementPosition = ref.current.offsetTop - headerHeight;
-            
-            window.scrollTo({
-                top: elementPosition,
-                behavior: 'smooth'
-            });
-        }
-    };
+  const introRef = useRef(null);
+  const projectsRef = useRef(null);
+  const valueRef = useRef(null);
+  const backgroundRef = useRef(null);
+  const aboutRef = useRef(null);
+  const contactRef = useRef(null);
 
-    return (
-        <div className="min-h-screen min-w-full bg-background text-foreground">
-            {showSplash && (
-                <SplashScreen 
-                    onFinish={() => setShowSplash(false)} 
-                    duration={5000} // Match the duration from your splash screen
-                />
-            )}
-            <div 
-                style={{
-                    opacity: contentVisible ? 1 : 0,
-                    transition: 'opacity 300ms ease-in',
-                    visibility: contentVisible ? 'visible' : 'hidden'
-                }}
-            >
+  const scrollToSection = (ref) => {
+    if (ref?.current) {
+      const headerHeight = document.querySelector("header")?.offsetHeight || 72;
+      const elementPosition = ref.current.offsetTop - headerHeight;
+      window.scrollTo({ top: elementPosition, behavior: "smooth" });
+    }
+  };
 
-                <Header />
-                <div className="flex">
-                    <Nav 
-                        scrollToSection={scrollToSection} 
-                        introSection={introRef} 
-                        projectsSection={projectsRef} 
-                        valueSection={valueRef} 
-                        backgroundSection={backgroundRef} 
-                        aboutSection={aboutRef} 
-                        contactSection={contactRef}
-                    />
-                    <main className="flex-1 mt-16 md:ml-48">
-                        <div ref={introRef}>
-                            <IntroText />
-                        </div>
-                        <div className="mt-[400px] md:mt-0" />
-                        <div ref={projectsRef}>
-                            <Projects />
-                        </div>
-                        <div ref={valueRef}>
-                            <Value />
-                        </div>
-                        <div ref={backgroundRef}>
-                            <Background />
-                        </div>
-                        <div ref={aboutRef}>
-                            <Masonry data={Pics}/>
-                            <About />
-                        </div>
-                        <div ref={contactRef}>
-                            <Contact />
-                        </div>
-                    </main>
-                </div>
-                <Footer/>
+  const showSplash = !splashSeen;
+
+  return (
+    <div className="min-h-screen min-w-full bg-background text-foreground">
+      {showSplash && (
+        <SplashScreen
+          // 🟢 when splash finishes, flip the global flag
+          onFinish={markSplashSeen}
+        />
+      )}
+
+      <div
+        style={{
+          opacity: contentVisible ? 1 : 0,
+          transition: "opacity 300ms ease-in",
+          visibility: contentVisible ? "visible" : "hidden",
+        }}
+      >
+        <Header
+          scrollToSection={scrollToSection}
+          introSection={introRef}
+          projectsSection={projectsRef}
+          valueSection={valueRef}
+          backgroundSection={backgroundRef}
+          aboutSection={aboutRef}
+          contactSection={contactRef}
+        />
+        <div className="flex">
+          <Nav
+            scrollToSection={scrollToSection}
+            introSection={introRef}
+            projectsSection={projectsRef}
+            valueSection={valueRef}
+            backgroundSection={backgroundRef}
+            aboutSection={aboutRef}
+            contactSection={contactRef}
+          />
+          <main className="flex-1 mt-16 md:ml-48">
+            <div ref={introRef}>
+              <IntroText />
             </div>
+            <div className="mt-[200px] md:mt-0" />
+            <div ref={projectsRef}>
+              <Projects />
+            </div>
+            <div ref={valueRef}>
+              <Value />
+            </div>
+            <div ref={backgroundRef}>
+              <Background />
+            </div>
+            <div ref={aboutRef}>
+              <Masonry data={Pics} />
+              <About />
+            </div>
+            <div ref={contactRef}>
+              <Contact />
+            </div>
+          </main>
         </div>
-    );
+        <Footer />
+      </div>
+    </div>
+  );
 };
 
 export default Landing;

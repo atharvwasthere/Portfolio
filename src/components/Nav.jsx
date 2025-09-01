@@ -1,14 +1,15 @@
 import { NavLink } from "react-router";
-import { NotebookPen } from "lucide-react";
+import { NotebookPen, ArrowUpRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import AnimatedUnderline from "./ui/AnimatedUnderline";
+import PropTypes from "prop-types";
+
 
 const NavItem = ({ label, onClick }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <div 
+    <div
       className="relative"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
@@ -21,7 +22,7 @@ const NavItem = ({ label, onClick }) => {
       </a>
       <AnimatePresence>
         {isHovered && (
-          <motion.div 
+          <motion.div
             className="absolute -bottom-[1px] left-0 right-0 h-[1px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -62,16 +63,16 @@ const BlogLink = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <NavLink 
-        to="/Blogs" 
-        className="hidden md:block font-medium opacity-65 hover:opacity-100 hover:cursor-pointer hover:font-bold flex items-center gap-2"
+      <NavLink
+        to="/Blogs"
+        className="hidden md:md:inline-flex rounded-lg  font-medium opacity-65 hover:opacity-100 hover:cursor-pointer hover:font-bold items-center gap-1"
       >
         <span>Blogs</span>
-        <NotebookPen className="primary opacity-100" />
+        <NotebookPen className="primary opacity-100 inline-block w-[14px] h-[14px] relative top-[1px] shrink-0" strokeWidth={1.6} />
       </NavLink>
       <AnimatePresence>
         {isHovered && (
-          <motion.div 
+          <motion.div
             className="absolute -bottom-[1px] left-0 right-0 h-[1px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -104,10 +105,10 @@ const BlogLink = () => {
 };
 
 const Nav = ({ scrollToSection, introSection, projectsSection, valueSection, backgroundSection, aboutSection, contactSection }) => {
-  const navItems = ['Intro', 'Projects', 'Value', 'Background', 'About', 'Contact'];
-  
+  const navItems = ['Intro', 'Projects', 'Value', 'Background', 'About', 'Resume', 'Contact'];
+
   const getSectionRef = (section) => {
-    switch(section) {
+    switch (section) {
       case 'Intro':
         return introSection;
       case 'Projects':
@@ -119,7 +120,7 @@ const Nav = ({ scrollToSection, introSection, projectsSection, valueSection, bac
       case 'About':
         return aboutSection;
       case 'Contact':
-        return contactSection;  
+        return contactSection;
       default:
         return introSection;
     }
@@ -127,21 +128,63 @@ const Nav = ({ scrollToSection, introSection, projectsSection, valueSection, bac
 
   return (
     <aside id="nav" className="font-satoshiMedium fixed flex flex-col top-32 left-6 text-start">
-      <ul className="py-.5 space-y-0.5">
+      <ul className="py-0.5 space-y-0.5">
         {navItems.map((item, index) => (
           <li key={index}>
-            <NavItem
-              label={item}
-              onClick={() => scrollToSection(getSectionRef(item))}
-            />
+            {item === 'Resume' ? (
+              <a
+                href="https://mycv.blob.core.windows.net/atharv/Resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group hidden md:inline-flex items-center gap-1.5 rounded-md text-green-400 py-1 opacity-100
+             hover:text-green-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500/40"
+                aria-label="Resume (opens PDF in a new tab)"
+                title="Resume (PDF)"
+              >
+                <span className="leading-none">Resume</span>
+                <ArrowUpRight
+                  className="w-[13px] h-[13px] relative top-[1px] transition-transform
+               group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  strokeWidth={1.6}
+                  aria-hidden="true"
+                />
+              </a>
+            ) : (
+              <NavItem
+                label={item}
+                onClick={() => scrollToSection(getSectionRef(item))}
+              />
+            )}
           </li>
+
         ))}
       </ul>
+
+
       <ul className="py-16">
         <BlogLink />
       </ul>
     </aside>
+
   );
 };
+
+
+Nav.propTypes = {
+  scrollToSection: PropTypes.func.isRequired,
+  introSection: PropTypes.object.isRequired,
+  projectsSection: PropTypes.object.isRequired,
+  valueSection: PropTypes.object.isRequired,
+  backgroundSection: PropTypes.object.isRequired,
+  aboutSection: PropTypes.object.isRequired,
+  contactSection: PropTypes.object.isRequired,
+};
+
+NavItem.propTypes = {
+  label: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
+
 
 export default Nav;

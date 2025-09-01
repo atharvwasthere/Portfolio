@@ -1,67 +1,95 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo, useRef } from 'react';
 import PropTypes from 'prop-types';
+import { useTheme } from './theme-provider';
 
 const helloInLanguages = [
-  "Hello",
-  "Bonjour",
-  "Hola",
-  "Olá",
-  "Здравствуйте",
-  "こんにちは",
+  'नमस्ते ',
+  'Hello',
+  'Bonjour',
+  'Hola',
+  'Olá',
+  'Здравствуйте',
+  'こんにちは',
 ];
 
+const DISPLAY_MS = 200; // hold each word
+const FADE_MS = 200;    // fade duration
+
 const SplashScreen = ({ onFinish }) => {
+  const { theme, resolvedTheme } = useTheme();        // <- many providers expose this shape
+  const activeTheme = resolvedTheme ?? theme ?? 'light';
+
+  const { backgroundColor, color } = useMemo(
+    () =>
+      activeTheme === 'dark'
+        ? { backgroundColor: '#000000', color: '#ffffff' }
+        : { backgroundColor: '#ffffe3', color: '#000000' },
+    [activeTheme]
+  );
+
+  // console.log({ theme, resolvedTheme });
+
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fade, setFade] = useState(false);
 
+  // ensure onFinish runs only once
+  const finishedRef = useRef(false);
+
+  // keep handles to clear timeouts on unmount/re-run
+  const holdTimeoutRef = useRef(null);
+  const fadeTimeoutRef = useRef(null);
+  const finishTimeoutRef = useRef(null);
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
+    // if we're at the last word, give it a beat then finish
+    if (currentIndex === helloInLanguages.length - 1) {
+      if (!finishedRef.current) {  // protects against StrictMode double mount in dev
+        finishedRef.current = true;
+        finishTimeoutRef.current = setTimeout(() => {
+          onFinish?.();
+        }, DISPLAY_MS + FADE_MS);
+      }
+      return () => clearTimeout(finishTimeoutRef.current);
+    }
+
+    // 1) hold the current word visible
+    holdTimeoutRef.current = setTimeout(() => {
+      // 2) fade out
       setFade(true);
-      setTimeout(() => {
-        // Update index safely
-        setCurrentIndex((prevIndex) =>
-          prevIndex === helloInLanguages.length - 1 ? prevIndex : prevIndex + 1
-        );
+
+      // 3) after fade-out, switch to next word and fade back in
+      fadeTimeoutRef.current = setTimeout(() => {
+        setCurrentIndex((i) => i + 1);
         setFade(false);
-      }, 200);
-    }, 200);
+      }, FADE_MS);
+    }, DISPLAY_MS);
 
     return () => {
-      clearInterval(intervalId);
+      clearTimeout(holdTimeoutRef.current);
+      clearTimeout(fadeTimeoutRef.current);
     };
-  }, []);
-
-  // When index reaches last entry, call onFinish from an effect (deferred)
-  useEffect(() => {
-    if (currentIndex === helloInLanguages.length - 1) {
-      // add a small delay so the last text show/fade completes visually
-      const t = setTimeout(() => {
-        if (typeof onFinish === 'function') onFinish();
-      }, 200);
-      return () => clearTimeout(t);
-    }
   }, [currentIndex, onFinish]);
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#000000',
-      zIndex: 9999,
-    }}>
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor,
+        zIndex: 9999,
+      }}
+    >
       <div
         style={{
-          color: '#FFFFFF',
+          color,
           fontSize: '3rem',
-          fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+          fontFamily:
+            '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
           fontWeight: 300,
-          transition: 'opacity 200ms',
+          transition: `opacity ${FADE_MS}ms`,
           opacity: fade ? 0 : 1,
         }}
       >
