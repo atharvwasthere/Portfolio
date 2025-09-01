@@ -116,15 +116,43 @@ export const Pics = [
 
 export const AboutMe = {
   content: () => (
-    <p>I&apos;m a 21-year-old, <a className="font-vital ">Backend-first React developer</a> (CSE @ VIT, ’26) with a bias for infra, concurrency, and systems that actually scale.Comfortable across programming languages, databases, and cloud platforms — from low-level concurrency in C++ to designing features, streamlining workflows, and scaling products. Built stuff like <a href="https://github.com/atharvwasthere/Fastlane" className="underline text-green-500 dark:text-cyan-400 font-semibold">Fastlane</a> (CLI network benchmarking), <a href="https://github.com/atharvwasthere/Encryptify" className="underline text-orange-500 dark:text-cyan-400 font-semibold">Encryptify</a> (C++ multithreaded encryption), and <a href="https://github.com/atharvwasthere/Signal" className="underline text-blue-600 dark:text-cyan-400 font-semibold">Signal</a> (Distributed real-time chat using Boost.Asio, thread pool & secure messaging using custom protocol).
-      <br />
-      <br />
+    // <p>I&apos;m a 21-year-old, <a className="font-vital ">Backend-first React developer</a> (CSE @ VIT, ’26) with a bias for infra, concurrency, and systems that actually scale.Comfortable across programming languages, databases, and cloud platforms — from low-level concurrency in C++ to designing features, streamlining workflows, and scaling products. Built stuff like <a href="https://github.com/atharvwasthere/Fastlane" className="underline text-green-500 dark:text-cyan-400 font-semibold">Fastlane</a> (CLI network benchmarking), <a href="https://github.com/atharvwasthere/Encryptify" className="underline text-orange-500 dark:text-cyan-400 font-semibold">Encryptify</a> (C++ multithreaded encryption), and <a href="https://github.com/atharvwasthere/Signal" className="underline text-blue-600 dark:text-cyan-400 font-semibold">Signal</a> (Distributed real-time chat using Boost.Asio, thread pool & secure messaging using custom protocol).
+    //   <br />
+    //   <br />
 
-      Currently, I&apos;m actively seeking opportunities in full-stack and backend roles to further apply and grow my skills. Beyond coding, I have a keen interest in finance and stock analysis, always looking to learn something new.
-      <br />
-      <br />
-      Presently diving into <a href=""> Go + Rust</a>, exploring how to design infra that feels invisible but reliable. Also writing about AI internals , parallelism & Search Engines so others don’t have to read boring PDFs.
-    </p>
+    //   Currently, I&apos;m actively seeking opportunities in full-stack and backend roles to further apply and grow my skills. Beyond coding, I have a keen interest in finance and stock analysis, always looking to learn something new.
+    //   <br />
+    //   <br />
+    //   Presently diving into <a href=""> Go + Rust</a>, exploring how to design infra that feels invisible but reliable. Also writing about AI internals , parallelism & Search Engines so others don’t have to read boring PDFs.
+    // </p>
+
+<p className="text-lg leading-relaxed text-foreground">
+  I&apos;m a 21-year-old <span className="font-autography font-bold text-3xl text-foreground">Backend-first React Developer</span> 
+  <span className="italic text-gray-400"></span> with a bias for 
+  <em> infra, concurrency, and systems that scale</em>. Comfortable across 
+  <em> programming languages</em>, <em>databases</em>, and <em>cloud platforms</em> from 
+  <em> low-level concurrency in C++</em> to designing features, streamlining workflows, and scaling products.
+  <br /><br />
+  Built stuff like 
+  <a href="https://github.com/atharvwasthere/Fastlane" className="font-semibold underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"> Fastlane </a> 
+  (<span className="italic text-gray-500">CLI network benchmarking</span>), 
+  <a href="https://github.com/atharvwasthere/Encryptify" className="font-semibold underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"> Encryptify </a> 
+  (<span className="italic text-gray-500">C++ multithreaded encryption</span>), & 
+  <a href="https://github.com/atharvwasthere/Signal" className="font-semibold underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"> Signal </a> 
+  (<span className="italic text-gray-500">Distributed real-time chat using Boost.Asio</span>).
+  <br /><br />
+  Currently,   
+  <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400"> seeking opportunities</span> in 
+  <em> full-stack</em> and <em>backend roles</em> to further apply and grow my skills. Beyond coding, I have a 
+  <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400"> keen interest in finance</span> and <em>stock analysis</em>. Presently diving into 
+  <em> Go &amp; Rust</em>, exploring how to design 
+  <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">infra that feels invisible but reliable</span>. Also writing about <em>AI internals</em>, <em>parallelism</em>, and <em>search engines</em>.
+</p>
+
+
+
+
+
   ),
 
 }

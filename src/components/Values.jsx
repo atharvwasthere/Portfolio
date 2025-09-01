@@ -1,5 +1,5 @@
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import MagnetLines from './blocks/Animations/MagnetLines/MagnetLines';
+// import MagnetLines from './blocks/Animations/MagnetLines/MagnetLines';
 const Value = () => {
     const Values = {
         description: "Useful. Reliable. Scalable. Well made"
@@ -9,7 +9,7 @@ const Value = () => {
         <section id="main-outer-border" className="mt-28 grid  grid-col-1 row-auto md:grid-cols-2 grid-rows-2 gap-2 ">
             <div className="md:pb-12 flex-grow items-center justify-center text-start text-values md:text-huge text-primary">
                 {Values.description.split('. ').map((text, index) => (
-                    <h1 key={index} className='font-semibold md:font-vital pl-4  text-primary leading-[1.2] md:leading-none '>
+                    <h1 key={index} className='md:font-light text-italic font-display pl-4  text-primary leading-[1.2] md:leading-none '>
                         {text.trim()}
                     </h1>
                 ))}
@@ -25,15 +25,30 @@ const Value = () => {
 
             </div>
             <div className=" hidden md:flex md:items-center md:justify-center  text-primary">
-                <DotLottieReact
+                {/* <DotLottieReact
                     src="\Cube.lottie"
                     loop
                     autoplay
-                />
+                /> */}
 
             </div>
             <div className=" flex items-center justify-evenly text-start text-primary px-4 md:pr-4">
-                <p className="font-satoshi text-small">These are my <strong>core development</strong> values, and I strive to bring them into every project I work on. As a third-year Computer Science student, I&apos;ve learned a lot from building projects from the ground up, and this hands-on experience has ignited a drive in me to leave no stone unturned. I&apos;m passionate about crafting efficient, reliable, and scalable solutions that meet real needs, blending functionality with thoughtful design. Working with a team inspires me—I believe that <strong>collaboration leads to outcomes far greater than what we can achieve individually</strong>. I like to think big, work quickly but thoughtfully, and always keep an eye on the bigger picture. I&apos;m constantly growing, improving, and pushing myself to execute at the highest level.</p>
+                <p className="font-satoshi text-sm text-foreground leading-relaxed">
+                    These are my <span className="font-autography text-4xl text-foreground font-semibold">Core development values</span>, and I strive to bring them into every project I work on.
+                    I&apos;ve learned a lot from <em>building projects from the ground up</em>, and this hands-on experience has fueled my drive to
+                    <em> leave no stone unturned</em>. I&apos;m passionate about crafting
+                    <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400"> efficient, reliable, and scalable solutions</span>
+                    that meet real needs, blending <em>functionality with thoughtful design</em>.
+                    <br /><br />
+                    I believe <span className="font-cabinetMedium text-xl text-foreground font-semibold">1 + 1 &gt; 2</span> —
+                    <span className="text-emerald-500 dark:text-cyan-400 font-light"> collaboration leads to outcomes far greater than what we can achieve individually</span>.
+                    I like to <em>think big</em>, work quickly yet thoughtfully, and always keep an eye on the <em>bigger picture</em>. I&apos;m constantly
+                    <em> growing, improving</em>, and pushing myself to
+                    <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400"> execute at the highest level</span>.
+                </p>
+
+
+
             </div>
         </section>
     )
