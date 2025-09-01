@@ -5,6 +5,9 @@ import App from './App.jsx'
 import './segment.css'
 import './satoshi.css'
 import './cabinetGrotesk.css'
+import './zodiak.css'
+import './autography.css'
+
 import BlogSection from './components/Blogs';
 import { ThemeProvider } from './components/theme-provider';
 import ProjectPage from './pages/ProjectPage';

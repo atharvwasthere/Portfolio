@@ -23,6 +23,9 @@ export default {
 				cabinetBold: ["CabinetGrotesk-Bold", "sans-serif"],
 				cabinetMedium: ["CabinetGrotesk-Medium", "sans-serif"],
 				cabinetVariable: ["CabinetGrotesk-Variable", "sans-serif"],
+				display: ['Zodiak-Variable','Satoshi-Variable','system-ui','sans-serif'],
+				autography: ['Autography', 'sans-serif']
+
 			},
 			fontSize: {
 				huge: 'clamp(36px, 6.00vw, 7.00vw)',
