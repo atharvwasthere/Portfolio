@@ -12,12 +12,12 @@ const About = () => {
         <>
             <div id="main-outer-border" className="  grid grid-cols-1 row-2 md:grid-cols-2 gap-2">
                 <div className="grid  text-primary items-center justify-center ">
-                    <div id="pic" className='hidden md:grid items-center justify-center '>
+                    <div id="pic" className='hidden md:grid gap-4 items-center justify-center '>
                         {/* <img src={aboutgif} /> */}
                         <MagnetLines lineColor={currentLineColor}/>
                     </div>
                 </div>
-                <div className="grid pt-24  justify-between text-start text-primary text-small px-4 md:pr-4">
+                <div className="grid pt-24  justify-between text-start text-primary text-xl px-4 md:pr-4">
                     <p className='pb-24 font-satoshi '>{AboutMe.content()}</p>
 
                 </div>

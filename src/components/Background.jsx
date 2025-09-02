@@ -41,12 +41,12 @@ const Background = () => {
                 onMouseLeave={handleMouseLeave}
 
             >
-                <div id="institution-name" className="font-satoshi  pt-8 text-3xl ">
+                <div id="institution-name" className="font-cabinet  pt-8 text-3xl ">
                     {Education[0].institution_name}
                 </div>
                 <div id="Degree" className="py-5 ">
                     <div className="flex items-center text-3xl md:text-4xl">
-                        {Education[0].degree}
+                        <h1>BTech in <u className="bg-emerald-500/10 text-emerald-600 px-1 py-1 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">Computer Science</u> and Engineering </h1>
                         {(isHovered || isExpanded) && (
                             <button
                                 onClick={toggleExpand}
