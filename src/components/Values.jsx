@@ -8,7 +8,7 @@ const Value = () => {
     const Values = { description: "Useful. Reliable. Scalable. Well made" };
     const { theme, resolvedTheme } = useTheme();
     const currentTheme = theme === "system" ? resolvedTheme : theme;
-    const CTA = currentTheme === "dark" ? "cta/hireme-dark.svg" : "cta/hireme-light.svg";
+    const CTA = currentTheme === "dark" ? "cta/fastlane-dark.svg" : "cta/hireme-light.svg";
     const ROTATE_MS = 6000; // 6s
 
     // 3 CTAs × (light/dark SVG per CTA)
@@ -28,8 +28,8 @@ const Value = () => {
         {
             label: "Read latest writeup",
             href: "/Blogs",
-            svgLight: "/cta/Currenly-light.svg",
-            svgDark: "/cta/currently-dark.svg",
+            svgLight: "/cta/Currently-light.svg",
+            svgDark: "/cta/Currently-dark.svg",
         },
     ], []);
 
@@ -63,7 +63,7 @@ const Value = () => {
     return (
         <section
             id="main-outer-border"
-            className="mt-28 grid grid-col-1 row-auto md:grid-cols-2 grid-rows-2 gap-2 ">
+            className="mt-28 grid grid-col-1 row-auto md:grid-cols-2 grid-rows-2 gap-0 ">
             {/* VAlues */}
             <div className="md:pb-12 flex-grow items-center justify-center text-start text-values md:text-huge text-primary">
                 {Values.description.split(". ").map((text, index) => (
@@ -75,57 +75,76 @@ const Value = () => {
                     </h1>
                 ))}
             </div>
-                  {/* Top-right lottie */}
+            {/* Top-right lottie */}
             <div className="hidden md:flex md:items-center md:justify-center text-primary">
                 <DotLottieReact
                     src="https://lottie.host/6413339e-759b-4fba-90d2-effbab9baf24/TLjKxApvNT.lottie"
                     loop
                     autoplay
                     color="currentColor"
+
                 />
             </div>
             {/* Bottom grid */}
             <div className=" grid grid-col-1 row-auto  -mt-8 md:-mt-0   md:grid-cols-2 grid-rows-2 text-primary">
-                <div id="1" className="relative border-2 border-green-400"></div>
-                <div id="2" className="relative border-2 border-green-400">
+                <div id="1" className="relative"></div>
+                <div id="2" className="relative ">
 
                     <button
                         id="Desktop"
                         size="lg"
-                        className="hidden md:flex absolute top-8 right-24 md:top-12 md:right-0 h-auto origin-bottom-right gap-2 rounded-md p-2 font-medium w-fit font-cabinet text-2xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-colors"
+                        className="hidden md:flex absolute md:bottom-0 md:left-0 h-auto origin-bottom-right gap-2 rounded-md  p-2 font-medium w-fit font-cabinet text-2xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-colors"
                     >
-                        Hire me
+                        {item.label}
                     </button>
 
                 </div>
-                <div id="3" className="relative border-2 border-green-400">
+                <div id="3" className="relative ">
                     <img
                         id="Mobile"
-                        src={CTA}
+                        src={svgSrc}
                         width={250}
                         alt=""
-                        className="sm:hidden -rotate-[15deg] grid items-center h-auto "
+                        className="sm:hidden -rotate-[15deg] grid items-center h-auto m-4 mx-8"
                     />
                     <img
                         id="Desktop"
-                        src={CTA}
+                        src={svgSrc}
                         width={250}
                         alt=""
-                        className="-rotate-[15deg] grid items-center h-auto "
+                        className="hidden sm:grid absolute  -rotate-[15deg] -top-24 -right-16  h-auto "
                     />
 
                     <Link
                         to={item.href}
                         id="Mobile"
                         size="lg"
-                        className="sm:hidden absolute top-8 right-24 md:top-12 md:right-0 h-auto origin-bottom-right gap-2 rounded-md p-2 font-medium w-fit font-cabinet text-2xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-colors"
+                        className="sm:hidden absolute top-16 right-8 md:top-12 md:right-0 h-auto origin-bottom-right gap-2 rounded-md p-2 font-medium w-fit font-cabinet text-2xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-colors"
                     >
                         {item.label}
                     </Link>
                 </div>
-                <div id="4" className="border-2 border-green-400"></div>
+                <div id="4" className="relative ">
+                    {/* manual controls (optional, hidden on mobile) */}
+                    <div className="hidden md:flex absolute   items-bottom-right gap-2 bottom-0 right-0 ">
+                        <button
+                            onClick={() => setIdx((i) => (i + CTAS.length - 1) % CTAS.length)}
+                            className="px-2 py-1 text-lg rounded bg-black/5 dark:bg-white/5"
+                        > 
+                            ‹ 
+                        </button>
+                        <button
+                            onClick={() => setIdx((i) => (i + 1) % CTAS.length)}
+                            className="px-2 py-1 text-lg rounded bg-black/5 dark:bg:white/5"
+                        >
+                            › 
+                        </button>
+                    </div>
+
+                </div>
             </div>
 
+            {/* Paragraph */}
             <div className=" flex items-center justify-evenly text-start text-primary pt-8 px-4 md:pr-4">
                 <p className="font-satoshi text-small text-foreground leading-relaxed">
                     These are my{" "}
