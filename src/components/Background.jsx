@@ -2,7 +2,7 @@ import { Education } from "@/data/Data"
 import { ChevronRight } from 'lucide-react';
 import { useState } from "react";
 // import { SvgColor } from "./ui/svgColor";
-import { VitLogo } from "./ui/vitlogo";
+import { VitLogo } from "./ui/vitLogo";
 
 
 
