@@ -163,7 +163,7 @@ const Value = () => {
                     that meet real needs, blending{" "}
                     <em>functionality with thoughtful design</em>. <br />
                     <br />I believe{" "}
-                    <span className="font-cabinetMedium text-xl text-foreground font-semibold">
+                    <span className="font-cabinet  text-xl text-foreground font-semibold">
                         1 + 1 &gt; 2
                     </span>{" "}
                     —{" "}

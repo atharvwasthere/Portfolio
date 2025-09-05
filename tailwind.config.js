@@ -15,8 +15,8 @@ export default {
 				nav: ['Vast Shadow', 'serif'],
 
 				segment: ['Segment', 'system-ui', 'sans-serif'], // add alias in segment.css if needed
-				satoshi: ['Satoshi', 'system-ui', 'sans-serif'],
-				cabinet: ['Cabinet Grotesk', 'Satoshi', 'sans-serif'],
+				satoshi: ["Satoshi", "sans-serif"],
+				cabinet: ["Cabinet Grotesk", "sans-serif"],
 				display: ['Zodiak', 'Satoshi', 'system-ui', 'sans-serif'],
 				autography: ['Autography', 'cursive'],
 
