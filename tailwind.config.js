@@ -9,22 +9,16 @@ export default {
 
 		extend: {
 			fontFamily: {
-				header: ["Babylonica", "WaterBrush"],
-				vital: ["Zilla Slab Highlight"],
-				header2: ["Rock Salt"],
-				nav: ["Vast Shadow"],
-				segment: ["Segment-Regular", "sans-serif"],
-				satoshi: ["Satoshi-Regular", "sans-serif"],
-				satoshiBold: ["Satoshi-Bold", "sans-serif"],
-				satoshiLight: ["Satoshi-Light", "sans-serif"],
-				satoshiMedium: ["Satoshi-Medium", "sans-serif"],
-				satoshiVariable: ["Satoshi-Variable", "sans-serif"],
-				cabinet: ["CabinetGrotesk-Regular", "sans-serif"],
-				cabinetBold: ["CabinetGrotesk-Bold", "sans-serif"],
-				cabinetMedium: ["CabinetGrotesk-Medium", "sans-serif"],
-				cabinetVariable: ["CabinetGrotesk-Variable", "sans-serif"],
-				display: ['Zodiak-Variable','Satoshi-Variable','system-ui','sans-serif'],
-				autography: ['Autography', 'sans-serif']
+				header: ['Babylonica', 'WaterBrush', 'cursive'],
+				vital: ['Zilla Slab Highlight', 'serif'],   // load via Google or self-host
+				header2: ['Rock Salt', 'cursive'],
+				nav: ['Vast Shadow', 'serif'],
+
+				segment: ['Segment', 'system-ui', 'sans-serif'], // add alias in segment.css if needed
+				satoshi: ['Satoshi', 'system-ui', 'sans-serif'],
+				cabinet: ['Cabinet Grotesk', 'Satoshi', 'sans-serif'],
+				display: ['Zodiak', 'Satoshi', 'system-ui', 'sans-serif'],
+				autography: ['Autography', 'cursive'],
 
 			},
 			fontSize: {
