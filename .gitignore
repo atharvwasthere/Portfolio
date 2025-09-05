@@ -3,11 +3,8 @@
 .env
 projectpageddata.txt
 
-logos.jsx
 animation_frames
-LogoMarquee.jsx
 terminal-animation.tsx
-logo.css
 
 # Fonts
 
