@@ -105,7 +105,7 @@ export const Pics = [
   },
   {
     id: 14,
-    image: '/pics/skyview+bridge.jpg',
+    image: '/pics/skyview-bridge.jpg',
     height: 250,
     loading: "lazy",
     caption: "Above the clouds, beyond the noise",

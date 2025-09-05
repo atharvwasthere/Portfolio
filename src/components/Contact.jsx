@@ -1,15 +1,21 @@
 import { useState, useEffect } from "react"
-import {  motion } from "framer-motion"
+import { motion } from "framer-motion"
 import ContactCards from "./ContactCards"
+import mypic2 from "/pics/mee4.webp"
+import mypic from "/pics/mee3.webp"
+import mypic3 from "/pics/mee.webp"
+import { cdnSrc } from "@/lib/cdn"   
 
-import mypic3 from '../data/mee3.png'
-import mypic4 from '../data/mee4.png'
+const isProd = import.meta.env.MODE === "production"
 
+const localImages = [mypic, mypic3, mypic2]
+const cdnImages = ["/pics/mee.webp", "/pics/mee3.webp", "/pics/mee4.webp"]
+
+// Resolve once based on environment
+const images = (isProd ? cdnImages.map(cdnSrc) : localImages)
 
 const Contact = () => {
-  const images = [
-    mypic3, mypic4
-  ]
+  
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
@@ -25,7 +31,7 @@ const Contact = () => {
 
       return () => clearInterval(interval)
     }
-  }, [images.length])
+  },[])
 
   const handleMouseMove = (e) => {
     const rect = e.currentTarget.getBoundingClientRect()

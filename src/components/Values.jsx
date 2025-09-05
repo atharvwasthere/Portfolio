@@ -19,7 +19,7 @@ const Value = () => {
         },
         {
             label: "Work with me",
-            href: "mailto:singhatharv1919@gmail.com?subject=Work%20Opportunity&body=Hi%20Atharv,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20work%20opportunity%20with%20you.%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]",
+            href: "mailto:singhatharv1919@gmail.com",
             svgLight: "/cta/hireme-light.svg",
             svgDark: "/cta/hireme-dark.svg",
         },

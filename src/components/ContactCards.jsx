@@ -102,6 +102,7 @@ export default function ContactCards() {
       <div className="flex flex-col items-left gap-4">
         <Button
           size="lg"
+          href="mailto:singhatharv1919@gmail.com"
           className=" w-fit font-cabinet text-lg
              bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20
              dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20
