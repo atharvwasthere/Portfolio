@@ -6,7 +6,6 @@ import { TerminalBlock } from "../components/projectsUI/terminal-block";
 import { ProjectNavigation } from "../components/projectsUI/project-navigation";
 import { ScrollProgress } from "../components/projectsUI/scroll-progress";
 import { useEffect, useState } from "react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { ComingSoon } from "@/components/projectsUI/comingsoon";
 import Header from "@/components/Header";
 

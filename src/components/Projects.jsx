@@ -1,11 +1,9 @@
-import { useEffect, lazy, Suspense } from "react"
+// remove: import Lenis from "lenis"
+import{ useEffect, lazy, Suspense } from "react"
 import LogoMarquee from "./LogoMarquee.jsx"
-import Lenis from "lenis"
 
-// 🔻 lazy chunk for heavy cards grid
 const ProjectsSection = lazy(() => import("./ProjectsSection.tsx"))
 
-// tiny skeleton (replace with your shadcn/ui skeleton if you have one)
 function ProjectsSkeleton() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -16,42 +14,40 @@ function ProjectsSkeleton() {
   )
 }
 
-const Projects = () => {
+export default function Projects() {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: "vertical",
-      gestureDirection: "vertical",
-      smooth: true,
-      mouseMultiplier: 1,
-      smoothTouch: false,
-      touchMultiplier: 2,
-      infinite: false,
+    let cleanup = () => {}
+    import("lenis").then(({ default: Lenis }) => {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        direction: "vertical",
+        gestureDirection: "vertical",
+        smooth: true,
+        mouseMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      })
+      // expose to TOC (it probes window.lenis)
+      window.lenis = lenis
+      let id = requestAnimationFrame(function raf(time) {
+        lenis.raf(time); id = requestAnimationFrame(raf)
+      })
+      cleanup = () => { cancelAnimationFrame(id); lenis.destroy(); window.lenis = undefined }
     })
-
-    const raf = (time) => {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
-    }
-    requestAnimationFrame(raf)
-    return () => lenis.destroy()
+    return () => cleanup()
   }, [])
 
   return (
     <section className="mt-16 md:mt-24 p-2">
-      {/* LOGOS */}
       <LogoMarquee className="m-4" />
-
-      {/* HEADINGS */}
       <h1 className="px-1 sm:px-0 font-display font-light text-large md:text-huge text-start leading-[0.975]">
         Some of the <strong>Projects</strong>
       </h1>
       <h1 className="px-1 sm:px-0 font-display font-light text-large md:text-huge text-start leading-[0.975]">
         I&apos;ve worked on
       </h1>
-
-      {/* PROJECTS CARDS (lazy) */}
       <div className="px-1 sm:px-0 flex flex-col justify-center my-8 -ml-4">
         <Suspense fallback={<ProjectsSkeleton />}>
           <ProjectsSection />
@@ -60,5 +56,3 @@ const Projects = () => {
     </section>
   )
 }
-
-export default Projects

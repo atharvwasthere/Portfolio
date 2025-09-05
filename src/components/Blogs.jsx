@@ -85,8 +85,8 @@ export default function BlogSection() {
     <section className="min-h-screen min-w-full bg-background text-foreground">
       <Header />
       <div className="min-h-screen bg-background text-background p-4 md:p-8 lg:p-12">
-        <div className="max-w-4xl mx-auto my-8">
-          <h2 className="font-display text-4xl text-black  dark:text-white font-medium mb-4">Blogs</h2>
+        <div className="pt-12  max-w-4xl mx-auto my-4">
+          <h2 className="font-display text-4xl text-black  dark:text-white font-medium  md:mb-2">Blogs</h2>
           <p className="font-satoshiMedium text-zinc-600 text-lg mb-8">
             A collection of my blogs where I share experiences and ideas on
             technology, programming languages, databases, cloud and frameworks.

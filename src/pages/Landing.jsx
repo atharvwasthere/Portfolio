@@ -1,57 +1,53 @@
-import Header from "@/components/Header";
-import Nav from "@/components/Nav";
-import IntroText from "@/components/IntroText";
-import Projects from "@/components/Projects";
-import Value from "@/components/Values";
-import Background from "@/components/Background";
-import About from "@/components/About";
-import Contact from "@/components/Contact";
-import Footer from "@/components/Footer";
-import { useUI } from "@/components/ui/globalSeen";
-import SplashScreen from "@/components/SplashScreen";
-import Masonry from "@/components/blocks/Components/Masonry/Masonry";
-import { Pics } from "@/data/Data";
-import { useRef, useState, useEffect } from "react";
-import { cdnSrc } from "@/lib/cdn";
+// BEFORE: direct imports for Projects, Value, Background, About, Contact, Masonry, Pics
+import { useRef, useState, useEffect, lazy, Suspense } from "react"
+import Header from "@/components/Header"
+import Nav from "@/components/Nav"
+import IntroText from "@/components/IntroText"
+import Footer from "@/components/Footer"
+import SplashScreen from "@/components/SplashScreen"
+import { useUI } from "@/components/ui/globalSeen"
+import LazyWhenVisible from "@/components/lazyWhenVisible"
 
-const Landing = () => {
-  const splashSeen = useUI((s) => s.splashSeen);
-  const markSplashSeen = useUI((s) => s.markSplashSeen);
-  const resolvedPics = Pics.map(p => ({ ...p, image: cdnSrc(p.image) }));
-  const [contentVisible, setContentVisible] = useState(() => splashSeen);
+// lazy chunks for heavy/below-the-fold sections
+const Projects = lazy(() => import("@/components/Projects"))
+const Value = lazy(() => import("@/components/Values"))
+const Background = lazy(() => import("@/components/Background"))
+const About = lazy(() => import("@/components/About"))
+const Contact = lazy(() => import("@/components/Contact"))
+const MasonryGallery = lazy(() => import("@/components/MasonryGallery.jsx"))
+
+export default function Landing() {
+  const splashSeen = useUI((s) => s.splashSeen)
+  const markSplashSeen = useUI((s) => s.markSplashSeen)
+  const [contentVisible, setContentVisible] = useState(() => splashSeen)
 
   useEffect(() => {
     if (splashSeen) {
-      const t = setTimeout(() => setContentVisible(true), 300);
-      return () => clearTimeout(t);
+      const t = setTimeout(() => setContentVisible(true), 300)
+      return () => clearTimeout(t)
     }
-  }, [splashSeen]);
+  }, [splashSeen])
 
-  const introRef = useRef(null);
-  const projectsRef = useRef(null);
-  const valueRef = useRef(null);
-  const backgroundRef = useRef(null);
-  const aboutRef = useRef(null);
-  const contactRef = useRef(null);
+  const introRef = useRef(null)
+  const projectsRef = useRef(null)
+  const valueRef = useRef(null)
+  const backgroundRef = useRef(null)
+  const aboutRef = useRef(null)
+  const contactRef = useRef(null)
 
   const scrollToSection = (ref) => {
     if (ref?.current) {
-      const headerHeight = document.querySelector("header")?.offsetHeight || 72;
-      const elementPosition = ref.current.offsetTop - headerHeight;
-      window.scrollTo({ top: elementPosition, behavior: "smooth" });
+      const headerHeight = document.querySelector("header")?.offsetHeight || 72
+      const elementPosition = ref.current.offsetTop - headerHeight
+      window.scrollTo({ top: elementPosition, behavior: "smooth" })
     }
-  };
+  }
 
-  const showSplash = !splashSeen;
+  const showSplash = !splashSeen
 
   return (
     <div className="min-h-screen min-w-full bg-background text-foreground">
-      {showSplash && (
-        <SplashScreen
-          // 🟢 when splash finishes, flip the global flag
-          onFinish={markSplashSeen}
-        />
-      )}
+      {showSplash && <SplashScreen onFinish={markSplashSeen} />}
 
       <div
         style={{
@@ -69,6 +65,7 @@ const Landing = () => {
           aboutSection={aboutRef}
           contactSection={contactRef}
         />
+
         <div className="flex">
           <Nav
             scrollToSection={scrollToSection}
@@ -79,33 +76,53 @@ const Landing = () => {
             aboutSection={aboutRef}
             contactSection={contactRef}
           />
+
           <main className="flex-1 mt-16 md:ml-48">
+            {/* Above-the-fold stays inline + light */}
             <div ref={introRef}>
               <IntroText />
             </div>
+
             <div className="mt-[200px] md:mt-0" />
+
+            {/* Below-the-fold: load on visibility */}
             <div ref={projectsRef}>
-              <Projects />
+              <Suspense fallback={null}>
+                <LazyWhenVisible loader={() => <Projects />} />
+              </Suspense>
             </div>
+
             <div ref={valueRef}>
-              <Value />
+              <Suspense fallback={null}>
+                <LazyWhenVisible loader={() => <Value />} />
+              </Suspense>
             </div>
+
             <div ref={backgroundRef}>
-              <Background />
+              <Suspense fallback={null}>
+                <LazyWhenVisible loader={() => <Background />} />
+              </Suspense>
             </div>
+
             <div ref={aboutRef}>
-              <Masonry data={resolvedPics} />
-              <About />
+              <Suspense fallback={null}>
+                <LazyWhenVisible loader={() => <MasonryGallery />} />
+              </Suspense>
+              <Suspense fallback={null}>
+                <LazyWhenVisible loader={() => <About />} />
+              </Suspense>
             </div>
+
             <div ref={contactRef}>
-              <Contact />
+              <Suspense fallback={null}>
+                <LazyWhenVisible loader={() => <Contact />} />
+              </Suspense>
             </div>
           </main>
         </div>
+
         <Footer />
       </div>
     </div>
-  );
-};
-
-export default Landing;
+  )
+}

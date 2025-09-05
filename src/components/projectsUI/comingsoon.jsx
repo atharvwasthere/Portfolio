@@ -48,7 +48,7 @@ export function ComingSoon({
               style={{ width: "60%" }}
             />
           </div>
-          <p className="text-sm font-satoshi text-muted-foreground font-mono">Building something amazing...</p>
+          <p className="text-sm text-muted-foreground font-mono">Building something amazing...</p>
         </div>
 
         {/* Minimal Animation Elements */}
