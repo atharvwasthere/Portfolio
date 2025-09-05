@@ -1,0 +1,14 @@
+.toc-notion {
+  position: sticky;
+  top: 6rem;          /* sits below your header */
+  align-self: start;  /* stick within the right column */
+}
+
+/* nicer thin scrollbar for the nav only */
+.toc-notion nav::-webkit-scrollbar {
+  width: 6px;
+}
+.toc-notion nav::-webkit-scrollbar-thumb {
+  background: hsl(var(--border));
+  border-radius: 999px;
+}

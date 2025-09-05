@@ -1,120 +1,186 @@
-import { useEffect, useState, useRef } from "react"
-import PropTypes from "prop-types"
-import { cn } from "@/lib/utils"
+// src/components/projectsUI/table-of-contents.jsx
+import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
 
-export function TableOfContents({ className }) {
-  const [tocItems, setTocItems] = useState([])
-  const [activeId, setActiveId] = useState("")
-  const [isVisible, setIsVisible] = useState(false)
-  const observerRef = useRef(null)
+const cx = (...xs) => xs.filter(Boolean).join(" ");
+const baseSlug = (s = "") =>
+  s.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/\s+/g, "-");
 
+// Measure the space above first real content heading (responsive: desktop/mobile)
+function calcHeaderPx(article) {
+  if (!article) return 0;
+  const articleTop = article.getBoundingClientRect().top + window.scrollY;
+  const firstH = article.querySelector("h2, h3");
+  if (firstH) {
+    const hTop = firstH.getBoundingClientRect().top + window.scrollY;
+    return Math.max(0, Math.round(hTop - articleTop));
+  }
+  const hero = article.querySelector("header");
+  if (hero) return Math.max(0, Math.round(hero.getBoundingClientRect().height));
+  return 0;
+}
+
+export function TableOfContents({ rootSelector = "#page-content", className = "" }) {
+  const [items, setItems] = useState([]);     // [{ id, title, level }]
+  const [active, setActive] = useState("");
+  const [headerPx, setHeaderPx] = useState(0);
+
+  const nodesRef = useRef([]);                // heading nodes
+  const offsRef  = useRef([]);                // absolute Y offsets for headings
+  const rafRef   = useRef(0);
+
+  // TOC auto-scroll bits
+  const navRef   = useRef(null);              // scrollable TOC <nav>
+  const itemRefs = useRef({});                // id -> <a> element
+  const humanRef = useRef(0);                 // last time user interacted with TOC (ms)
+
+  // Build list + offsets + responsive header offset
   useEffect(() => {
-    // Get all headings and create refs for them
-    const headings = document.querySelectorAll("h2, h3")
-    const items = Array.from(headings).map((heading) => ({
-      id: heading.id,
-      title: heading.textContent || "",
-      level: Number.parseInt(heading.tagName.charAt(1), 10),
-      ref: { current: heading },
-    }))
-    setTocItems(items)
+    const article = document.querySelector(rootSelector);
+    if (!article) return;
 
-    // Clean up previous observer
-    if (observerRef.current) {
-      observerRef.current.disconnect()
+    const computeHeader = () => setHeaderPx(calcHeaderPx(article));
+    computeHeader();
+
+    // Recompute header offset when layout changes
+    let ro;
+    if ("ResizeObserver" in window) {
+      ro = new ResizeObserver(computeHeader);
+      article.querySelectorAll("header, h1, .mb-12, .bg-gray-50").forEach((el) => ro.observe(el));
+      ro.observe(article);
     }
 
-    // Create new intersection observer
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        const intersectingEntries = entries.filter((entry) => entry.isIntersecting)
+    // Collect headings, ensure unique IDs
+    const nodes = Array.from(article.querySelectorAll("h2, h3"));
+    const seen = new Map();
+    nodes.forEach((h) => {
+      const t = h.textContent || "";
+      let slug = baseSlug(t) || "section";
+      const n = (seen.get(slug) || 0) + 1;
+      seen.set(slug, n);
+      if (n > 1) slug = `${slug}-${n}`;
+      if (!h.id) h.id = slug;
+    });
 
-        if (intersectingEntries.length > 0) {
-          const sortedEntries = intersectingEntries.sort((a, b) => {
-            if (b.intersectionRatio !== a.intersectionRatio) {
-              return b.intersectionRatio - a.intersectionRatio
-            }
-            return a.boundingClientRect.top - b.boundingClientRect.top
-          })
+    nodesRef.current = nodes;
+    setItems(nodes.map((h) => ({
+      id: h.id,
+      title: h.textContent || "",
+      level: Number(h.tagName.slice(1)), // 2/3
+    })));
 
-          setActiveId(sortedEntries[0].target.id)
+    const computeOffsets = () => {
+      nodes.forEach((h) => (h.style.scrollMarginTop = `${headerPx + 8}px`));
+      offsRef.current = nodes.map((h) => Math.floor(h.getBoundingClientRect().top + window.scrollY));
+    };
+
+    const onScroll = () => {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = requestAnimationFrame(() => {
+        const y = window.scrollY + headerPx;
+        const offs = offsRef.current;
+        let idx = 0;
+        for (let i = 0; i < offs.length; i++) {
+          if (offs[i] <= y) idx = i; else break;
         }
-      },
-      {
-        rootMargin: "-10% 0% -50% 0%",
-        threshold: [0, 0.25, 0.5, 0.75, 1],
-      }
-    )
+        const id = nodesRef.current[idx]?.id || nodesRef.current[0]?.id || "";
+        setActive(id);
+      });
+    };
 
-    // Observe all headings
-    headings.forEach((heading) => {
-      if (observerRef.current) {
-        observerRef.current.observe(heading)
-      }
-    })
+    computeOffsets();
+    onScroll();
+
+    const onResize = () => { computeHeader(); computeOffsets(); onScroll(); };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
 
     return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect()
-      }
-    }
-  }, [])
+      cancelAnimationFrame(rafRef.current);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+      ro?.disconnect();
+    };
+  }, [rootSelector, headerPx]);
 
-  const scrollToSection = (id) => {
-    const item = tocItems.find((item) => item.id === id)
-    if (item?.ref.current) {
-      setActiveId(id)
-      item.ref.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      })
-    }
-  }
+  // Auto-scroll the TOC so the active item stays visible.
+  // Pauses if the user recently interacted with the TOC (wheel/touch/scroll/hover).
+  useEffect(() => {
+    const nav = navRef.current;
+    if (!nav) return;
+
+    const markHuman = () => { humanRef.current = Date.now(); };
+    const handlers = ["wheel", "touchstart", "pointerdown", "scroll", "mouseenter", "keydown"];
+    handlers.forEach((ev) => nav.addEventListener(ev, markHuman, { passive: true }));
+
+    return () => handlers.forEach((ev) => nav.removeEventListener(ev, markHuman));
+  }, []);
+
+  useEffect(() => {
+    const el = itemRefs.current[active];
+    const nav = navRef.current;
+    if (!el || !nav) return;
+
+    // If the user touched the TOC in the last 900ms, don't auto-scroll it.
+    if (Date.now() - humanRef.current < 900) return;
+
+    el.scrollIntoView({ block: "nearest", inline: "nearest", behavior: "smooth" });
+  }, [active]);
+
+  const handleClick = (id) => (e) => {
+    e.preventDefault();
+    const idx = nodesRef.current.findIndex((n) => n.id === id);
+    if (idx === -1) return;
+    const y = offsRef.current[idx] - headerPx - 8;
+    // prefer Lenis if available
+    // @ts-ignore
+    if (window.lenis?.scrollTo) window.lenis.scrollTo(y);
+    else window.scrollTo({ top: y, behavior: "smooth" });
+  };
+
+  if (!items.length) return null;
 
   return (
-    <div
-      className={cn("fixed right-8 top-1/4 z-10", className)}
-      onMouseEnter={() => setIsVisible(true)}
-      onMouseLeave={() => setIsVisible(false)}
+    <aside
+      aria-label="Table of contents"
+      className={cx("hidden xl:block sticky top-24 h-[calc(100vh-7rem)]", className)}
     >
-      <div
-        className={cn(
-          "transition-all duration-300 overflow-hidden",
-          isVisible
-            ? "opacity-100 w-64 bg-black/90 p-4 rounded-lg shadow-lg"
-            : "opacity-40 w-8 bg-black/70 p-2 rounded-lg"
-        )}
+      <nav
+        ref={navRef}
+        className="text-left max-h-full overflow-auto"
       >
-        {!isVisible ? (
-          <div className="flex flex-col items-center gap-2">
-            <div className="w-4 h-0.5 bg-gray-400 rounded"></div>
-            <div className="w-4 h-0.5 bg-gray-400 rounded"></div>
-            <div className="w-4 h-0.5 bg-gray-400 rounded"></div>
-          </div>
-        ) : (
-          <nav className="space-y-1">
-            {tocItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={cn(
-                  "block w-full text-left text-sm py-2 px-3 rounded transition-all duration-200 border-l-2",
-                  item.level === 3 && "ml-4 text-xs",
-                  activeId === item.id
-                    ? "text-blue-400 border-blue-400 font-medium bg-blue-400/10"
-                    : "text-gray-400 border-transparent hover:text-gray-200 hover:border-gray-500 hover:bg-gray-800/50"
-                )}
-              >
-                {item.title}
-              </button>
-            ))}
-          </nav>
-        )}
-      </div>
-    </div>
-  )
+        <div className="mb-3 px-2 text-xs font-semibold uppercase tracking-wide text-black dark:text-white">
+          On this page
+        </div>
+        <ul className="space-y-1.5 pr-1">
+          {items.map((it) => {
+            const isActive = it.id === active;
+            return (
+              <li key={it.id}>
+                <a
+                  ref={(node) => { if (node) itemRefs.current[it.id] = node; }}
+                  href={`#${it.id}`}
+                  onClick={handleClick(it.id)}
+                  className={cx(
+                    "block pl-3 pr-2 py-1.5 border-l-2 truncate transition-colors",
+                    it.level === 3 ? "ml-3 text-sm" : "text-base",
+                    isActive
+                      ? "border-blue-600 text-black dark:text-white font-medium"
+                      : "border-transparent text-black/85 dark:text-white/85 hover:text-black dark:hover:text-white"
+                  )}
+                >
+                  {it.title}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    </aside>
+  );
 }
 
 TableOfContents.propTypes = {
+  rootSelector: PropTypes.string,
   className: PropTypes.string,
-}
+};

@@ -8,7 +8,7 @@ export function ScrollProgress() {
     const updateProgress = () => {
       const scrollTop = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
-      const progress = (scrollTop / docHeight) * 100
+      const progress = (scrollTop / docHeight) * 100 
       setProgress(progress)
     }
 

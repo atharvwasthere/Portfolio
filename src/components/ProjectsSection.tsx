@@ -1,48 +1,137 @@
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import React from "react";
+import {
+  Lock,
+  MessageSquare,
+  HardDrive,
+  Usb,
+  Rocket,
+  LucidePackageOpen,
+  LucideListMusic,
+  Wind,
+  Wand,
+  Plug,
+  Search,
+  Satellite,
+  BookOpen,
+  Shield,
+  LucideSquareSlash
+} from "lucide-react";
 import { Link } from "react-router";
+
 const projectData = {
   core: {
     title: "Core Builds",
-    tagline: "Low-level experiments.. Mostly C/C++, closer to the metal.",
+    tagline: "Systems & CLI experiments — from C to Go.",
     projects: [
-      { name: "File Encrypter", slug: "file-encrypter", emoji: "🔐", tags: [] },
-      { name: "USB Driver", slug: "usb-driver", emoji: "🔌", tags: [] },
-      { name: "OS Tools", slug: "os-tools", emoji: "🧱", tags: [] },
-      { name: "Movie Booking CLI", slug: "movie-booking-cli", emoji: "🎟️", tags: [] },
-      { name: "Arduino Scripts", slug: "arduino-scripts", emoji: "📟", tags: [] },
-      { name: "Custom Shell Commands", slug: "custom-shell-commands", emoji: "💻", tags: [] },
+      {
+        name: "Encryptify",
+        slug: "encryptify",
+        icon: Lock,
+        tags: ["C++", "Multithreading"],
+      },
+      {
+        name: "Signal Chatroom",
+        slug: "signal-chatroom",
+        icon: MessageSquare,
+        tags: ["Networking","C++","WIP"],
+      },
+      {
+        name: "OS Tools",
+        slug: "os-tools",
+        icon: HardDrive,
+        tags: ["Scheduling", "OS101"],
+      },
+      {
+        name: "USB Driver in C",
+        slug: "usb-driver",
+        icon: Usb,
+        tags: ["Systems"],
+      },
+      {
+        name: "Fastlane",
+        slug: "fastlane",
+        icon: Rocket,
+        tags: ["Go", "Networking", "CLI", "WIP"],
+      },
+      {
+        name: "TuneIt",
+        slug: "tuneit",
+        icon: LucideListMusic,
+        tags: ["CLI", "Downloader"],
+      },
     ],
   },
   web: {
     title: "Web Lab",
     tagline: "UI to API.",
     projects: [
-      { name: "Web Crawler", slug: "web-crawler", emoji: "🕷️", tags: [] },
-      { name: "Coursify", slug: "coursify", emoji: "🧰", tags: ["Landing Page"] },
-      { name: "ParaLang", slug: "paralang", emoji: "🧠", tags: [] },
-      { name: "AirWise", slug: "airwise", emoji: "🌬️", tags: ["WIP"] },
-      { name: "Portfolio Site", slug: "portfolio-site", emoji: "👨‍💻", tags: [] },
-      { name: "Dev Blog System", slug: "dev-blog-system", emoji: "📝", tags: [] },
-      { name: "EveSpark", slug: "evespark", emoji: "🪄", tags: [] },
-      { name: "Competitive Search", slug: "competitive-search", emoji: "🔌", tags: ["Plugin", "WIP"] },
+      {
+        name: "Web Crawler",
+        slug: "web-crawler",
+        icon: LucidePackageOpen,
+        tags: [],
+      },
+      {
+        name: "Coursify",
+        slug: "coursify",
+        icon: LucideSquareSlash,
+        tags: ["Landing Page"],
+      },
+      { name: "AirWise", slug: "airwise", icon: Wind, tags: ["WIP"] },
+      { name: "EveSpark", slug: "evespark", icon: Wand, tags: [] },
+      {
+        name: "Competitive Search",
+        slug: "competitive-search",
+        icon: Plug,
+        tags: ["Plugin", "WIP"],
+      },
+      {
+        name: "Search Engine",
+        slug: "search-engine",
+        icon: Search,
+        tags: ["WIP"],
+      },
     ],
   },
   research: {
     title: "Research & Ideas",
     tagline: "Code meets Curiosity — sometimes with diagrams.",
     projects: [
-      { name: "WebRTC Internals", slug: "webrtc-internals", emoji: "📡", tags: [] },
-      { name: "Encryption Logic Deep Dive", slug: "encryption-logic", emoji: "🔐", tags: ["Security"] },
-      { name: "System Design Notes", slug: "system-design-notes", emoji: "📘", tags: ["Architecture"] },
-      { name: "Finance + Backend Experiments", slug: "finance-backend", emoji: "💸", tags: [] },
-      { name: "Compiler Playground", slug: "compiler-playground", emoji: "⚙️", tags: [] },
-      { name: "Routing via Slugs", slug: "routing-via-slugs", emoji: "🧭", tags: [] },
+      {
+        name: "WebRTC Internals",
+        slug: "webrtc-internals",
+        icon: Satellite,
+        tags: [],
+      },
+      {
+        name: "Encryption Logic Deep Dive",
+        slug: "encryption-logic",
+        icon: Shield,
+        tags: ["Security"],
+      },
+      {
+        name: "System Design Notes",
+        slug: "system-design-notes",
+        icon: BookOpen,
+        tags: ["Architecture"],
+      },
+      {
+        name: "Elasticsearch + Inverted Indexing",
+        slug: "elasticsearch-inverted-index",
+        icon: Search,
+        tags: ["Search", "Indexing"],
+      },
+      {
+        name: "Model Context Protocol (MCP)",
+        slug: "multi-party-computation",
+        icon: Plug,
+        tags: ["Privacy", "Security"],
+      },
     ],
   },
 };
-
 
 const projectTileHeight = 44;
 const extraPadding = 100; // header + margins + footer space
@@ -52,11 +141,11 @@ type CategoryKey = keyof typeof projectData;
 export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("web");
 
-  const activeProjects = projectData[activeCategory].projects.length ;
-  const dynamicHeight = activeProjects * projectTileHeight + extraPadding
+  const activeProjects = projectData[activeCategory].projects.length;
+  const dynamicHeight = activeProjects * projectTileHeight + extraPadding;
 
   return (
-    <div  className="w-full max-w-4xl  p-6 bg-background ">
+    <div className="w-full max-w-4xl  p-6 bg-background ">
       {/* Tab Navigation */}
       <div className="font-satoshiMedium flex flex-wrap gap-2 mb-8 border-b border-border">
         {Object.entries(projectData).map(([key, data]) => (
@@ -79,7 +168,10 @@ export default function ProjectsSection() {
       </div>
 
       {/* Content Area */}
-      <div className="font-satoshi relative"style={{ minHeight: `${dynamicHeight}px` }}>
+      <div
+        className="font-satoshi relative"
+        style={{ minHeight: `${dynamicHeight}px` }}
+      >
         {Object.entries(projectData).map(([key, data]) => (
           <div
             key={key}
@@ -92,43 +184,45 @@ export default function ProjectsSection() {
           >
             {/* Category Header */}
             <div className="mb-6 text-left">
-              <h2 className="lg:hidden font-bold text-foreground mb-2 font-mono text-large">
+              {/* <h2 className="lg:hidden font-bold text-foreground mb-2 font-mono text-large">
                 {data.title}
-              </h2>
+              </h2> */}
               <p className="text-amber-500 leading-relaxed max-w-2xl text-small">
-              <blockquote className="border-l-2 border-primary pl-4 italic">
-                 &quot;{data.tagline}&quot;
-              </blockquote>
+                <blockquote className="border-l-2 border-primary pl-4 italic">
+                  &quot;{data.tagline}&quot;
+                </blockquote>
               </p>
             </div>
 
             {/* Projects Grid */}
             <div className="space-y-3">
-              {data.projects.map((project, index) => (
-                <Link
-                  key={index}
-                  to={`/project/${project.slug}`}
-                  className="flex items-center gap-3 group cursor-pointer  p-2 -m-2 rounded transition-colors duration-200"
-                >
-                  <span className="text-lg flex-shrink-0">{project.emoji}</span>
-                  <span className="font- text-lg text-foreground group-hover:text-green-400 transition-colors duration-200 underline-offset-4 group-hover:underline">
-                    {project.name}
-                  </span>
-
-                  {project.tags.length > 0 && (
-                    <div className="flex gap-2 flex-wrap ">
-                      {project.tags.map((tag: string, tagIndex: number) => (
-                        <span
-                          key={tagIndex}
-                          className="text-xs bg-blue-100 text-blue-700 dark:text-cyan-400 dark:bg-teal-200/10  px-2 py-1 rounded-full font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                </Link>
-              ))}
+              {data.projects.map((project, index) => {
+                const Icon = project.icon; // component reference
+                return (
+                  <Link
+                    key={index}
+                    to={`/project/${project.slug}`}
+                    className="flex items-center gap-3 group cursor-pointer p-2 -m-2 rounded transition-colors duration-200"
+                  >
+                    <Icon className="w-5 h-5 dark:text-spotifygray text-spotifyblack flex-shrink-0" />{" "}
+                    <span className="font- text-lg text-foreground group-hover:text-blue-600 dark:group-hover:text-green-400 transition-colors duration-200 underline-offset-4 group-hover:underline">
+                      {project.name}
+                    </span>
+                    {project.tags.length > 0 && (
+                      <div className="flex gap-2 flex-wrap">
+                        {project.tags.map((tag: string, tagIndex: number) => (
+                          <span
+                            key={tagIndex}
+                            className="text-xs bg-emerald-500/10 text-emerald-600 dark:text-cyan-400 dark:bg-teal-200/10 px-2 py-1 rounded-full font-medium"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Terminal-style footer */}
