@@ -1,6 +1,6 @@
 // remove: import Lenis from "lenis"
 import{ useEffect, lazy, Suspense } from "react"
-import LogoMarquee from "./LogoMarquee.jsx"
+import LogoMarquee from "./LogoMarquee"
 
 const ProjectsSection = lazy(() => import("./ProjectsSection.tsx"))
 
