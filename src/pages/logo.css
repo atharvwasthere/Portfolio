@@ -1,0 +1,113 @@
+:root {
+  /* background-color: #141414; */
+  /* font-size: 62.5%; */
+}
+
+.marquee {
+  overflow: hidden;
+  --speed: 25s;
+  --single-slide-speed: calc(var(--speed) / var(--numItems));
+  --item-width: 60px;
+  --item-gap: 27px;
+  --item-width-plus-gap: calc(var(--item-width) + var(--item-gap));
+  --track-width: calc(var(--item-width-plus-gap) * calc(var(--numItems)));
+}
+
+.marquee-track {
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: var(--track-width) [track] 0px [resting];
+  width: max-content;
+}
+
+.marquee-item {
+  grid-area: resting;
+  animation: marquee-move var(--speed) linear infinite
+    var(--direction, forwards);
+  animation-delay: calc(var(--single-slide-speed) * var(--item-position) * -1);
+  will-change: transform;/* Helps avoid transform snapping/jank across engines */
+  width: var(--item-width);
+  aspect-ratio: 1/1.2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  color: #fff;
+}
+
+.marquee-item svg {
+  height: auto;
+  width: 60%;
+}
+
+/* Firefox-safe fallback when cqw isn't available */
+@supports not (width: 1cqw) {
+  /* Make the track width explicit for the calc below */
+  .marquee-track {
+    width: calc(var(--track-width) + var(--item-width-plus-gap));
+  }
+
+  @keyframes marquee-move {
+    to {
+      /* Same distance, but computed from your vars instead of cqw */
+      transform: translateX(calc(-1 * var(--track-width) - var(--item-width-plus-gap)));
+    }
+  }
+}
+
+
+/* Default path (Chromium/WebKit w/ container query units) */
+@keyframes marquee-move {
+  to {
+    /* move full container width + one item to loop smoothly */
+    transform: translateX(calc(-100cqw - var(--item-width-plus-gap)));
+  }
+}
+
+
+.marquee-item {
+  will-change: transform;/* Helps avoid transform snapping/jank across engines */
+}
+
+.fadeout-horizontal {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 5rem,
+    black calc(100% - 5rem),
+    transparent
+  );
+}
+
+.wrapper > div {
+  margin: 24px 0;
+}
+
+@media (max-width: 768px) {
+  .marquee {
+    --item-width: 20px;
+    --item-gap: 5px;
+  }
+
+  .marquee-item {
+    width: var(--item-width);
+    border-radius: 1rem;
+  }
+
+  .marquee-item svg {
+    width: 50%;
+  }
+
+  .fadeout-horizontal {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      black 2rem,
+      black calc(100% - 2rem),
+      transparent
+    );
+  }
+  .wrapper > div {
+    margin: 16px 0;
+  }
+}

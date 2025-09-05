@@ -1,0 +1,14 @@
+{
+  "env": { "browser": true, "es2021": true },
+  "extends": ["eslint:recommended", "plugin:import/recommended"],
+  "plugins": ["import"],
+  "settings": {
+    "import/resolver": {
+      "node": { "extensions": [".js", ".jsx", ".ts", ".tsx"] },
+      "alias": { "map": [["@", "./src"]], "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    }
+  },
+  "rules": {
+    "import/no-unresolved": "error"
+  }
+}
