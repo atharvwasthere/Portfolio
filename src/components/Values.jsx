@@ -1,33 +1,32 @@
 import { useTheme } from "./theme-provider";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-import { Link } from "react-router";
 // import MagnetLines from './blocks/Animations/MagnetLines/MagnetLines';
 
 const Value = () => {
     const Values = { description: "Useful. Reliable. Scalable. Well made" };
     const { theme, resolvedTheme } = useTheme();
     const currentTheme = theme === "system" ? resolvedTheme : theme;
-    const CTA = currentTheme === "dark" ? "cta/fastlane-dark.svg" : "cta/hireme-light.svg";
     const ROTATE_MS = 6000; // 6s
 
     // 3 CTAs × (light/dark SVG per CTA)
     const CTAS = useMemo(() => [
         {
             label: "Join Fastlane waitlist",
-            href: "/fastlane",
+            href: "https://github.com/atharvwasthere/Fastlane",
             svgLight: "/cta/fastlane-light.svg",
             svgDark: "/cta/fastlane-dark.svg",
         },
         {
             label: "Work with me",
-            href: "/contact",
+            href: "mailto:singhatharv1919@gmail.com?subject=Work%20Opportunity&body=Hi%20Atharv,%0D%0A%0D%0AI%20came%20across%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20work%20opportunity%20with%20you.%0D%0A%0D%0ARegards,%0D%0A[Your%20Name]",
             svgLight: "/cta/hireme-light.svg",
             svgDark: "/cta/hireme-dark.svg",
         },
+
         {
             label: "Read latest writeup",
-            href: "/Blogs",
+            href: "https://debouncing-and-githubs-weird-decision.hashnode.dev/",
             svgLight: "/cta/Currently-light.svg",
             svgDark: "/cta/Currently-dark.svg",
         },
@@ -90,13 +89,14 @@ const Value = () => {
                 <div id="1" className="relative"></div>
                 <div id="2" className="relative ">
 
-                    <button
+                    <a
                         id="Desktop"
                         size="lg"
+                        href={item.href}
                         className="hidden md:flex absolute md:bottom-0 md:left-0 h-auto origin-bottom-right gap-2 rounded-md  p-2 font-medium w-fit font-cabinet text-2xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-colors"
                     >
                         {item.label}
-                    </button>
+                    </a>
 
                 </div>
                 <div id="3" className="relative ">
@@ -115,14 +115,15 @@ const Value = () => {
                         className="hidden sm:grid absolute  -rotate-[15deg] -top-24 -right-16  h-auto "
                     />
 
-                    <Link
-                        to={item.href}
+                    <a
+                        href={item.href}
                         id="Mobile"
+                        target={item.href}
                         size="lg"
                         className="sm:hidden absolute top-16 right-8 md:top-12 md:right-0 h-auto origin-bottom-right gap-2 rounded-md p-2 font-medium w-fit font-cabinet text-2xl bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-colors"
                     >
                         {item.label}
-                    </Link>
+                    </a>
                 </div>
                 <div id="4" className="relative ">
                     {/* manual controls (optional, hidden on mobile) */}
@@ -130,14 +131,14 @@ const Value = () => {
                         <button
                             onClick={() => setIdx((i) => (i + CTAS.length - 1) % CTAS.length)}
                             className="px-2 py-1 text-lg rounded bg-black/5 dark:bg-white/5"
-                        > 
-                            ‹ 
+                        >
+                            ‹
                         </button>
                         <button
                             onClick={() => setIdx((i) => (i + 1) % CTAS.length)}
                             className="px-2 py-1 text-lg rounded bg-black/5 dark:bg:white/5"
                         >
-                            › 
+                            ›
                         </button>
                     </div>
 

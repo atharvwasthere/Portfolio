@@ -2,8 +2,7 @@ export const Education = [
   {
     // logo_link:"https://college4u.in/wp-content/uploads/2019/07/1200px-Vellore_Institute_of_Technology_seal_2017.svg_-830x876.png",
     logo_link: "https://images.shiksha.com/mediadata/images/1631881854phpmNdZnG.jpeg",
-    institution_name: <h4>VIT</h4>,
-    degree: <h1>BTech in <u>Computer Science</u> and Engineering </h1>,
+    institution_name: <h4>Vellore Institute of Technology</h4>,
     time: <p><u>Pursuing</u></p>,
     location: "India",
   },

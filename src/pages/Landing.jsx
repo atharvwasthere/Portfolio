@@ -12,11 +12,12 @@ import SplashScreen from "@/components/SplashScreen";
 import Masonry from "@/components/blocks/Components/Masonry/Masonry";
 import { Pics } from "@/data/Data";
 import { useRef, useState, useEffect } from "react";
+import { cdnSrc } from "@/lib/cdn";
 
 const Landing = () => {
   const splashSeen = useUI((s) => s.splashSeen);
   const markSplashSeen = useUI((s) => s.markSplashSeen);
-
+  const resolvedPics = Pics.map(p => ({ ...p, image: cdnSrc(p.image) }));
   const [contentVisible, setContentVisible] = useState(() => splashSeen);
 
   useEffect(() => {
@@ -93,7 +94,7 @@ const Landing = () => {
               <Background />
             </div>
             <div ref={aboutRef}>
-              <Masonry data={Pics} />
+              <Masonry data={resolvedPics} />
               <About />
             </div>
             <div ref={contactRef}>

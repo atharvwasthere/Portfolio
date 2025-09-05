@@ -66,7 +66,7 @@ const IntroText = () => {
   'Finance Folks': {
     highlight: 'amber',
     description:
-      "Tracking ==stocks==, . Decoding ==trends==,  .  Figuring out if that . ==Dip is worth buying==  . Let’s talk ==equities== and ==MF!=="
+      "Tracking ==stocks==, . Decoding ==trends==,  .  Figuring out if that . ==Dip is worth buying==  . Let’s talk ==equities== & ==MF!=="
   },
 
   'Product Managers': {
