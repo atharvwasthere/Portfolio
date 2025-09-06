@@ -92,7 +92,7 @@ const IntroText = () => {
     <section className="mt-32  px-2 sm:-mx-1  md:mt-14 p-2  transition-all duration-300">
       <div className="text-foreground">
         {/* Persona tabs */}
-        <div id="intro-text" className=" font-satoshiMedium hidden sm:flex sm:flex-wrap sm:gap-8">
+        <div id="intro-text" className=" font-satoshi hidden sm:flex sm:flex-wrap sm:gap-8">
           {topMenuItems.map((item) => (
             <AnimatedUnderline
               key={item}

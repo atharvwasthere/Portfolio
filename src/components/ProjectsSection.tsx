@@ -109,7 +109,7 @@ const projectData = {
         name: "Encryption Logic Deep Dive",
         slug: "encryption-logic",
         icon: Shield,
-        tags: ["Security"],
+        tags: [],
       },
       {
         name: "System Design Notes",
@@ -127,7 +127,7 @@ const projectData = {
         name: "Model Context Protocol (MCP)",
         slug: "multi-party-computation",
         icon: Plug,
-        tags: ["Privacy", "Security"],
+        tags: [],
       },
     ],
   },
@@ -147,7 +147,7 @@ export default function ProjectsSection() {
   return (
     <div className="w-full max-w-4xl  p-6 bg-background ">
       {/* Tab Navigation */}
-      <div className="font-satoshiMedium flex flex-wrap gap-2 mb-8 border-b border-border">
+      <div className="font-satoshi flex flex-wrap gap-2 mb-8 border-b border-border">
         {Object.entries(projectData).map(([key, data]) => (
           <button
             key={key}

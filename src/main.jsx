@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { lazy, Suspense } from "react"
 import "./index.css"
 import App from "./App.jsx"
+// import "./fonts.css";
 import { ThemeProvider } from "./components/theme-provider"
 
 // Lazy imports

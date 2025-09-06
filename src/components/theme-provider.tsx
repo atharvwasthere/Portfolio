@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import React from "react"
+import React, { createContext, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react"
 
 type Theme = "dark" | "light" | "system"
 
@@ -11,74 +10,82 @@ type ThemeProviderProps = {
 
 type ThemeProviderState = {
   theme: Theme
-  setTheme: (theme: Theme) => void
+  setTheme: (t: Theme) => void
 }
 
-const initialState: ThemeProviderState = {
-  theme: "system",
-  setTheme: () => null,
-}
-
-const ThemeProviderContext = createContext<ThemeProviderState>(initialState)
+const ThemeContext = createContext<ThemeProviderState | undefined>(undefined)
 
 export function ThemeProvider({
   children,
   defaultTheme = "system",
   storageKey = "vite-ui-theme",
-  ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem(storageKey) as Theme) || defaultTheme
-  )
-
-useEffect(() => {
-  const root = window.document.documentElement
-
-  const applyTheme = (t: Theme) => {
-    root.classList.remove("light", "dark")
-
-    if (t === "system") {
-      const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-      root.classList.add(isDark ? "dark" : "light")
-    } else {
-      root.classList.add(t)
+  const [theme, setTheme] = useState<Theme>(() => {
+    try {
+      const saved = localStorage.getItem(storageKey) as Theme | null
+      return saved ?? defaultTheme
+    } catch {
+      return defaultTheme
     }
+  })
+
+  // Keep a stable media query ref
+  const mqlRef = useRef<MediaQueryList | null>(null)
+  if (typeof window !== "undefined" && !mqlRef.current) {
+    mqlRef.current = window.matchMedia("(prefers-color-scheme: dark)")
   }
 
-  applyTheme(theme)
-
-  if (theme === "system") {
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)")
-    const handleChange = () => applyTheme("system")
-    mediaQuery.addEventListener("change", handleChange)
-
-    return () => {
-      mediaQuery.removeEventListener("change", handleChange)
+  // Resolve the *actual* theme we will apply as a class
+  const resolvedTheme: "dark" | "light" = useMemo(() => {
+    if (theme === "system") {
+      return mqlRef.current?.matches ? "dark" : "light"
     }
-  }
-}, [theme])
+    return theme
+  }, [theme])
 
+  // Apply classes before paint to avoid a “first click does nothing” feel
+  useLayoutEffect(() => {
+    const root = document.documentElement
+    // Tailwind cares about the 'dark' class only; no need for 'light'
+    root.classList.toggle("dark", resolvedTheme === "dark")
+    // Helps native form controls match
+    root.style.colorScheme = resolvedTheme
+  }, [resolvedTheme])
 
-  const value = {
+  // Attach/remove system listener only when theme === 'system'
+  useEffect(() => {
+    const mql = mqlRef.current
+    if (!mql) return
+
+    if (theme !== "system") return // ensure no listener when manual mode
+
+    const handle = () => {
+      // When OS theme changes while in 'system', re-apply immediately
+      const next = mql.matches ? "dark" : "light"
+      const root = document.documentElement
+      root.classList.toggle("dark", next === "dark")
+      root.style.colorScheme = next
+    }
+
+    mql.addEventListener("change", handle)
+    return () => mql.removeEventListener("change", handle)
+  }, [theme])
+
+  const value = useMemo<ThemeProviderState>(() => ({
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme)
-      setTheme(theme)
+    setTheme: (t: Theme) => {
+      try {
+        localStorage.setItem(storageKey, t)
+      } catch {}
+      setTheme(t)
     },
-  }
+  }), [theme, storageKey])
 
-  return (
-    <ThemeProviderContext.Provider {...props} value={value}>
-      {children}
-    </ThemeProviderContext.Provider>
-  )
+  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 
 export const useTheme = () => {
-  const context = useContext(ThemeProviderContext)
-
-  if (context === undefined)
-    throw new Error("useTheme must be used within a ThemeProvider")
-
-  return context
+  const ctx = useContext(ThemeContext)
+  if (!ctx) throw new Error("useTheme must be used within ThemeProvider")
+  return ctx
 }

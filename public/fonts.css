@@ -1,0 +1,65 @@
+/* Autography (normal) */
+@font-face{
+  font-family: 'Autography';
+  src: url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/Autography/Autography.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/Autography/Autography.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cabinet Grotesk (variable normal) */
+@font-face{
+  font-family: 'Cabinet Grotesk';
+  src: url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/CabinetGrotesk/CabinetGrotesk-Variable.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/CabinetGrotesk/CabinetGrotesk-Variable.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Satoshi (variable normal + italic) */
+@font-face{
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/satoshi/Satoshi-Variable.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/satoshi/Satoshi-Variable.woff') format('woff');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Satoshi';
+  src: url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/satoshi/Satoshi-VariableItalic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/satoshi/Satoshi-VariableItalic.woff') format('woff');
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Segment (regular) */
+@font-face{
+  font-family: 'Segment';
+  src: url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/segment/Segment-Regular.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/segment/Segment-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Zodiak (variable normal + italic) */
+@font-face{
+  font-family: 'Zodiak';
+  src: url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@1.0.0/fonts/Zodiak/Zodiak-Variable.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/Zodiak/Zodiak-Variable.woff') format('woff');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face{
+  font-family: 'Zodiak';
+  src: url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/Zodiak/Zodiak-VariableItalic.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/atharvwasthere/fonts-cdn@v1.0.0/fonts/Zodiak/Zodiak-VariableItalic.woff') format('woff');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
