@@ -11,9 +11,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
-    "gen:sitemap": "node scripts/generate-sitemap.mjs",
-    "postbuild": "node scripts/generate-sitemap.mjs"
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@lottiefiles/dotlottie-react": "^0.12.0",
