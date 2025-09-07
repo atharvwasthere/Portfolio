@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect, useMemo } from "react";
-import { SiGithub, SiLeetcode, SiLinkedin, SiSpotify, SiGmail } from "react-icons/si";
+import { SiGithub, SiLeetcode, SiLinkedin, SiSpotify,SiInstagram } from "react-icons/si";
 import { FaXTwitter, FaHashnode } from "react-icons/fa6";
 import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
@@ -71,7 +71,7 @@ export default function ContactCards() {
   const socialLinks = [
     { href: "https://github.com/atharvwasthere", icon: SiGithub, label: "GitHub" },
     { href: "https://www.linkedin.com/in/atharvwasthere/", icon: SiLinkedin, label: "LinkedIn" },
-    { href: "mailto:singhatharv1919@gmail.com", icon: SiGmail, label: "Email" },
+    { href: "https://www.instagram.com/__atharvsingh__?igsh=MThlNnFpc3F4OWJy", icon: SiInstagram, label: "Instagram" },
     { href: "https://hashnode.com/@AtharvBlogs", icon: FaHashnode, label: "Hashnode" },
     { href: "https://linktr.ee/find_Atharv_here", icon: SiLeetcode, label: "Coding Profile" },
     { href: "https://x.com/AtharvSingh619", icon: FaXTwitter, label: "Twitter" },

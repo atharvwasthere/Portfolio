@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect, lazy, Suspense } from "react"
 import Header from "@/components/Header"
 import Nav from "@/components/Nav"
+import MobileOptimizationNotice from "@/components/ui/MobileOptimizationNotice";
 import IntroText from "@/components/IntroText"
 import Footer from "@/components/Footer"
 import SplashScreen from "@/components/SplashScreen"
@@ -49,13 +50,15 @@ export default function Landing() {
     <div className="min-h-screen min-w-full bg-background text-foreground">
       {showSplash && <SplashScreen onFinish={markSplashSeen} />}
 
+      {!showSplash && <MobileOptimizationNotice />}
       <div
         style={{
           opacity: contentVisible ? 1 : 0,
           transition: "opacity 300ms ease-in",
           visibility: contentVisible ? "visible" : "hidden",
         }}
-      >
+        >
+
         <Header
           scrollToSection={scrollToSection}
           introSection={introRef}

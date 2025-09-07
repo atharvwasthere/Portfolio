@@ -9,5 +9,5 @@ export function cdnSrc(path) {
 
   // Prefer .avif on CDN if available by convention
   const avif = normalized.replace(/\.(jpg|jpeg|png|webp)$/i, ".avif");
-  return `${base}${avif}?v=2`;
+  return `${base}${avif}`;
 }
