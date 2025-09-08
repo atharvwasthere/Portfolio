@@ -5,7 +5,7 @@ export const projectsData = {
     summary: "High-performance concurrent web crawler with search capabilities",
     overview: {
       tagline: "A Go-based web crawler that efficiently crawls and indexes web pages with concurrent processing.",
-      timeline: "2 months",
+      timeline: "1 week",
       type: "Backend System",
       status: "Completed",
       stack: ["Go", "MongoDB", "Atlas Search"],
@@ -94,7 +94,7 @@ internal/
     },
     links: {
       github: "https://github.com/atharvwasthere/web-crawler",
-      docs: "https://docs.webcrawler.dev",
+      docs: "https://github.com/atharvwasthere/web-crawler#readme",
     },
   },
   airwise: {
@@ -178,107 +178,6 @@ internal/
       github: "https://github.com/atharvwasthere/airwise",
       docs: "https://airwise-docs.gitbook.io"
     }
-  },
-  "dev-blog-system": {
-    slug: "dev-blog-system",
-    name: "Dev Blog System",
-    summary: "Modern blogging platform built for developers",
-    overview: {
-      tagline:
-        "A feature-rich blogging platform with markdown support, syntax highlighting, and developer-focused tools.",
-      timeline: "Ongoing",
-      type: "Full-stack Web Application",
-      status: "In Development",
-      stack: ["Next.js", "Prisma", "PostgreSQL", "MDX", "TypeScript"],
-    },
-    motivation:
-      "Existing blogging platforms often lack the features developers need, such as proper code syntax highlighting, markdown support, and technical writing tools. This project aims to create the perfect blogging platform for the developer community.",
-    techStack: [
-      {
-        category: "Frontend",
-        items: ["Next.js 14", "TypeScript", "Tailwind CSS", "MDX", "Prism.js"],
-      },
-      {
-        category: "Backend",
-        items: ["Next.js API Routes", "Prisma ORM", "PostgreSQL", "NextAuth.js"],
-      },
-      {
-        category: "Content",
-        items: ["MDX", "Remark", "Rehype", "Gray-matter", "Reading Time"],
-      },
-    ],
-    features: [
-      "Rich markdown editor with live preview",
-      "Syntax highlighting for 100+ programming languages",
-      "Tag-based categorization and search",
-      "Comment system with threading",
-      "Reading time estimation and progress tracking",
-      "SEO optimization for technical content",
-      "RSS feed generation",
-    ],
-    architecture: {
-      description:
-        "The blog system uses Next.js with MDX for content processing. Prisma handles database operations while a custom markdown pipeline processes technical content with enhanced syntax highlighting.",
-      structure: `app/
-├── (blog)/
-│   ├── posts/
-│   ├── tags/
-│   └── search/
-├── (admin)/
-│   ├── editor/
-│   └── dashboard/
-├── api/
-│   ├── posts/
-│   ├── comments/
-│   └── search/
-components/
-├── editor/
-├── blog/
-└── ui/
-lib/
-├── mdx.ts
-├── db.ts
-└── utils.ts`,
-
-    },
-    challenges: [
-      {
-        problem: "Implementing a performant markdown editor with real-time preview",
-        debugging: "Profiled editor performance and identified re-rendering issues with large documents",
-        solution: "Implemented debounced updates and virtual scrolling for large markdown files",
-      },
-      {
-        problem: "Creating a flexible content management system for technical posts",
-        debugging: "Analyzed content workflow requirements and identified pain points in existing solutions",
-        solution: "Built a custom CMS with markdown-first approach and developer-friendly features",
-      },
-    ],
-    experience: {
-      approach:
-        "I'm building this platform iteratively, focusing on core writing and reading experiences first. The architecture prioritizes performance and developer experience, with extensive use of TypeScript for type safety and modern React patterns for maintainability.",
-      futureEnhancements:
-        "Planned features include collaborative editing, integration with popular developer tools like GitHub, advanced analytics for technical content, newsletter functionality, and a plugin system for extending functionality.",
-      prosAndCons: {
-        pros: [
-          "Excellent markdown support with live preview",
-          "Superior syntax highlighting for technical content",
-          "Fast search with full-text indexing",
-          "SEO optimized for technical articles",
-          "Clean, distraction-free reading experience",
-          "Developer-friendly content management",
-        ],
-        cons: [
-          "Still in development with limited features",
-          "Requires technical knowledge to set up",
-          "No visual editor for non-technical users",
-          "Limited theme customization options currently",
-          "Comment system needs moderation tools",
-        ],
-      },
-    },
-    links: {
-      github: "https://github.com/atharvwasthere/dev-blog-system",
-    },
   },
   fastlane: {
     "version": 1,
@@ -695,7 +594,7 @@ lib/
   "summary": "A Linux kernel module for detecting and interacting with USB mass storage devices with future support for data transfers.",
   "overview": {
     "tagline": "Explore kernel-level USB programming, detect devices, log connections, and handle USB endpoints in Linux.",
-    "timeline": "3-4 weeks",
+    "timeline": "2 days",
     "type": "Linux Kernel Module",
     "status": "In Progress",
     "stack": ["C", "Linux Kernel API", "USB subsystem", "Makefile", "GCC Compiler"]
@@ -762,8 +661,8 @@ lib/
     }
   },
   "links": {
-    "github": "https://github.com/atharvwasthere/usb_driver",
-    "docs": "https://github.com/atharvwasthere/usb_driver#readme"
+    "github": "https://github.com/atharvwasthere/usb-driver",
+    "docs": "https://github.com/atharvwasthere/usb-driver#readme"
   },
   "references": [
     {
@@ -779,15 +678,15 @@ lib/
 "signal-chatroom": {
   "slug": "signal",
   "name": "Signal",
-  "summary": "A C++17 chat system using Boost.Asio with a binary header-based protocol, multi-room routing, per-session queues, and backpressure for slow readers.",
+  "summary": "A C++17 chat system using Boost.Asio with a 4-byte length-prefixed protocol, multi-room routing, per-session queues, and backpressure for slow readers.",
   "overview": {
-    "tagline": "Low-latency, event-driven chat with a formal wire spec and robust session/room model.",
+    "tagline": "Low-latency, event-driven chat with a simple wire spec and robust session/room model.",
     "timeline": "3–5 weeks",
     "type": "C++ Network Service",
     "status": "In Progress",
     "stack": ["C++17", "Boost.Asio (TCP)", "std::thread", "Makefile", "g++/clang++"]
   },
-  "motivation": "Build a Bloomberg-style, protocol-first messaging server: predictable latency, explicit headers, bounded memory, and clear delivery semantics instead of ad-hoc strings.",
+  "motivation": "Build a Bloomberg-style, protocol-first messaging server: predictable latency, explicit framing, bounded memory, and clear delivery semantics instead of ad-hoc strings.",
   "techStack": [
     {
       "category": "Core",
@@ -795,11 +694,11 @@ lib/
     },
     {
       "category": "Messaging",
-      "items": ["Fixed 24B binary header", "Message types (TEXT, DIRECT, SYSTEM, FILE_META/CHUNK, ACK, PING/PONG)", "Flags (ACK_REQ, ENCRYPTED, COMPRESSED, FINAL_CHUNK, UTF8)", "Big-endian (network order)"]
+      "items": ["Fixed 4B big-endian length header", "Typed body (first field in body)", "Message kinds: TEXT, DIRECT, SYSTEM, FILE_META/CHUNK, ACK, PING/PONG", "Network byte order for all numeric fields in body"]
     },
     {
       "category": "Utilities",
-      "items": ["Per-session send queues", "Slow-reader backpressure", "UTF-8 validation (optional)", "Monotonic msg_id + trace logging"]
+      "items": ["Per-session send queues", "Slow-reader backpressure", "UTF-8 validation (optional)", "Monotonic msg_id + trace logging (in body)"]
     },
     {
       "category": "Planned",
@@ -808,12 +707,12 @@ lib/
   ],
   "features": [
     "Event-driven I/O with async_read/async_write (no blocking handlers)",
-    "Formal wire protocol (versioned header + typed body)",
+    "Framed wire protocol (4B length header + typed body)",
     "Rooms, DMs, and broadcast fanout via RoomManager",
     "Per-session bounded send queues to enforce backpressure",
     "Threaded io_context (N threads) for scalability",
     "Clean shutdown on EOF/timeouts/errors with detailed error codes",
-    "Observability: trace_id=(sender<<32)|msg_id, queue depth, bytes in/out"
+    "Observability: trace_id=(sender<<32)|msg_id (encoded in body), queue depth, bytes in/out"
   ],
   "architecture": {
     "description": "Server runs an io_context pool; Acceptor spawns Session objects. Each Session owns a socket, read buffer, and a send queue. RoomManager routes messages by room_id to participant Sessions. Only one write is in-flight per Session; additional messages are chained.",
@@ -821,9 +720,9 @@ lib/
   },
   "challenges": [
     {
-      "problem": "Designing a safe, minimal header that supports future features without breaking wire compatibility.",
-      "debugging": "Iterated on a 24B fixed header; validated bounds, endianness, and version in a decoder fuzz test.",
-      "solution": "Added version + flags + reserved bytes, strict length checks, and big-endian conversions for all u32 fields."
+      "problem": "Designing a safe, minimal header that still supports future growth.",
+      "debugging": "Prototyped multiple framers; fuzzed the length decoder and boundary checks.",
+      "solution": "Settled on a 4B big-endian body_len. All typing/version/flags live in the body’s first fields; strict bounds and overflow checks on the header."
     },
     {
       "problem": "Handling slow readers without unbounded memory growth.",
@@ -837,18 +736,18 @@ lib/
     }
   ],
   "experience": {
-    "approach": "Protocol-first: define a binary header (body_len, msg_type, version, flags, room_id, sender, msg_id, reserved), then implement encode/decode with strict bounds and big-endian conversions. Built Room/Session as separate units: Session owns socket + queues; Room holds weak_ptrs to participants and fans out messages. io_context runs on a small thread pool; no heavy work in handlers.",
-    "futureEnhancements": "AES-GCM encrypted bodies with nonce/tag prefix, zstd compression via flags, ACK/latency telemetry with P50/P90/P99, multi-room ACLs, and a load generator to publish throughput/latency curves.",
+    "approach": "Protocol-first: define a 4B big-endian body_len header for framing; the body begins with {version, msg_type, flags, ids...} as needed. Implement encode/decode with strict bounds and endian conversions. Build Room/Session as separate units: Session owns socket + queues; Room holds weak_ptrs to participants and fans out messages. io_context runs on a small thread pool; no heavy work in handlers.",
+    "futureEnhancements": "AES-GCM encrypted bodies with nonce/tag prefix, zstd compression flagged in the body header, ACK/latency telemetry with P50/P90/P99, multi-room ACLs, and a load generator to publish throughput/latency curves.",
     "prosAndCons": {
       "pros": [
-        "Deterministic wire format with versioning",
+        "Deterministic framing with the simplest possible header",
         "Good scalability via io_context thread pool",
         "Bounded memory via backpressure",
-        "Clear separation: protocol vs. routing vs. session I/O"
+        "Clear separation: framing vs. routing vs. session I/O"
       ],
       "cons": [
         "No GUI; CLI only",
-        "Currently plaintext (encryption flagged but not implemented)",
+        "Currently plaintext (encryption planned in body metadata)",
         "Single-node deployment; no cross-node routing yet"
       ]
     }

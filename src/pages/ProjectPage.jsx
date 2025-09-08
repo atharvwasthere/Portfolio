@@ -326,6 +326,29 @@ export default function ProjectPage() {
                         </ul>
                       </div>
                     </div>
+                    {/*Reference*/}
+                    {project.references?.length>0 && (
+                    <div id="Reference">
+                      <h3 className="font-display text-lg font-semibold text-foreground mb-4 mt-6">References</h3>
+                      <ul className="list-disc list-inside space-y-2">
+                        {project.references.map((ref, index) => (
+                          <li key={index} className="text-foreground/80">
+                            {ref.url ? (
+                              <a
+                                href={ref.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"
+                              >
+                                {ref.title}
+                              </a>
+                            ) : (
+                              ref.title
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>)}
                   </div>
                 </section>
               </div>
