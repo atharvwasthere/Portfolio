@@ -1,4 +1,3 @@
-// src/components/MasonryGallery.jsx
 import { useMemo } from "react"
 import Masonry from "@/components/blocks/Components/Masonry/Masonry"
 import { Pics } from "@/data/Data"
