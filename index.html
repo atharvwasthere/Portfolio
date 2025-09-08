@@ -34,6 +34,14 @@
 
     <!-- Global Styles -->
     <link rel="stylesheet" href="/fonts.css" />
+
+    <meta http-equiv="Content-Security-Policy"
+  content="default-src 'self';
+           img-src 'self' data: https: https://cdn.atharvsingh.me;
+           script-src 'self' 'unsafe-inline' https:;
+           style-src 'self' 'unsafe-inline' https:;
+           connect-src 'self' https:;
+           font-src 'self' data: https:;">
   </head>
   <body>
     <div id="root"></div>
