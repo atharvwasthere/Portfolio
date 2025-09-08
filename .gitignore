@@ -1,6 +1,7 @@
 WARP.md
 
 .env
+.env.production
 projectpageddata.txt
 
 animation_frames
