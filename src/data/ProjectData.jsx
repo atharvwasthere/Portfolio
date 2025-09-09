@@ -176,7 +176,7 @@ internal/
     },
     links: {
       github: "https://github.com/atharvwasthere/airwise",
-      docs: "https://airwise-docs.gitbook.io"
+      docs: "https://github.com/atharvwasthere/airwise#readme"
     }
   },
   fastlane: {
@@ -282,7 +282,7 @@ internal/
     },
     "links": {
       "github": "https://github.com/atharvwasthere/fastlane",
-      "docs": "https://docs.fastlane.dev"
+      "docs": "https://github.com/atharvwasthere/fastlane#readme"
     }
   },
   encryptify: {
@@ -292,7 +292,7 @@ internal/
     "summary": "High-performance file encryption tool in C++ using multithreading, system calls, and Makefiles to speed up large file processing.",
     "overview": {
       "tagline": "Encrypt files at lightning speed without breaking your CPU.",
-      "timeline": "2 months",
+      "timeline": " 1 week",
       "type": "CLI / Security Tool",
       "status": "Completed",
       "stack": ["C++", "Multithreading", "System Calls", "Makefile"]
@@ -371,7 +371,7 @@ internal/
     },
     "links": {
       "github": "https://github.com/atharvwasthere/encryptify",
-      "docs": "https://docs.encryptify.dev"
+      "docs": "https://github.com/atharvwasthere/encryptify#readme"
     }
   },
   coursify: {
@@ -381,7 +381,7 @@ internal/
     "summary": "A minimalistic landing page for showcasing online courses.",
     "overview": {
       "tagline": "A sleek and responsive landing page to promote your online course.",
-      "timeline": "20 hours",
+      "timeline": "2 hours",
       "type": "Frontend",
       "status": "Completed",
       "stack": ["React", "Vite", "Tailwind CSS"]
@@ -426,7 +426,7 @@ internal/
     },
     "links": {
       "github": "https://github.com/atharvwasthere/coursify",
-      "live": "https://coursify.me"
+      "live": "https://coursify-fawn.vercel.app/"
     }
   },
   tuneit:{
@@ -435,7 +435,7 @@ internal/
   "summary": "A high-performance Node.js CLI tool for downloading videos from YouTube and files from Google Drive with queue, proxy, and conversion support.",
   "overview": {
     "tagline": "Manage media downloads, conversions, and Google Drive uploads entirely from the terminal.",
-    "timeline": "2 weeks",
+    "timeline": "1 week",
     "type": "CLI Tool",
     "status": "Completed",
     "stack": ["Node.js", "yt-dlp", "ffmpeg", "Commander.js", "Inquirer.js", "Google Drive API", "OAuth2"]
@@ -681,7 +681,7 @@ internal/
   "summary": "A C++17 chat system using Boost.Asio with a 4-byte length-prefixed protocol, multi-room routing, per-session queues, and backpressure for slow readers.",
   "overview": {
     "tagline": "Low-latency, event-driven chat with a simple wire spec and robust session/room model.",
-    "timeline": "3–5 weeks",
+    "timeline": "4 days(initial prototype)",
     "type": "C++ Network Service",
     "status": "In Progress",
     "stack": ["C++17", "Boost.Asio (TCP)", "std::thread", "Makefile", "g++/clang++"]
