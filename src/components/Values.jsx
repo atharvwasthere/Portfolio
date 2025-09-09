@@ -1,7 +1,5 @@
 import { useTheme } from "./theme-provider";
 import { useEffect, useMemo, useRef, useState } from "react";
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-// import MagnetLines from './blocks/Animations/MagnetLines/MagnetLines';
 
 const Value = () => {
     const Values = { description: "Useful. Reliable. Scalable. Well made" };
@@ -76,13 +74,13 @@ const Value = () => {
             </div>
             {/* Top-right lottie */}
             <div className="hidden md:flex md:items-center md:justify-center text-primary">
-                <DotLottieReact
+                {/* <DotLottieReact
                     src="https://lottie.host/6413339e-759b-4fba-90d2-effbab9baf24/TLjKxApvNT.lottie"
                     loop
                     autoplay
                     color="currentColor"
 
-                />
+                /> */}
             </div>
             {/* Bottom grid */}
             <div className=" grid grid-col-1 row-auto  -mt-8 md:-mt-0   md:grid-cols-2 grid-rows-2 text-primary">
