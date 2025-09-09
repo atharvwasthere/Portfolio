@@ -1,4 +1,3 @@
-import { Link } from "react-router"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 
@@ -6,20 +5,23 @@ const Footer = () => {
     return (
         <footer className="w-full py-6 border-t border-border/40 bg-background relative">
             <div className="container flex flex-col items-center justify-around md:gap-80 md:flex-row">
-                {/* Left side with year */} 
+                {/* Left side with year */}
                 <p className="font-satoshi  text-sm text-muted-foreground">© {new Date().getFullYear()}</p>
 
                 {/* Center credit with hover effect */}
                 <div className="relative group">
                     <div className="flex items-center gap-2">
                         <span className="font-satoshi text-lg text-black dark:text-white">Design & code by</span>
-                        <Link
-                            to="https://github.com/atharvwasthere"
+                        <a
+                            href="https://github.com/atharvwasthere"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="text-[24px] font-extrabold font-header hover:text-primary transition-colors relative"
                         >
                             Atharv Singh
                             <span className="absolute -bottom-0.5 left-0 w-0 h-0.5 bg-gradient-to-r from-primary/60 to-primary group-hover:w-full transition-all duration-300" />
-                        </Link>
+                        </a>
+
                         <Avatar>
                             <AvatarImage src="https://github.com/atharvwasthere.png" />
                             <AvatarFallback>AS</AvatarFallback>
@@ -46,7 +48,7 @@ const Footer = () => {
                         <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
                     </span>
                     {/* All systems normal */}
-                {/* </button> */ }
+                {/* </button> */}
 
             </div>
 

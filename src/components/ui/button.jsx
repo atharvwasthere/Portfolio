@@ -45,4 +45,14 @@ const Button = React.forwardRef(({ className, variant, size, asChild = false, ..
 })
 Button.displayName = "Button"
 
+// Add prop-types validation
+import PropTypes from "prop-types";
+
+Button.propTypes = {
+  className: PropTypes.string,
+  variant: PropTypes.string,
+  size: PropTypes.string,
+  asChild: PropTypes.bool,
+};
+
 export { Button, buttonVariants }

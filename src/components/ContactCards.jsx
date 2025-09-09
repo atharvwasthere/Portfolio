@@ -2,24 +2,27 @@
 import { useState, useEffect, useMemo } from "react";
 import { SiGithub, SiLeetcode, SiLinkedin, SiSpotify,SiInstagram } from "react-icons/si";
 import { FaXTwitter, FaHashnode } from "react-icons/fa6";
-import { Link } from "react-router";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 const SocialLink = ({ href, icon: Icon, label }) => {
   return (
-    <div className="group relative">
-      <Link
-        to={href}
-        className="text-muted-foreground hover:text-foreground transition-colors"
-      >
-        <Icon className="h-6 w-6" />
-        <span className="sr-only">{label}</span>
-      </Link>
-      <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-3 py-1 bg-neutral-800 text-white text-sm rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
-        {label}
-      </div>
+<div className="group relative">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener"
+      className="text-muted-foreground hover:text-foreground transition-colors"
+      aria-label={label}                 
+      title={label}                     
+    >
+      <Icon className="h-6 w-6" />
+      <span className="sr-only">{label}</span> 
+    </a>
+    <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-3 py-1 bg-neutral-800 text-white text-sm rounded-md opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap">
+      {label}
     </div>
+  </div>
   );
 };
 
@@ -102,13 +105,13 @@ export default function ContactCards() {
       <div className="flex flex-col items-left gap-4">
         <Button
           size="lg"
-          href="mailto:singhatharv1919@gmail.com"
+          asChild="true"
           className=" w-fit font-cabinet text-lg
              bg-emerald-500/10 text-emerald-600 hover:bg-emerald-500/20
              dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20
              transition-colors"
         >
-          Contact Me
+          <a href="mailto:singhatharv1919@gmail.com">Contact Me</a>
         </Button>
 
         <div className="flex gap-4 pt-4">

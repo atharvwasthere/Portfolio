@@ -208,7 +208,6 @@ const Contact = () => {
               </motion.span>
             </motion.blockquote>
 
-            {/* Minimal image indicators - only show if multiple images */}
             {images.length > 1 && (
               <motion.div
                 className="flex justify-center space-x-3"
