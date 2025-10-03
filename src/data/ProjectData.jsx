@@ -426,7 +426,8 @@ internal/
     },
     "links": {
       "github": "https://github.com/atharvwasthere/coursify",
-      "live": "https://coursify-fawn.vercel.app/"
+      "demo": "https://coursify-fawn.vercel.app/",
+      "readme": "https://github.com/atharvwasthere/coursify/#readme"
     }
   },
   tuneit:{
@@ -1159,8 +1160,201 @@ internal/
       "github": "https://github.com/Atharvwasthere/Flow.Launcher.Plugin.CompetitiveSearch",
       "docs": "https://github.com/Flow-Launcher/Flow.Launcher/wiki/Develop-Plugins-(JS-TS)"
     }
+  },
+  "JustDO": {
+    "slug": "JustDO",
+    "name": "JustDO",
+    "summary": "A minimalistic CLI todo manager that helps you stay productive straight from your terminal—no GUI, no distractions, just pure focus.",
+    "overview": {
+      "tagline": "JustDO – Get More Done in Less Time.",
+      "timeline": "1 Day",
+      "type": "Command-Line Application",
+      "status": "Production Ready",
+      "stack": ["Go", "Cobra CLI", "Viper Config", "JSON Storage", "Cross-Platform"]
+    },
+    "motivation": "Most todo apps are bloated with features you don't need, forcing you to switch contexts from your terminal to a GUI. JustDO eliminates that friction by bringing task management directly to where developers live—the command line. It's fast, lightweight, and designed for people who think in terminal commands, not mouse clicks.",
+    "techStack": [
+      {
+        "category": "Core Language",
+        "items": ["Go 1.24.4", "JSON for data persistence"]
+      },
+      {
+        "category": "CLI Framework",
+        "items": ["Cobra CLI", "Viper configuration management", "Tabwriter for formatting"]
+      },
+      {
+        "category": "Distribution",
+        "items": ["GoReleaser", "Homebrew Tap", "Scoop Bucket", "GitHub Releases"]
+      },
+      {
+        "category": "Development Tools",
+        "items": ["Go modules", "Cross-platform builds", "MIT License"]
+      }
+    ],
+    "features": [
+      "Lightning-fast task addition with duplicate detection",
+      "Priority-based task sorting (1=low, 2=medium, 3=high)",
+      "Flexible task filtering (--all, --done, pending)",
+      "Persistent JSON storage with configurable file paths",
+      "Cross-platform support (Windows, macOS, Linux)",
+      "Multiple installation methods (Homebrew, Scoop, Go install)",
+      "Configuration via flags, environment variables, or YAML config",
+      "Clean tabular output with task positions and status indicators",
+      "Task completion tracking with visual markers",
+      "Home directory auto-detection for seamless setup"
+    ],
+    "architecture": {
+      "description": "JustDO follows a modular CLI architecture using Cobra for command handling and Viper for configuration management. The core todo package handles data modeling and JSON persistence, while individual command files (add, list, done) manage specific operations. The application supports multiple configuration sources with a clear precedence hierarchy.",
+      "structure": "cmd/\n├── root.go              # Base command & config initialization\n├── add.go               # Task creation with priority support\n├── list.go              # Task listing with filtering options\n└── done.go              # Task completion functionality\ntodo/\n└── todo.go              # Core data models & file operations\nmain.go                  # Application entry point\ntasks.json               # Default storage file",
+      "codeSnippet": "// Example: Adding a task with priority\nfunc addRun(cmd *cobra.Command, args []string) {\n  items, _ := todo.ReadItems(viper.GetString(\"datafile\"))\n  for _, taskText := range args {\n    if !taskExists(items, taskText) {\n      item := todo.Item{Text: taskText}\n      item.SetPriority(priority)\n      items = append(items, item)\n    }\n  }\n  todo.SaveItems(viper.GetString(\"datafile\"), items)\n}"
+    },
+    "challenges": [
+  {
+    "problem": "Most CLI tools have poor configuration management",
+    "debugging": "Users struggled with hardcoded file paths and no flexibility",
+    "solution": "Implemented Viper with hierarchical config: flags > env vars > config file > defaults"
+  },
+  {
+    "problem": "Task organization became chaotic without priorities",
+    "debugging": "Users couldn't distinguish urgent from casual tasks",
+    "solution": "Added priority system (1-3) with smart sorting that puts done items first, then sorts by priority"
+  },
+  {
+    "problem": "Cross-platform distribution complexity",
+    "debugging": "Manual binary distribution was tedious and error-prone",
+    "solution": "Integrated GoReleaser with automated Homebrew and Scoop package management"
+  },
+  {
+    "problem": "Case-sensitivity issues during release",
+    "debugging": "Linux CI runners failed because README.md was mismatched as Readme.md",
+    "solution": "Standardized filenames and updated GoReleaser config to match case-sensitive paths"
+  },
+  {
+    "problem": "Release workflow couldn’t push to Homebrew/Scoop repos",
+    "debugging": "Default GitHub Actions token didn’t have cross-repo write permissions",
+    "solution": "Generated a fine-grained PAT with Contents: read/write, added as GH_PAT, and updated workflow to use it"
+  },
+  {
+    "problem": "GoReleaser build failed to locate entry point",
+    "debugging": "Config assumed main.go was in cmd/justdo/, but the file was in the root directory",
+    "solution": "Fixed GoReleaser config by setting main path to project root"
+  }
+],
+    "experience": {
+      "approach": "JustDO embraces the Unix philosophy of 'do one thing and do it well.' Instead of feature-creeping into a complex task manager, it focuses on the core workflow developers actually use: add tasks, check progress, mark complete. The CLI-first approach eliminates context switching and integrates seamlessly with existing terminal workflows.",
+      "futureEnhancements": "Next steps: Task categories/tags, due date support, task dependencies, team collaboration features, git integration for project-specific todos, terminal UI (TUI) mode for interactive usage, task time tracking, and integration with popular IDEs.",
+      "prosAndCons": {
+        "pros": [
+          "Zero-friction task management from terminal",
+          "Blazing fast startup and execution",
+          "Cross-platform with easy installation options",
+          "Flexible configuration without complexity",
+          "Clean, readable output format",
+          "Lightweight with no external dependencies"
+        ],
+        "cons": [
+          "CLI-only interface may not suit all users",
+          "Limited advanced features compared to GUI apps",
+          "JSON storage lacks advanced querying capabilities",
+          "No built-in synchronization across devices",
+          "Manual backup required for task persistence"
+        ]
+      }
+    },
+    "links": {
+      "github": "https://github.com/atharvwasthere/JustDO",
+      "docs": "https://github.com/atharvwasthere/JustDO#readme",
+      "releases": "https://github.com/atharvwasthere/JustDO/releases"
+    }
+  },
+    "DashIt": {
+    "slug": "DashIt",
+    "name": "DashIt",
+    "summary": "A fast, clean dashboard UI for Shopify-style metrics and reports, with landing, auth, and export features.",
+    "overview": {
+      "tagline": "Your Stats, Simplified",
+      "timeline": "2 hours",
+      "type": "Web Frontend Application",
+      "status": "Prototype / Demo-Ready",
+      "stack": ["React", "Vite", "TypeScript", "TailwindCSS", "EvilCharts", "Client-side PDF Export"]
+    },
+    "motivation": "Enable founders/shops to quickly view key metrics (revenue, cohorts, retention) in a polished UI without building a full stack dashboard first. The frontend is pluggable — backend can be swapped. Focus is on UX, clarity, and speed of iteration.",
+    "techStack": [
+      {
+        "category": "Frontend Core",
+        "items": ["React", "TypeScript"]
+      },
+      {
+        "category": "Build Tool / Bundler",
+        "items": ["Vite"]
+      },
+      {
+        "category": "Styling / UI",
+        "items": ["TailwindCSS", "Responsive Layout"]
+      },
+      {
+        "category": "Charts / Visualization",
+        "items": ["EvilCharts"]
+      },
+      {
+        "category": "Export / Utilities",
+        "items": ["Client-side PDF export (via JS)"]
+      },
+      {
+        "category": "Routing / Auth",
+        "items": ["React Router", "Google OAuth integration (frontend hook)"]
+      }
+    ],
+    "features": [
+      "Landing / Homepage + Pricing / Login UI",
+      "Dashboard views over 1 / 3 / 6 months",
+      "Month-over-month comparisons, cohort & category breakdowns",
+      "Real-time KPIs: 24h revenue, orders, AOV, new customers",
+      "AI-style quick notes (UI hooks for annotation or insights)",
+      "Export dashboard / reports to PDF (client side)",
+      "Responsive layout (mobile / desktop)",
+      "Mock mode for local development (simulate backend)",
+      "Chart rendering, data mapping utilities, integration hooks for real backend"
+    ],
+    "architecture": {
+      "description": "Frontend is structured in pages, components, hooks, lib (API / data mappers), utils, types. The architecture separates UI (components, pages) from data logic (lib, mappers), and utility functions (PDF export, formatting). Mock mode allows development without backend. Auth and data fetch are decoupled so backend can be plugged in.",
+      "structure": "src/\n├── pages/             # Dashboard.tsx, Pricing.tsx, AuthGoogle.tsx, Index.tsx\n├── components/ui/     # charts, KPIs, tables, nav, hero, footer\n├── hooks/              # e.g. useMobile, useToasts, maybe useInsights\n├── lib/                # API wrappers, insight mappers\n├── utils/              # PDF export logic, formatters, etc.\n└── types/              # shared TS type definitions"
+    },
+    "challenges": [
+      {
+        "problem": "No real backend yet, data shape undefined",
+        "debugging": "Must mock API shapes and enforce contracts in lib/insights.mappers",
+        "solution": "Mock-mode and clear mapper interfaces; integrate early with backend to reduce mismatch"
+      }
+    ],
+    "experience": {
+      "approach": "DashIt-Frontend emphasizes clarity, speed, and modularity. It’s built to ship a working demo fast, with clean UI and pluggable backend. It trades off deep backend logic for frontend polish and flexibility.",
+      "futureEnhancements": "Add filtering, drill-down charts, live updates / websockets, annotation/commenting, multi-tenant dashboard switching, dark mode, more export formats (CSV, PNG), embedding dashboards, custom metrics, theming.",
+      "prosAndCons": {
+        "pros": [
+          "Beautiful, coherent UI out of the box",
+          "Backend agnostic — easy to plug in different services",
+          "Rapidly demoable",
+          "Lightweight and front-end focused",
+          "Responsive by default, export capability built in"
+        ],
+        "cons": [
+          "No built-in backend logic or data storage",
+          "PDF export may not scale for large datasets",
+          "Mock data mismatches risk during real integration",
+          "Limited analytic depth until backend supports richer queries",
+          "Frontend alone cannot enforce security or data access rules"
+        ]
+      }
+    },
+    "links": {
+      "github": "https://github.com/atharvwasthere/DashIt-Frontend",
+      "demo": "https://dash-it-frontend.vercel.app",
+      "readme": "https://github.com/atharvwasthere/DashIt-Frontend#readme"
+    }
   }
 }
+
 
 
 

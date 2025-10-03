@@ -24,7 +24,7 @@ const Value = () => {
 
         {
             label: "Read latest writeup",
-            href: "https://debouncing-and-githubs-weird-decision.hashnode.dev/",
+            href: "https://lldbyatharv.hashnode.dev/solid-principles",
             svgLight: "/cta/Currently-light.svg",
             svgDark: "/cta/Currently-dark.svg",
         },
@@ -73,17 +73,10 @@ const Value = () => {
                 ))}
             </div>
             {/* Top-right lottie */}
-            <div className="hidden md:flex md:items-center md:justify-center text-primary">
-                {/* <DotLottieReact
-                    src="https://lottie.host/6413339e-759b-4fba-90d2-effbab9baf24/TLjKxApvNT.lottie"
-                    loop
-                    autoplay
-                    color="currentColor"
-
-                /> */}
+            <div className="">
             </div>
             {/* Bottom grid */}
-            <div className=" grid grid-col-1 row-auto  -mt-8 md:-mt-0   md:grid-cols-2 grid-rows-2 text-primary">
+            <div className="grid grid-col-1 row-auto  -mt-8 md:-mt-0   md:grid-cols-2 grid-rows-2 text-primary">
                 <div id="1" className="relative"></div>
                 <div id="2" className="relative ">
 

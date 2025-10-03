@@ -14,9 +14,11 @@ import {
   Plug,
   Search,
   Satellite,
+  ChartNoAxesGantt,
   BookOpen,
+  ListTodo,
   Shield,
-  LucideSquareSlash
+  LucideSquareSlash,
 } from "lucide-react";
 import { Link } from "react-router";
 
@@ -35,7 +37,7 @@ const projectData = {
         name: "Signal Chatroom",
         slug: "signal-chatroom",
         icon: MessageSquare,
-        tags: ["Networking","C++","WIP"],
+        tags: ["Networking", "C++", "WIP"],
       },
       {
         name: "OS Tools",
@@ -54,6 +56,12 @@ const projectData = {
         slug: "fastlane",
         icon: Rocket,
         tags: ["Go", "Networking", "CLI", "WIP"],
+      },
+      {
+        name: "JustDO",
+        slug: "JustDO",
+        icon: ListTodo,
+        tags: ["CLI"],
       },
       {
         name: "TuneIt",
@@ -78,6 +86,12 @@ const projectData = {
         slug: "coursify",
         icon: LucideSquareSlash,
         tags: ["Landing Page"],
+      },
+      {
+        name: "DashIt",
+        slug: "DashIt",
+        icon: ChartNoAxesGantt,
+        tags: ["Frontend"],
       },
       { name: "AirWise", slug: "airwise", icon: Wind, tags: ["WIP"] },
       { name: "EveSpark", slug: "evespark", icon: Wand, tags: [] },

@@ -22,10 +22,24 @@ const colorVariants = {
 }
 
 const blogPosts = [
-  {
+    {
     id: "1",
+    title: "SOLID Principles",
+    date: "Oct 3, 2025", 
+    category: {
+      name: "Design",
+      color: colorVariants.systems,
+    },
+    icon: {
+      name: Code,
+      color: colorVariants.systems,
+    },
+    href: "https://lldbyatharv.hashnode.dev/solid-principles",
+  },
+  {
+    id: "2",
     title: "Decoding GitHub’s Search Engine",
-    date: "Jan 10, 2025",
+    date: "Sept 10, 2025",
     category: {
       name: "Web",
       color: colorVariants.web,
@@ -37,7 +51,7 @@ const blogPosts = [
     href: "https://debouncing-and-githubs-weird-decision.hashnode.dev/",
   },
   {
-    id: "2",
+    id: "3",
     title: "MCP AI’s Bridge To Context",
     date: "Jan 15, 2025",
     category: {
@@ -51,7 +65,7 @@ const blogPosts = [
     href: "https://understanding-model-context-protocol.hashnode.dev/",
   },
   {
-    id: "3",
+    id: "4",
     title: "Guide to OpenMP",
     date: "Feb 19, 2025",
     category: {
@@ -65,7 +79,7 @@ const blogPosts = [
     href: "https://a-comprehensive-guide-to-openmp.hashnode.dev/",
   },
   {
-    id: "4",
+    id: "5",
     title: "Understanding DeepSeek R1",
     date: "Feb 3, 2025", 
     category: {
@@ -78,6 +92,7 @@ const blogPosts = [
     },
     href: "https://understanding-deepseek.hashnode.dev/",
   },
+
 ]
 
 export default function BlogSection() {
