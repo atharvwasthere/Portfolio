@@ -75,12 +75,12 @@ const projectData = {
     title: "Web Lab",
     tagline: "UI to API.",
     projects: [
-      {
-        name: "Web Crawler",
-        slug: "web-crawler",
-        icon: LucidePackageOpen,
-        tags: [],
-      },
+      // {
+      //   name: "Web Crawler",
+      //   slug: "web-crawler",
+      //   icon: LucidePackageOpen,
+      //   tags: [],
+      // },
       {
         name: "Coursify",
         slug: "coursify",
@@ -101,12 +101,12 @@ const projectData = {
         icon: Plug,
         tags: ["Plugin", "WIP"],
       },
-      {
-        name: "Search Engine",
-        slug: "search-engine",
-        icon: Search,
-        tags: ["WIP"],
-      },
+      // {
+      //   name: "Search Engine",
+      //   slug: "search-engine",
+      //   icon: Search,
+      //   tags: ["WIP"],
+      // },
     ],
   },
   research: {
