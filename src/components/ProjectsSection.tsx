@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import {
   Lock,
+  Fan,
   MessageSquare,
   HardDrive,
   Usb,
@@ -93,6 +94,7 @@ const projectData = {
         icon: ChartNoAxesGantt,
         tags: ["Frontend"],
       },
+      { name: "Orion", slug: "Orion", icon: Fan, tags: ["Tanstack", "GenAI"] },
       { name: "AirWise", slug: "airwise", icon: Wind, tags: ["WIP"] },
       { name: "EveSpark", slug: "evespark", icon: Wand, tags: [] },
       {
@@ -170,7 +172,7 @@ export default function ProjectsSection() {
               "px-4 py-2 transition-all duration-200 border-b-2 font-medium text-small",
               activeCategory === key
                 ? "text- border-green-400"
-                : "border-transparent hover:text-ring hover:border-ring"
+                : "border-transparent hover:text-ring hover:border-ring",
             )}
           >
             {data.title.split(" ")[0]}
@@ -193,7 +195,7 @@ export default function ProjectsSection() {
               "absolute inset-0 transition-opacity duration-300",
               activeCategory === key
                 ? "opacity-100"
-                : "opacity-0 pointer-events-none"
+                : "opacity-0 pointer-events-none",
             )}
           >
             {/* Category Header */}

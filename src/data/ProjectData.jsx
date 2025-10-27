@@ -1266,7 +1266,7 @@ internal/
       "docs": "https://github.com/atharvwasthere/JustDO#readme",
       "releases": "https://github.com/atharvwasthere/JustDO/releases"
     }
-  },
+},
     "DashIt": {
     "slug": "DashIt",
     "name": "DashIt",
@@ -1352,15 +1352,111 @@ internal/
       "demo": "https://dash-it-frontend.vercel.app",
       "readme": "https://github.com/atharvwasthere/DashIt-Frontend#readme"
     }
+  },
+  "Orion": {
+    "slug": "orion",
+    "name": "Orion",
+    "summary": "A multi-tenant, context-aware AI customer support platform that blends hybrid retrieval, structured LLM reasoning, and adaptive confidence tracking to deliver human-grade chat experiences for small businesses.",
+    "overview": {
+      "tagline": "Orion – Intelligent Customer Support with Contextual Understanding.",
+      "timeline": "Ongoing Development",
+      "type": "Full-Stack AI Application",
+      "status": "Production Ready",
+      "stack": ["Node.js", "Express", "Prisma", "PostgreSQL", "React", "Vite", "TanStack Router", "TypeScript", "Tailwind CSS"]
+    },
+    "motivation": "Traditional chatbots lack contextual understanding and often provide generic responses. Orion addresses this by implementing hybrid context retrieval that combines semantic FAQ matching with company profile summaries, enabling more accurate and human-like responses. The platform also incorporates adaptive confidence tracking to identify when to escalate to human agents, ensuring customer satisfaction while reducing support workload.",
+    "techStack": [
+      {
+        "category": "Backend",
+        "items": ["Node.js 20", "Express.js", "Prisma ORM", "PostgreSQL", "Google Gemini API"]
+      },
+      {
+        "category": "Frontend",
+        "items": ["React 19", "Vite 7", "TypeScript", "Tailwind CSS v4", "TanStack Router", "Radix UI"]
+      },
+      {
+        "category": "AI & LLM Integration",
+        "items": ["Google Gemini API (@google/genai)", "768-dimension vector embeddings", "Structured JSON response generation"]
+      },
+      {
+        "category": "Data Management",
+        "items": ["Prisma ORM", "PostgreSQL with pgvector", "JSON metadata storage"]
+      },
+      {
+        "category": "Development & Deployment",
+        "items": ["TypeScript", "ESLint", "Prettier", "Cross-platform compatibility"]
+      }
+    ],
+    "features": [
+      "Hybrid context retrieval combining company profile summaries with semantic FAQ matching",
+      "Structured LLM responses with JSON schema enforcement for consistent output",
+      "Adaptive confidence tracking with Exponential Moving Average (EMA) smoothing",
+      "Multi-tenant architecture with company-specific knowledge bases",
+      "Intelligent escalation system based on confidence thresholds and conversation patterns",
+      "Bulk FAQ upload with 97% reduction in Gemini API calls through optimized processing",
+      "Session-based conversation memory with confidence history tracking",
+      "Real-time structured chat interface with confidence visualization",
+      "Dashboard analytics for monitoring conversation quality and escalation patterns",
+      "TanStack Router-based frontend with responsive design and modern UI components"
+    ],
+    "architecture": {
+      "description": "Orion follows a monorepo architecture with clearly separated backend and frontend layers. The backend implements a RESTful API using Express with Prisma ORM for database operations. The frontend uses React with Vite for fast development and TanStack Router for client-side routing. Core intelligence is implemented through hybrid context retrieval, structured LLM generation, and adaptive confidence tracking systems.",
+      "structure": "Orion/\n├── Backend/                     # Express + Prisma API\n│   ├── prisma/                  # Schema + migrations\n│   ├── src/\n│   │   ├── config/              # Database and API configuration\n│   │   ├── lib/                 # Core utilities (embeddings, confidence, companyProfile)\n│   │   ├── llm/                 # LLM adapters and structured generation\n│   │   ├── middleware/          # Error handling and logging\n│   │   ├── routes/              # API endpoints (v1)\n│   │   ├── services/            # Business logic (hybridContext, retrieval, summary)\n│   │   └── tests/               # Unit and integration tests\n│   └── package.json             # Backend dependencies\n└── Frontend/                    # React + Vite app\n    ├── src/\n    │   ├── Components/          # UI components\n    │   ├── Pages/               # Page components\n    │   ├── hooks/               # Custom React hooks\n    │   ├── lib/                 # Frontend utilities\n    │   ├── routes/              # TanStack Router route definitions\n    │   └── router.ts            # Router configuration\n    └── package.json             # Frontend dependencies",
+      "codeSnippet": "// Example: Hybrid context retrieval service\nexport async function getHybridContext(\n  companyId: string,\n  query: string,\n  topK: number = 10\n): Promise<HybridContext> {\n  // 1. Fetch company profile\n  const company = await prisma.company.findUnique({\n    where: { id: companyId },\n    select: { companyProfile: true },\n  });\n\n  // 2. Fetch FAQs with embeddings\n  const faqs = await prisma.fAQ.findMany({\n    where: { companyId },\n    select: { question: true, answer: true, embedding: true },\n  });\n\n  // 3. Embed user query\n  const queryVec = await embedQueryText(query);\n\n  // 4. Calculate cosine similarity\n  const scoredFAQs = faqs\n    .map((faq) => {\n      if (!Array.isArray(faq.embedding)) return null;\n      const score = cosineSimilarity(queryVec, faq.embedding);\n      return { question: faq.question, answer: faq.answer, score };\n    })\n    .filter((item): item is NonNullable<typeof item> => item !== null)\n    .sort((a, b) => b.score - a.score)\n    .slice(0, topK);\n\n  return {\n    companyProfile: company?.companyProfile,\n    topFAQs: scoredFAQs,\n  };\n}"
+    },
+    "challenges": [
+      {
+        "problem": "Excessive Gemini API quota consumption during FAQ uploads",
+        "debugging": "Each FAQ upload triggered a separate company profile regeneration, resulting in 40 API calls for 40 FAQs",
+        "solution": "Implemented bulk upload endpoint that processes all FAQs in a single transaction and triggers company profile regeneration only once"
+      },
+      {
+        "problem": "Duplicate session creation between chat and dashboard views",
+        "debugging": "Both /chat and /dashboard/conversations/:id were creating new sessions, causing data inconsistency",
+        "solution": "Refactored conversation detail page to use read-only data fetching without session creation, clarifying responsibilities between interactive and read-only views"
+      },
+      {
+        "problem": "Premature summary fetching for new or empty sessions",
+        "debugging": "Application attempted to fetch summaries for sessions with no messages, causing 404 errors",
+        "solution": "Added conditional checks to only fetch summaries when messages exist in the session"
+      },
+      {
+        "problem": "Complex frontend routing with multiple dashboard views",
+        "debugging": "Managing nested routes and parameter passing between dashboard components was error-prone",
+        "solution": "Implemented TanStack Router with file-based routing and proper route hierarchy for maintainable navigation"
+      },
+      {
+        "problem": "Inconsistent confidence tracking across conversation turns",
+        "debugging": "Confidence scores fluctuated wildly without proper smoothing, leading to premature escalations",
+        "solution": "Implemented Exponential Moving Average (EMA) smoothing with sigmoid compression and multi-threshold classification"
+      }
+    ],
+    "experience": {
+      "approach": "Orion embraces a modular, service-oriented architecture where each intelligent subsystem (context retrieval, LLM generation, confidence tracking) is implemented as independent modules. This separation of concerns enables easier testing, maintenance, and future enhancements. The system prioritizes transparency by attaching structured metadata to every response, enabling explainable AI interactions.",
+      "futureEnhancements": "Planned improvements include vector database migration for sub-second semantic search at scale, analytics dashboard for confidence trends and FAQ performance, agent queueing for human takeover assignment, and multilingual support for translated FAQs and localized context retrieval. Additional features like conversation summarization improvements and advanced escalation patterns are also in the roadmap.",
+      "prosAndCons": {
+        "pros": [
+          "Context-aware responses through hybrid retrieval combining semantic matching and company profiles",
+          "Structured LLM outputs enable consistent frontend rendering and explainable responses",
+          "Adaptive confidence tracking prevents poor user experiences through intelligent escalation",
+          "Optimized API usage with bulk operations reducing costs by 97%",
+          "Modern tech stack with TypeScript, React 19, and Vite for excellent developer experience",
+          "Multi-tenant architecture supports multiple companies with isolated knowledge bases"
+        ],
+        "cons": [
+          "Dependency on external LLM APIs introduces latency and cost considerations",
+          "Complexity of confidence tracking system requires careful threshold tuning",
+          "Current implementation requires manual FAQ curation for knowledge base creation",
+          "Limited offline functionality without external API connectivity",
+          "Database schema changes require careful migration planning in multi-tenant environment",
+          "Real-time conversation features require persistent connection management"
+        ]
+      }
+    },
+    "links": {
+      "github": "https://github.com/atharvwasthere/Orion",
+      "docs": "https://github.com/atharvwasthere/Orion#readme",
+      "releases": "https://github.com/atharvwasthere/Orion/releases"
+    }
   }
 }
-
-
-
-
-
-
-
-
-
-

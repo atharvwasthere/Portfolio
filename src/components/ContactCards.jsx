@@ -77,7 +77,7 @@ export default function ContactCards() {
     { href: "https://www.instagram.com/__atharvsingh__?igsh=MThlNnFpc3F4OWJy", icon: SiInstagram, label: "Instagram" },
     { href: "https://hashnode.com/@AtharvBlogs", icon: FaHashnode, label: "Hashnode" },
     { href: "https://linktr.ee/find_Atharv_here", icon: SiLeetcode, label: "Coding Profile" },
-    { href: "https://x.com/AtharvSingh619", icon: FaXTwitter, label: "Twitter" },
+    { href: "https://x.com/Atharvwasthere", icon: FaXTwitter, label: "Twitter" },
     { href: "https://open.spotify.com/user/ikb0sbf59ghyite93wmm048zv", icon: SiSpotify, label: "Spotify" }
   ];
 
