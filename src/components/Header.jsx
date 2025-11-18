@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { Menu } from "lucide-react";
 import AnimatedName from "./AnimatedName";
-import { ModeToggle } from "./mode-toggle";
+import { ModeToggle } from "./ThemeSwitch";
 import MobileNavDrawer from "./ui/MobileNavDrawer";
 
 const Header = ({
