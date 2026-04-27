@@ -74,10 +74,32 @@ const Background = () => {
                         )}
                     </div>
                     {isExpExpanded && (
-                        <div className="mt-4 py-2 px-4 text-popover-foreground text-20px rounded-md transition-all duration-300 ease-in-out">
-                            <li type="bullet">Built and shipped end-to-end billing and usage tracking systems in production, including credits and quota enforcement.</li>
-                            <li type="bullet">Implemented job and quota visibility on the frontend, improving transparency and reliability across workflows.</li>
-                        </div>
+                        <ul className="mt-4 py-2 px-6 text-popover-foreground text-lg list-disc space-y-2 rounded-md transition-all duration-300 ease-in-out marker:text-emerald-500 dark:marker:text-cyan-400">
+                            <li>
+                                <strong>Billing page was taking 4s to load.</strong> Traced it to a 3-step <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">useEffect</code> waterfall + a new connection on every request. Switched to persistent <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">httpx.AsyncClient</code>, got it under 1s.
+                            </li>
+                            <li>
+                                <strong>Built the credit ledger</strong> <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">Reserve → Commit → Release</code>. Handles grants, deductions, clawbacks, idempotent events. Nothing double-charges.
+                            </li>
+                            <li>
+                                <strong>Migrated billing</strong> from dollar-based to credit-based pricing. Backward compatible, audit history intact.
+                            </li>
+                            <li>
+                                <strong>Built a dashboard preset engine</strong> that remaps columns by ID, name, and type so when datasets change, widgets degrade cleanly instead of just breaking.
+                            </li>
+                            <li>
+                                <strong>Designed the Facebook Ad Library caching layer</strong> TTL strategy, piggyback execution so duplicate fetches don&apos;t stack, fire-and-forget async caching for raw data, achieving 40% cache hits and reducing costs by 55-60%.
+                            </li>
+                            <li>
+                                <strong>Vertex AI batch pipeline</strong> for 50K+ ad videos through Gemini. Parent-child job orchestration over GCP Pub/Sub.
+                            </li>
+                            <li>
+                                <strong>Soft delete system</strong> via SQLAlchemy event hooks  <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">before_flush</code> and <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">do_orm_execute</code>. Every SELECT gets <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">deleted_at IS NULL</code> injected automatically.
+                            </li>
+                            <li>
+                                <strong>Bulk job cancellation</strong> for delete flows. Bulk UPDATE + Redis, ORM bypassed where it&apos;d just slow things down.
+                            </li>
+                        </ul>
                     )}
                 </div>
                 <div id="when&where" className="flex flex-rows gap-4 py-2 ">

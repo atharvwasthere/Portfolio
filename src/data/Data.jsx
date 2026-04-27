@@ -122,24 +122,17 @@ export const AboutMe = {
   content: () => (
 
     <p className="text-lg leading-relaxed text-foreground">
-      I&apos;m a 21-year-old <span className="font-autography font-bold text-3xl text-foreground">Backend-first React Developer</span>
-      <span className="italic text-gray-400"></span> with a bias for
-      <em> infra, concurrency, and systems that scale</em>. Comfortable across
-      <em> programming languages</em>, <em>databases</em>, and <em>cloud platforms</em> from
-      <em> low-level concurrency in C++</em> to designing features, streamlining workflows, and scaling products.
+      I&apos;m a 21-year-old <span className="font-autography font-bold text-3xl text-foreground">Backend Engineer</span> with a taste for design and a bias toward systems that scale. I think in tradeoffs—concurrency, failure modes, infra cost—but I also care about what the thing looks like on screen.
       <br /><br />
-      Built stuff like
+      Built projects like
       <a href="https://github.com/atharvwasthere/Fastlane" className="font-semibold underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"> Fastlane </a>
       (<span className="italic text-gray-500">CLI network benchmarking</span>),
       <a href="https://github.com/atharvwasthere/Encryptify" className="font-semibold underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"> Encryptify </a>
       (<span className="italic text-gray-500">C++ multithreaded encryption</span>), &
       <a href="https://github.com/atharvwasthere/Signal" className="font-semibold underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"> Signal </a>
-      (<span className="italic text-gray-500">Distributed real-time chat using Boost.Asio</span>).
+      (<span className="italic text-gray-500">distributed real-time chat via Boost.Asio</span>).
       <br /><br />
-      Currently,
-      <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">
-        building and shipping production features
-      </span> at the AI startup{" "}
+      Currently at{" "}
       <a
         href="https://www.surgegrowth.io/"
         target="_blank"
@@ -147,16 +140,19 @@ export const AboutMe = {
         className="font-medium underline underline-offset-2 hover:opacity-80"
       >
         <em>SurgeGrowth</em>
-      </a>, working across <em>billing</em>, <em>usage analytics</em>, and <em>quota-based systems</em>.
-
-      Beyond coding, I have a{" "}
-      <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">
-        keen interest in finance
-      </span> and <em>stock analysis</em>. Presently diving into
-      <em> backend systems and distributed workflows</em>, exploring how to design{" "}
-      <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">
-        infra that feels invisible but reliable
-      </span>.
+      </a>
+      —a Bangalore-based AI workflow platform—where I design and ship backend systems across infra, data pipelines, and product features. Things like a Vertex AI batch pipeline for 50K+ video jobs, a Facebook Ad Library caching layer, credit ledger architecture, and soft delete systems with cascading job cancellation. I care about systems that are boring in the right ways.
+      <br /><br />
+      Outside work: finance, stock analysis, and a blog called{" "}
+      <a
+        href="https://blogs.atharvsingh.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-semibold underline underline-offset-4 decoration-emerald-500/40 hover:decoration-emerald-500 text-emerald-500 dark:text-cyan-400 dark:decoration-cyan-400/40 dark:hover:decoration-cyan-400"
+      >
+        Not a Blogger
+      </a>{" "}
+      where I write about the backend tradeoffs nobody documents.
     </p>
 
   ),

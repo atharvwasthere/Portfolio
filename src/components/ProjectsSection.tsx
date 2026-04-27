@@ -115,36 +115,6 @@ const projectData = {
     title: "Research & Ideas",
     tagline: "Code meets Curiosity — sometimes with diagrams.",
     projects: [
-      {
-        name: "WebRTC Internals",
-        slug: "webrtc-internals",
-        icon: Satellite,
-        tags: [],
-      },
-      {
-        name: "Encryption Logic Deep Dive",
-        slug: "encryption-logic",
-        icon: Shield,
-        tags: [],
-      },
-      {
-        name: "System Design Notes",
-        slug: "system-design-notes",
-        icon: BookOpen,
-        tags: ["Architecture"],
-      },
-      {
-        name: "Elasticsearch + Inverted Indexing",
-        slug: "elasticsearch-inverted-index",
-        icon: Search,
-        tags: ["Search", "Indexing"],
-      },
-      {
-        name: "Model Context Protocol (MCP)",
-        slug: "multi-party-computation",
-        icon: Plug,
-        tags: [],
-      },
     ],
   },
 };
@@ -158,7 +128,7 @@ export default function ProjectsSection() {
   const [activeCategory, setActiveCategory] = useState<CategoryKey>("web");
 
   const activeProjects = projectData[activeCategory].projects.length;
-  const dynamicHeight = activeProjects * projectTileHeight + extraPadding;
+  const dynamicHeight = activeCategory === "research" ? 250 : activeProjects * projectTileHeight + extraPadding;
 
   return (
     <div className="w-full max-w-4xl  p-6 bg-background ">
@@ -240,6 +210,23 @@ export default function ProjectsSection() {
                 );
               })}
             </div>
+
+            {key === "research" && (
+              <div className="mt-4 flex flex-col items-start gap-4">
+                <p className="text-foreground text-lg leading-relaxed max-w-2xl text-justify">
+                  A personal archive built with TanStack Start where I document tradeoffs, debug logs, and system designs I wish existed when I was figuring things out.
+                </p>
+                <a
+                  href="https://blogs.atharvsingh.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-emerald-500/10 text-emerald-600 font-medium hover:bg-emerald-500/20 dark:bg-cyan-500/10 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-colors"
+                >
+                  Visit my blog &rarr;
+                </a>
+              </div>
+            )}
+
 
             {/* Terminal-style footer */}
             {/* <div className="mt-8 pt-4 border-t border-border">

@@ -2,7 +2,7 @@ import { useTheme } from "./theme-provider";
 import { useEffect, useMemo, useRef, useState } from "react";
 
 const Value = () => {
-    const Values = { description: "Useful. Reliable. Scalable. Well made" };
+    const Values = { description: "Useful. Reliable. Scalable. Intentional" };
     const { theme, resolvedTheme } = useTheme();
     const currentTheme = theme === "system" ? resolvedTheme : theme;
     const ROTATE_MS = 6000; // 6s
@@ -143,34 +143,18 @@ const Value = () => {
                     <span className="font-autography text-4xl text-foreground font-semibold">
                         Core development values
                     </span>
-                    , and I strive to bring them into every project I work on. I&apos;ve
-                    learned a lot from <em>building projects from the ground up</em>, and
-                    this hands-on experience has fueled my drive to{" "}
-                    <em> leave no stone unturned</em>. I&apos;m passionate about crafting{" "}
-                    <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">
-                        {" "}
-                        efficient, reliable, and scalable solutions
-                    </span>{" "}
-                    that meet real needs, blending{" "}
-                    <em>functionality with thoughtful design</em>. <br />
+                    , and I carry them into everything I ship. I&apos;ve
+                    learned a lot from <em>building systems from scratch</em>—enough to know that the difference between good and great is usually in <em>what breaks under pressure</em>. I&apos;m focused on crafting systems that are <em>honest about their failure modes</em>, <em>recoverable by design</em>, and <em>invisible when they&apos;re working right</em>.
+                    <br />
                     <br />I believe{" "}
                     <span className="font-cabinet  text-xl text-foreground font-semibold">
                         1 + 1 &gt; 2
                     </span>{" "}
                     —{" "}
                     <span className="text-emerald-500 dark:text-cyan-400 font-light">
-                        {" "}
-                        collaboration leads to outcomes far greater than what we can achieve
-                        individually
-                    </span>
-                    . I like to <em>think big</em>, work quickly yet thoughtfully, and
-                    always keep an eye on the <em>bigger picture</em>. I&apos;m constantly{" "}
-                    <em> growing, improving</em>, and pushing myself to{" "}
-                    <span className="bg-emerald-500/10 text-emerald-600 px-1 py-0.5 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">
-                        {" "}
-                        execute at the highest level
-                    </span>
-                    .
+                        the best solutions come from <em>thinking with people</em>, not just alongside them.
+                    </span>{" "}
+                    I like to <em>reason from first principles</em>, <em>move fast without cutting corners</em> I&apos;ll regret, and always ask whether the complexity I&apos;m adding is actually <em>earning its place</em>. I&apos;m constantly learning, and I <em>hold a high bar</em> for what I consider done.
                 </p>
             </div>
         </section>
