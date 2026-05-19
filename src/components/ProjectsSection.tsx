@@ -10,7 +10,6 @@ import {
   Rocket,
   LucidePackageOpen,
   LucideListMusic,
-  Wind,
   Wand,
   Plug,
   Search,
@@ -38,7 +37,7 @@ const projectData = {
         name: "Signal Chatroom",
         slug: "signal-chatroom",
         icon: MessageSquare,
-        tags: ["Networking", "C++", "WIP"],
+        tags: ["Networking", "C++"],
       },
       {
         name: "OS Tools",
@@ -56,7 +55,7 @@ const projectData = {
         name: "Fastlane",
         slug: "fastlane",
         icon: Rocket,
-        tags: ["Go", "Networking", "CLI", "WIP"],
+        tags: ["Go", "Networking", "CLI"],
       },
       {
         name: "JustDO",
@@ -95,7 +94,7 @@ const projectData = {
         tags: ["Frontend"],
       },
       { name: "Orion", slug: "Orion", icon: Fan, tags: ["Tanstack", "GenAI"] },
-      { name: "AirWise", slug: "airwise", icon: Wind, tags: ["WIP"] },
+      { name: "Veritas", slug: "veritas", icon: Shield, tags: ["FastAPI", "Agentic", "VC"] },
       { name: "EveSpark", slug: "evespark", icon: Wand, tags: [] },
       {
         name: "Competitive Search",

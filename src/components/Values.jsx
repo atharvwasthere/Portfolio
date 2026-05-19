@@ -24,7 +24,7 @@ const Value = () => {
 
         {
             label: "Read latest writeup",
-            href: "https://lldbyatharv.hashnode.dev/solid-principles",
+            href: "https://blogs.atharvsingh.me",
             svgLight: "/cta/Currently-light.svg",
             svgDark: "/cta/Currently-dark.svg",
         },

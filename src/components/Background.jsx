@@ -73,31 +73,42 @@ const Background = () => {
                             </button>
                         )}
                     </div>
+                    {!isExpExpanded && (
+                        <p className="mt-2 text-sm md:text-base text-muted-foreground font-satoshi">
+                            Credit ledger <span className="text-emerald-600 dark:text-cyan-400">·</span> Vertex pipeline (<strong className="text-foreground">-90%</strong> runtime) <span className="text-emerald-600 dark:text-cyan-400">·</span> FB caching (<strong className="text-foreground">-75%</strong> cost) <span className="text-emerald-600 dark:text-cyan-400">·</span> +7 more
+                        </p>
+                    )}
                     {isExpExpanded && (
                         <ul className="mt-4 py-2 px-6 text-popover-foreground text-lg list-disc space-y-2 rounded-md transition-all duration-300 ease-in-out marker:text-emerald-500 dark:marker:text-cyan-400">
                             <li>
-                                <strong>Billing page was taking 4s to load.</strong> Traced it to a 3-step <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">useEffect</code> waterfall + a new connection on every request. Switched to persistent <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">httpx.AsyncClient</code>, got it under 1s.
+                                <strong>Built the credit ledger</strong> <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">Reserve → Commit → Release</code>. Handles grants, deductions, clawbacks, idempotent events. Nothing double-charges.
                             </li>
                             <li>
-                                <strong>Built the credit ledger</strong> <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">Reserve → Commit → Release</code>. Handles grants, deductions, clawbacks, idempotent events. Nothing double-charges.
+                                <strong>Designed the Facebook Ad Library caching layer</strong> TTL strategy, piggyback execution so duplicate fetches don&apos;t stack, fire-and-forget async caching for raw data, achieving 40% cache hits and cutting costs by ~75%.
+                            </li>
+                            <li>
+                                <strong>Vertex AI batch pipeline</strong> for 50K+ ad videos through Gemini, parent-child job orchestration over GCP Pub/Sub. Cut runtime ~90% (13K rows: 5h → 14-24 min) and cost ~50%.
                             </li>
                             <li>
                                 <strong>Migrated billing</strong> from dollar-based to credit-based pricing. Backward compatible, audit history intact.
                             </li>
                             <li>
+                                <strong>Billing page was taking 4s to load.</strong> Traced it to a 3-step <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">useEffect</code> waterfall + a new connection on every request. Switched to persistent <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">httpx.AsyncClient</code>, got it under 1s.
+                            </li>
+                            <li>
                                 <strong>Built a dashboard preset engine</strong> that remaps columns by ID, name, and type so when datasets change, widgets degrade cleanly instead of just breaking.
-                            </li>
-                            <li>
-                                <strong>Designed the Facebook Ad Library caching layer</strong> TTL strategy, piggyback execution so duplicate fetches don&apos;t stack, fire-and-forget async caching for raw data, achieving 40% cache hits and reducing costs by 55-60%.
-                            </li>
-                            <li>
-                                <strong>Vertex AI batch pipeline</strong> for 50K+ ad videos through Gemini. Parent-child job orchestration over GCP Pub/Sub.
                             </li>
                             <li>
                                 <strong>Soft delete system</strong> via SQLAlchemy event hooks  <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">before_flush</code> and <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">do_orm_execute</code>. Every SELECT gets <code className="text-emerald-600 dark:text-cyan-400 font-mono text-sm">deleted_at IS NULL</code> injected automatically.
                             </li>
                             <li>
                                 <strong>Bulk job cancellation</strong> for delete flows. Bulk UPDATE + Redis, ORM bypassed where it&apos;d just slow things down.
+                            </li>
+                            <li>
+                                <strong>Resolved production bugs in real time</strong> typical TAT under 30 minutes from report to deploy, across billing, dashboards, and sync flows.
+                            </li>
+                            <li>
+                                <strong>Polished the overall look & feel of the app</strong> tightened spacing, typography, and interaction states across core surfaces so the product reads as production-grade, not prototype.
                             </li>
                         </ul>
                     )}

@@ -97,88 +97,6 @@ internal/
       docs: "https://github.com/atharvwasthere/web-crawler#readme",
     },
   },
-  airwise: {
-    slug: "airwise",
-    name: "AirWise",
-    summary: "Plan trips to cleaner destinations instantly—stop just checking AQI, start escaping it.",
-    overview: {
-      tagline: "AirWise – Breathe Better, Travel Smarter.",
-      timeline: "Work in Progress",
-      type: "Full-Stack Web Application",
-      status: "In Development",
-      stack: ["Node.js", "Express", "MongoDB", "Redis", "React", "TanStack Query", "TailwindCSS"]
-    },
-    motivation:
-      "Most AQI apps only show numbers, leaving people stuck with the problem. AirWise breaks that habit by turning passive AQI checks into proactive travel planning. In one tap, users discover cleaner destinations, get personalized health insights, and predictive travel tips. It's not monitoring—it's a lifestyle upgrade, a brag-worthy switch from reactive to smart living.",
-    techStack: [
-      {
-        category: "Frontend",
-        items: ["React", "TanStack Query", "TailwindCSS", "Mapbox", "Chart.js"]
-      },
-      {
-        category: "Backend",
-        items: ["Node.js", "Express", "MongoDB", "Redis", "Axios for API calls"]
-      },
-      {
-        category: "External APIs",
-        items: ["WAQI API (Real-time AQI)", "OpenWeather API", "Nominatim Reverse Geocoding"]
-      }
-    ],
-    features: [
-      "Instant clean-air destination finder within your region",
-      "AI-powered CleanAir Score combining AQI, weather, and crowd index",
-      "One-tap scenic route planning optimized for better air",
-      "Health-first mode for travelers with respiratory issues",
-      "Historical AQI & weather trend visualization for planning",
-      "Smart caching with Redis for lightning-fast responses",
-      "Predictive AQI alerts for upcoming weekends",
-      "Community-powered clean-air hotspots with user stories",
-      "Eco-friendly route suggestions with CO₂ impact insights",
-      "Social-ready shareable clean-air scorecards"
-    ],
-    architecture: {
-      description:
-        "AirWise uses a modular Node.js + Express backend with MongoDB for geospatial queries and Redis for API response caching. The React frontend leverages TanStack Query for optimized real-time data fetching and offline support. External APIs (WAQI, OpenWeather) feed live AQI and weather forecasts, while Nominatim reverse geocoding personalizes suggestions based on user location.",
-      structure: "backend/\n├── config/               # Database & environment configuration\n│   └── db.js\n├── controllers/          # Handle request-response logic\n│   └── placeController.js\n├── models/               # MongoDB schemas\n│   └── placeModel.js\n├── routes/               # Define API endpoints\n│   └── placeRoutes.js\n├── services/             # Business logic (e.g., AQI ranking)\n│   └── placeService.js\n├── utils/                # Utility functions (e.g., AQI calculations)\n│   └── aqiUtils.js\n├── app.js                # App initialization\n└── server.js             # Server entry point",
-      codeSnippet: "// Example: Nearby clean-air destinations\nrouter.get('/nearby-clean', async (req, res) => {\n  const { latitude, longitude } = req.query;\n  const userState = await getStateFromCoords(latitude, longitude); // Reverse geocode\n  const places = await Place.find({ state: userState }).lean();\n  const ranked = places.sort((a, b) => b.cleanAirScore - a.cleanAirScore);\n  res.json(ranked.slice(0, 5)); // Top 5 destinations\n});"
-    },
-    challenges: [
-      {
-        problem: "AQI apps show numbers but don't change user behavior",
-        debugging: "User research revealed they just check AQI and stay stuck",
-        solution: "Added instant travel recommendations and predictive planning to create an actionable next step"
-      },
-      {
-        problem: "Real-time AQI and weather data caused slow responses",
-        debugging: "WAQI API rate limits and latency were bottlenecks",
-        solution: "Implemented Redis caching and pre-fetched clean-air routes for peak hours"
-      }
-    ],
-    experience: {
-      approach:
-        "AirWise is designed as a Delta 4 product—creating an irreversible habit shift from passive AQI checking to proactive travel planning. This meant making it obvious, brag-worthy, and insanely useful: instant clean-air trips, predictive alerts, and eco-friendly routing—all in one tap.",
-      futureEnhancements:
-        "Next steps: AI-powered weekend planners, AR-based scenic viewpoint highlights, gamified eco-points for greener routes, integration with EV charging maps, and voice assistant commands for clean-air travel.",
-      prosAndCons: {
-        pros: [
-          "Turns boring AQI numbers into exciting travel actions",
-          "Predictive AQI and clean destination ranking",
-          "Blazing-fast API responses with Redis caching",
-          "Scalable modular backend",
-          "Social features for brag-worthy sharing"
-        ],
-        cons: [
-          "Still WIP—core features under development",
-          "Dependent on external AQI APIs for real-time accuracy",
-          "Sparse AQI data in remote areas can limit recommendations"
-        ]
-      }
-    },
-    links: {
-      github: "https://github.com/atharvwasthere/airwise",
-      docs: "https://github.com/atharvwasthere/airwise#readme"
-    }
-  },
   fastlane: {
     "version": 1,
     "slug": "fastlane",
@@ -191,7 +109,7 @@ internal/
       "status": "Completed",
       "stack": ["C++", "Go", "TCP Sockets", "Iperf3", "ASCII Terminal UI"]
     },
-    "motivation": "I wanted to understand network benchmarking, TCP socket programming, concurrency, and building real-time CLI tools. The goal was to make something that could accurately measure network performance, handle errors gracefully, and show live stats—all while being modular enough to extend later.",
+    "motivation": "I wanted to understand network benchmarking, TCP socket programming, concurrency, and building real-time CLI tools. The goal was to make something that could accurately measure network performance, handle errors gracefully, and show live stats-all while being modular enough to extend later.",
     "techStack": [
       {
         "category": "Backend / Core",
@@ -773,7 +691,7 @@ internal/
   "name": "EveSpark: Event Management System",
   "summary": "A full-stack web application that simplifies the organization and participation of campus events, offering a central platform for registration, discovery, and administration.",
   "overview": {
-    "tagline": "One-stop portal for managing events — from creation to participation.",
+    "tagline": "One-stop portal for managing events, from creation to participation.",
     "timeline": "1.5 months",
     "type": "Web Application",
     "status": "Completed",
@@ -822,7 +740,7 @@ internal/
   "features": [
     "Users can create profiles, track past event participation, and save interests.",
     "Simple event discovery interface with filtering and search.",
-    "Streamlined registration flow — no external forms required.",
+    "Streamlined registration flow, no external forms required.",
     "Admins can create/edit/delete events and track registrations live.",
     "Events display essential details: description, date, venue, organizers.",
     "Responsive front-end design works on desktops, tablets, and mobiles.",
@@ -877,7 +795,7 @@ internal/
     "name": "Persona-Based Trust-Aware Search Engine",
     "summary": "A search engine that delivers results personalized by user personas and filtered for credibility, designed to prevent misinformation and improve search relevance for specific user roles.",
     "overview": {
-      "tagline": "Smart search that adapts to you — Developer, Finance, Student, or Traveler.",
+      "tagline": "Smart search that adapts to you, Developer, Finance, Student, or Traveler.",
       "timeline": "Still figuring out (2–4 weeks MVP expected)",
       "type": "Web Application / Search Engine",
       "status": "Ideation / Planning",
@@ -1164,7 +1082,7 @@ internal/
   "JustDO": {
     "slug": "JustDO",
     "name": "JustDO",
-    "summary": "A minimalistic CLI todo manager that helps you stay productive straight from your terminal—no GUI, no distractions, just pure focus.",
+    "summary": "A minimalistic CLI todo manager that helps you stay productive straight from your terminal-no GUI, no distractions, just pure focus.",
     "overview": {
       "tagline": "JustDO – Get More Done in Less Time.",
       "timeline": "1 Day",
@@ -1172,7 +1090,7 @@ internal/
       "status": "Production Ready",
       "stack": ["Go", "Cobra CLI", "Viper Config", "JSON Storage", "Cross-Platform"]
     },
-    "motivation": "Most todo apps are bloated with features you don't need, forcing you to switch contexts from your terminal to a GUI. JustDO eliminates that friction by bringing task management directly to where developers live—the command line. It's fast, lightweight, and designed for people who think in terminal commands, not mouse clicks.",
+    "motivation": "Most todo apps are bloated with features you don't need, forcing you to switch contexts from your terminal to a GUI. JustDO eliminates that friction by bringing task management directly to where developers live-the command line. It's fast, lightweight, and designed for people who think in terminal commands, not mouse clicks.",
     "techStack": [
       {
         "category": "Core Language",
@@ -1278,7 +1196,7 @@ internal/
       "status": "Prototype / Demo-Ready",
       "stack": ["React", "Vite", "TypeScript", "TailwindCSS", "EvilCharts", "Client-side PDF Export"]
     },
-    "motivation": "Enable founders/shops to quickly view key metrics (revenue, cohorts, retention) in a polished UI without building a full stack dashboard first. The frontend is pluggable — backend can be swapped. Focus is on UX, clarity, and speed of iteration.",
+    "motivation": "Enable founders/shops to quickly view key metrics (revenue, cohorts, retention) in a polished UI without building a full stack dashboard first. The frontend is pluggable, backend can be swapped. Focus is on UX, clarity, and speed of iteration.",
     "techStack": [
       {
         "category": "Frontend Core",
@@ -1333,7 +1251,7 @@ internal/
       "prosAndCons": {
         "pros": [
           "Beautiful, coherent UI out of the box",
-          "Backend agnostic — easy to plug in different services",
+          "Backend agnostic, easy to plug in different services",
           "Rapidly demoable",
           "Lightweight and front-end focused",
           "Responsive by default, export capability built in"
@@ -1457,6 +1375,84 @@ internal/
       "github": "https://github.com/atharvwasthere/Orion",
       "docs": "https://github.com/atharvwasthere/Orion#readme",
       "releases": "https://github.com/atharvwasthere/Orion/releases"
+    }
+  },
+  "veritas": {
+    "slug": "veritas",
+    "name": "Veritas",
+    "summary": "Pre-seed VC diligence in 3 minutes, not 4 hours, drop a company URL, get six audit scores, claim-vs-evidence discrepancies, and a partner-ready PPTX.",
+    "overview": {
+      "tagline": "Audit-grade diligence for pre-seed VCs, in the time it takes to read the pitch deck.",
+      "timeline": "Hackathon build, Work in Progress (India-rubric rewrite underway)",
+      "type": "Full-Stack Web App + Agentic Backend",
+      "status": "In Development",
+      "stack": ["FastAPI", "Anakin", "Claude (Anthropic)", "Sandbox.co.in", "React", "Vite", "TypeScript", "Tailwind", "SSE"]
+    },
+    "motivation": "Pre-seed diligence is mostly pattern-matching across the same six surfaces, legitimacy, financials, compliance, growth, social proof, online presence, and partners burn 3–4 hours per company doing it by hand. Veritas does the mechanical pass: pulls evidence, scores each surface, surfaces contradictions between the founder's claims and what the web actually says, and hands back a deck the partner can walk into a Monday meeting with. India-first, because the off-the-shelf US-SaaS rubric scores a SEBI-regulated fintech identically to a D2C brand.",
+    "techStack": [
+      { "category": "Frontend", "items": ["React", "Vite", "TypeScript", "Tailwind v4", "shadcn/ui", "TanStack Router (v2)", "Framer Motion", "pptxgenjs"] },
+      { "category": "Backend", "items": ["FastAPI", "Pydantic", "SSE (Server-Sent Events)", "asyncio"] },
+      { "category": "AI / Data", "items": ["Anakin (4 ports: search, scrape, site-map, social)", "Anthropic Claude (synthesis + frameworks)", "Sandbox.co.in (licensed MCA registry API)"] },
+      { "category": "Design", "items": ["Titan monochrome system", "Geist + Geist Mono", "Off-White Sage cards, 32px radius, no shadows"] },
+      { "category": "Infra", "items": ["Vercel (frontend)", "Railway (backend)", "CORS-fronted API, VITE_API_BASE_URL"] }
+    ],
+    "features": [
+      "Single-input audit, paste URL, get full report; no forms, no signup",
+      "Six audit categories: legitimacy, financial, compliance, growth, social proof, online presence",
+      "Live SSE stepper, frontend shows planner → extractor → analyzer events as they fire, not a spinner",
+      "Domain → legal-entity resolver, pulls CIN and legal name from the target's own ToS/Privacy page, user confirms in one click",
+      "Indian regulatory rubrics, MCA filings, RBI NBFC registration, DPIIT recognition, FEMA, GST-revenue consistency, sector licences (SEBI, FSSAI, RBI)",
+      "Claim-vs-evidence discrepancy engine, flags where the site/deck contradicts what Anakin + Sandbox.co.in returned",
+      "Four analytical frameworks generated by Claude (SWOT-style + custom VC lenses)",
+      "Partner-ready PPTX export via pptxgenjs, same data, deck-shaped",
+      "Pluggable extractor registry, adding a 7th category = one file + one line in registry.py",
+      "Titan design system, monochrome, pill buttons (160px), no decorative color except #ff9900 accents"
+    ],
+    "architecture": {
+      "description": "Two-process system. Backend is a SOLID-shaped FastAPI pipeline: AuditPlanner picks which extractors to run, ExtractionWorker fans them out in parallel and emits progress events, then ScoringAnalyzer + FrameworkAnalyzer run Claude over the harvested evidence. Anakin client is split into four ports (search/scrape/site-map/social) so each extractor depends only on what it uses; Sandbox.co.in sits behind its own client for all government-registry lookups (CAPTCHA-walled sources are not scraped directly). Frontend consumes /audit/stream over SSE so the stepper reflects real backend state instead of fake progress.",
+      "structure": "backend/app/\n├── api/          # HTTP boundary (POST /audit, /audit/stream)\n├── services/     # AuditService, orchestrator\n├── planner/      # AuditPlanner, picks extractors per request\n├── workers/      # ExtractionWorker, parallel run, progress events\n├── extractors/   # legitimacy · financial · compliance · growth ·\n│                 # social_proof · online_presence (+ registry.py)\n├── analyzers/    # ScoringAnalyzer + FrameworkAnalyzer (Claude)\n├── clients/\n│   ├── anakin/   # 4 ports: search, scrape, site-map, social\n│   ├── sandbox/  # MCA / GST / SEBI via Sandbox.co.in\n│   └── llm/      # Anthropic\n├── models/       # pydantic domain models\n└── core/         # config + logging\n\nfrontend/  Vite + React + TS, Titan design tokens\nfrontend-v2/  TanStack Router rewrite (in progress)",
+      "codeSnippet": "# extractors/registry.py, adding a category is one line\nEXTRACTORS = {\n    \"legitimacy\":      LegitimacyExtractor,\n    \"financial\":       FinancialExtractor,\n    \"compliance\":      ComplianceExtractor,\n    \"growth\":          GrowthExtractor,\n    \"social_proof\":    SocialProofExtractor,\n    \"online_presence\": OnlinePresenceExtractor,\n    # \"team\":          TeamExtractor,   # v2\n}\n\nclass AuditPlanner:\n    def plan(self, req: AuditRequest) -> list[Extractor]:\n        return [EXTRACTORS[k](self.deps) for k in req.categories or EXTRACTORS]"
+    },
+    "challenges": [
+      {
+        "problem": "India's public company data infrastructure is effectively unscrappable. MCA, GST, EPFO, and SEBI portals all enforce CAPTCHA on every query, there is no programmatic path to the data that powers Categories 2, 5, and 6 without a paid intermediary API.",
+        "debugging": "Tested MCA directly, Zauba Corp, OpenCorporates, and an Apify actor hitting 24 government sources in parallel, all returned zero usable rows for a known CIN.",
+        "solution": "Delegating all government registry lookups to Sandbox.co.in, a licensed MCA data reseller with a clean REST API. Cost per query is passed into per-audit pricing."
+      },
+      {
+        "problem": "Domain-to-legal-entity resolution has no automated solution. Government databases index by CIN or exact legal name, neither of which a user provides when they paste a URL.",
+        "debugging": "Searching 'surgegrowth' across MCA mirrors returned 5 unrelated companies. Searching the exact legal name returned 0 rows on OpenCorporates. The mapping is not a lookup problem, it is a scraping problem.",
+        "solution": "Extracting legal name and CIN from the company's own Terms of Service or Privacy Policy page, where Indian law requires it to appear. User confirms before the audit runs, one click, not a form."
+      },
+      {
+        "problem": "Scoring rubrics for Indian-specific compliance signals do not exist off-the-shelf. The hackathon categories were US-SaaS biased and scored on generic signals like 'team size' and 'market fit', meaningless for a SEBI-regulated fintech or an FSSAI-licensed D2C brand.",
+        "debugging": "Ran the original extractor against Groww and Zepto, both scored identically on governance because the prompt had no concept of RBI NBFC registration, DPIIT recognition, or promoter stake disclosure.",
+        "solution": "Iterating on a rebuild of all six categories around Indian regulatory primitives, MCA filing compliance, sector licences, FEMA filings, GST-revenue consistency. Each sub-signal is being given an explicit rubric with Indian-specific evidence criteria; rollout is rubric-by-rubric, not big-bang."
+      }
+    ],
+    "experience": {
+      "approach": "Built the backend SOLID-first on purpose, extractors are the unit of change, so each one is its own file with a single Anakin (or Sandbox) port as a dependency. Frontend leans on the Titan system already in use across the portfolio: monochrome, pill buttons, Off-White Sage cards, no shadows. Every design choice, SSE over polling, registry over if/else, four Anakin ports over one god-client, paid Sandbox API over fragile CAPTCHA-bypass, is meant to be visible in the code, not hidden behind abstractions.",
+      "futureEnhancements": "Currently rethinking the orchestration logic in backend-v2 + frontend-v2: (1) finish the India-rubric rebuild category by category, (2) move from a fixed six-category plan to a planner that picks categories from the URL's sector signal (fintech → pull RBI; D2C → pull FSSAI), (3) add a 7th 'team' extractor that cross-references LinkedIn against MCA director records, (4) memory layer so a re-audit of the same CIN diffs against the prior run, (5) export beyond PPTX (Notion + Linear ticket draft), (6) TanStack Router rewrite of the frontend for deep-linkable audit states.",
+      "prosAndCons": {
+        "pros": [
+          "Adding a category is genuinely one file + one line, the SOLID shape pays off",
+          "SSE stepper makes a 3-min wait feel like 30s, real progress, not fake",
+          "Titan design system gives it a partner-meeting-credible look without a designer",
+          "Anakin port split means one slow API doesn't block unrelated extractors",
+          "Sandbox.co.in dependency is honest, we pay for licensed data instead of pretending CAPTCHA bypass is a moat"
+        ],
+        "cons": [
+          "Claude framework analyzer is the latency floor, can't parallelize past it without quality loss",
+          "Anakin + Sandbox rate limits cap concurrent audits; needs a queue before multi-tenant",
+          "Per-audit cost now has a real floor (Sandbox query fees), pricing has to absorb it",
+          "v1 frontend stepper is tightly coupled to current event schema, v2 rewrite is mid-flight",
+          "India-only rubrics by design, a US or SEA company audit would score nonsensically until rubrics are regionalised"
+        ]
+      }
+    },
+    "links": {
+      "github": "https://github.com/atharvwasthere/veritas",
+      "demo": "https://veritas.atharvsingh.me"
     }
   }
 }

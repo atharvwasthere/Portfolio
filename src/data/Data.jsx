@@ -1,6 +1,6 @@
 export const Experience = [
   {
-    time: <p>Nov 2025 - Present</p>,
+    time: <p>Nov 2025 - May 2026</p>,
     location: "Bangalore, IN",
   },
 ];
@@ -8,7 +8,7 @@ export const Experience = [
 export const Education = [
   {
     institution_name: <h4>Vellore Institute of Technology</h4>,
-    time: <p><u>Pursuing</u></p>,
+    time: <p><u>Graduated 2026</u></p>,
     location: "India",
   },
 ];
