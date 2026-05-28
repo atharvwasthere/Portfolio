@@ -19,6 +19,7 @@ import {
   ListTodo,
   Shield,
   LucideSquareSlash,
+  Radar,
 } from "lucide-react";
 import { Link } from "react-router";
 
@@ -95,6 +96,7 @@ const projectData = {
       },
       { name: "Orion", slug: "Orion", icon: Fan, tags: ["Tanstack", "GenAI"] },
       { name: "Veritas", slug: "veritas", icon: Shield, tags: ["FastAPI", "Agentic", "VC"] },
+      { name: "inferscope", slug: "inferscope", icon: Radar, tags: ["LLM Observability", "Event-Driven", "k3s"] },
       { name: "EveSpark", slug: "evespark", icon: Wand, tags: [] },
       {
         name: "Competitive Search",

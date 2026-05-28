@@ -1454,5 +1454,99 @@ internal/
       "github": "https://github.com/atharvwasthere/veritas",
       "demo": "https://veritas.atharvsingh.me"
     }
+  },
+  "inferscope": {
+    "slug": "inferscope",
+    "name": "inferscope",
+    "summary": "An LLM observability and inference-logging platform that captures latency, tokens, cost, and errors for every model call without slowing the request.",
+    "overview": {
+      "tagline": "What did this LLM call cost, how slow was it, and why did it fail — per request, per model, per provider.",
+      "timeline": "9 days",
+      "type": "Backend System + Full-Stack",
+      "status": "Completed",
+      "stack": ["FastAPI", "PostgreSQL", "Redis Streams", "React", "k3s"]
+    },
+    "motivation": "Every LLM app eventually asks the same three questions in production — cost, latency, failure cause — and most answer them with print() and vibes. inferscope is the boring, real version: an SDK that instruments every model call, an event bus that ships the telemetry off the hot path, an ingestion service that validates and prices it, and a dashboard that reads it back. The whole architecture bends around one rule: telemetry must never slow the request it measures.",
+    "techStack": [
+      { "category": "Frontend", "items": ["React 19", "Vite", "TanStack Query v5", "recharts"] },
+      { "category": "Backend", "items": ["FastAPI", "asyncpg", "Pydantic", "tenacity", "SSE"] },
+      { "category": "Data & Eventing", "items": ["PostgreSQL 16", "Redis Streams", "Alembic", "Transactional Outbox"] },
+      { "category": "LLM Providers", "items": ["AWS Bedrock (aioboto3)", "Google Gemini", "Groq"] },
+      { "category": "Infra & Deploy", "items": ["Docker", "Docker Compose", "k3s", "Azure VM", "Cloudflare", "Docker Hub", "nginx"] }
+    ],
+    "features": [
+      "Multi-provider chatbot (Bedrock, Gemini, Groq) behind one provider registry — adding a vendor is one file plus one row",
+      "Token-by-token streaming over SSE, proxied through nginx with buffering disabled",
+      "Event-driven telemetry: the SDK publishes to a Redis Stream and a consumer-group worker delivers to ingestion off the request path",
+      "Transactional outbox fallback — if Redis is down, events persist to Postgres and a poller drains them on recovery; nothing is lost",
+      "Idempotent ingestion via a client-minted request_id with ON CONFLICT DO NOTHING — at-least-once delivery plus an idempotent consumer is effectively-once processing",
+      "Reversible PII tokenization: PII becomes stable [PII:TYPE:N] tokens with a JSONB vault, so the model never sees raw PII but the user always does",
+      "Dashboards for p50/p95 latency, throughput, error rate, and cost — costs computed at ingestion against a pricing table",
+      "Conversation cancel / list / resume, with LLM-generated titles built from tokenized text",
+      "Backend-served model catalog — the price table is the single source of truth for the frontend dropdown",
+      "Self-hosted Kubernetes deploy on a single k3s node behind Cloudflare TLS; one-command Docker Compose for local; 130 passing unit tests"
+    ],
+    "architecture": {
+      "description": "Six services on one k3s node — frontend, chatbot, ingestion, dashboard, Postgres, Redis. The browser only touches the frontend (nginx), which serves the SPA and reverse-proxies /api/* to internal ClusterIP services (single origin, no CORS). The chatbot publishes an InferenceEvent after each call via a dual-path producer: Redis Streams on the happy path, a Postgres outbox table on failure, both draining through one delivery function into idempotent ingestion. The schema is modeled after OpenTelemetry's GenAI vocabulary, stored with plain column names rather than literal OTel attribute keys.",
+      "structure": `inferscope/
+├── backend/
+│   ├── chatbot/      # SSE chat, conversations, LLM titles
+│   ├── ingestion/    # validate -> redact -> price -> persist
+│   ├── dashboard/    # latency/throughput/error/cost API
+│   ├── sdk/          # provider wrapper + PII tokenizer
+│   ├── redis_bus/    # Streams producer/consumer + outbox
+│   ├── obs/          # JSON logging + trace-id propagation
+│   └── alembic/      # single consolidated migration baseline
+├── frontend/         # React 19 + Vite (nginx reverse proxy)
+├── k8s/              # k3s manifests + run-once migrate Job
+└── docker-compose.yml`,
+      "codeSnippet": `# dual-path publisher: Redis happy path, Postgres outbox fallback
+async def publish(self, event):
+    try:
+        await self._redis.xadd(STREAM, event.as_fields())   # happy path
+    except Exception:
+        await outbox.insert(self._pool(), event)             # durable fallback
+    # never re-raises - telemetry must not break the chat path`
+    },
+    "challenges": [
+      {
+        "problem": "Fire-and-forget logging loses events silently — a crash between 'model responded' and 'log delivered' means the data is just gone, and you find out when the cost dashboard is suspiciously cheap.",
+        "debugging": "Walked six event-bus options (asyncio.Queue, Postgres LISTEN/NOTIFY, webhook, Celery, Kafka, Redis Streams) and reasoned through what each guarantees on failure, then tested three failure modes against a live stack: Redis down, ingestion down, both down.",
+        "solution": "Redis Streams for at-least-once delivery plus a Postgres transactional outbox for when Redis itself is down, both feeding an idempotent consumer keyed on request_id. In every failure mode exactly one row lands and the chat response still streams to completion."
+      },
+      {
+        "problem": "Storing conversation history raw leaks PII; redacting it irreversibly breaks the product — the model can't answer 'what was my email?' if the email was destroyed on the way in.",
+        "debugging": "V1 (raw) and V2 (irreversible redaction) both failed for opposite reasons. Watching the stream also revealed the model echoing the privacy tokens back to the user.",
+        "solution": "Reversible tokenization: PII becomes a stable [PII:TYPE:N] token with originals in a JSONB map on the message row, detokenized only at the display boundary. Switched the token format from <pii:..> to [PII:..] because angle brackets read as XML and the model parroted them."
+      },
+      {
+        "problem": "The k8s manifests worked on Minikube and broke on a real k3s node: ClusterIP services unreachable from the browser, images that didn't exist on the node, and an empty database because nothing ran migrations.",
+        "debugging": "Each gap only surfaced on a real VM. Also learned the declarative lesson the hard way after creating an Ingress imperatively (kubectl create) that existed nowhere in the repo.",
+        "solution": "nginx reverse proxy for a single public origin, images pushed to Docker Hub with IfNotPresent, a run-once migrate Job before the app pods, and every resource (including the Ingress) committed as YAML — if it isn't in a file, it doesn't exist."
+      }
+    ],
+    "experience": {
+      "approach": "Build for the actual scale (tens of events, single node), but write down the exit ramp for every decision. The complexity isn't there to impress — it's there because each time I pulled a thread ('what happens when ingestion is down?') there was an honest problem on the end of it. Simple choice now, named graduation path for later.",
+      "futureEnhancements": "Encrypt the pii_map column (KMS), add a dead-letter queue for permanently-rejected payloads, move logs to a columnar store with an hourly rollup behind a read replica, and add an OTel exporter that maps the columns to real gen_ai.* attribute names.",
+      "prosAndCons": {
+        "pros": [
+          "Telemetry can never slow or break the chat path — it's downstream of the response",
+          "Survives Redis/ingestion outages with zero data loss and no duplicates",
+          "Adding an LLM provider or model touches one file or one row, not the whole codebase",
+          "Reproducible end-to-end: one-command Compose locally, declarative k3s manifests in prod"
+        ],
+        "cons": [
+          "pii_map is plaintext in Postgres — path-isolated, not encrypted (production gap)",
+          "Single Postgres serves both OLTP chat and append-heavy logs; fine now, splits later",
+          "Single-node k3s is a single point of failure by design (cost vs resilience tradeoff)",
+          "No dead-letter queue — a permanently-invalid payload is logged and dropped"
+        ]
+      }
+    },
+    "links": {
+      "github": "https://github.com/atharvwasthere/Lumino",
+      "docs": "https://github.com/atharvwasthere/Lumino#readme",
+      "demo": "https://inferscope.atharvsingh.me"
+    }
   }
 }
