@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "fetch:contributions": "node scripts/fetch-contributions.mjs",
+    "prebuild": "node scripts/fetch-contributions.mjs",
     "lint:imports": "eslint \"src/**/*.{js,jsx,ts,tsx}\" --max-warnings=0",
     "build": "vite build",
     "lint": "eslint .",

@@ -1,5 +1,9 @@
 export const Experience = [
   {
+    time: <p>June 2026 - Present</p>,
+    location: "Bangalore, IN",
+  },
+  {
     time: <p>Nov 2025 - May 2026</p>,
     location: "Bangalore, IN",
   },

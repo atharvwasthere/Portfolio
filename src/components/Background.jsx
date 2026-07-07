@@ -4,6 +4,7 @@ import { useState } from "react";
 // import { SvgColor } from "./ui/svgColor";
 import { VitLogo } from "./ui/vitLogo";
 import { SgLogo } from "./ui/SgLogo";
+import ContributionGraph from "./ContributionGraph";
 
 
 
@@ -45,6 +46,31 @@ const Background = () => {
     return (
         <section id="main-outer-border" className=" text-start flex flex-col mt-28  text-primary p-4 ">
             <div id="title" className='font-display text-large md:text-huge mb-8 '>Background</div>
+
+            <div id="powerplay-logo" className="flex items-center justify-start py-2 md:py-4">
+                <img
+                    src="/powerplay.svg"
+                    alt="Powerplay"
+                    className="h-8 w-auto md:h-10 dark:brightness-0 dark:invert"
+                />
+            </div>
+
+            <div className="relative font-satoshi mb-8">
+                <div id="Role" className="py-2 ">
+                    <div className="flex items-center text-3xl md:text-4xl">
+                        <h1><u className="bg-emerald-500/10 text-emerald-600 px-1 py-1 rounded-md font-medium dark:bg-cyan-500/10 dark:text-cyan-400">Software Engineer</u></h1>
+                    </div>
+                </div>
+                <div id="when&where" className="flex flex-rows gap-4 py-2 ">
+                    <div id="time" className="flex ">
+                        {Experience[0].time}
+                    </div>
+                    <div id="location" className="flex ">
+                        {Experience[0].location}
+                    </div>
+                </div>
+            </div>
+
             <div id="logo" className="flex items-center justify-start py-2 md:py-4">
                 {/* <div id="logo-image" className="py-4 dark:hidden"> */}
                 {/* <SvgColor  className="w-48 h-48" /> */}
@@ -113,15 +139,21 @@ const Background = () => {
                         </ul>
                     )}
                 </div>
+
+                <div className="my-6 max-w-2xl">
+                    <ContributionGraph />
+                </div>
+
                 <div id="when&where" className="flex flex-rows gap-4 py-2 ">
                     <div id="time" className="flex ">
-                        {Experience[0].time}
+                        {Experience[1].time}
                     </div>
                     <div id="location" className="flex ">
-                        {Experience[0].location}
+                        {Experience[1].location}
                     </div>
                 </div>
             </div>
+
             <div id="logo" className="flex items-center justify-start h-32 w-32 ">
                 {/* <div id="logo-image" className="py-4 dark:hidden"> */}
                 {/* <SvgColor  className="w-48 h-48" /> */}
